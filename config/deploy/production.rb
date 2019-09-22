@@ -59,3 +59,6 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+# 自動デプロイ用に導入
+server '3.112.147.48', user: 'ec2-user', roles: %w{app db web}
