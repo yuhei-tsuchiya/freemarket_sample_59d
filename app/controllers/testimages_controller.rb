@@ -1,16 +1,17 @@
 class TestimagesController < ApplicationController
   def index
-    @testimage = "hello world"
+    @test = "hello world"
+    @testimage = Testimage.new
   end
 
-  def cretate
-    Testimages.create(image: testimage_params[:image])
-    # binding.pry
+  def create
+    Testimage.create(image: testimage_params[:image])
+    redirect_to testimages_path
   end
 
   private
   def testimage_params
-    params.permit(:image)
+    params.require(:testimage).permit(:image)
   end
 
 end

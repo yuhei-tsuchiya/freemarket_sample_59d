@@ -72,5 +72,11 @@ group :production do
   gem 'unicorn', '5.4.1'
 end
 
+# ユーザー管理機能及びビュー作成
 gem 'devise'
 gem 'haml-rails'
+
+# AWS S3設定に伴いimageuploader導入
+gem 'carrierwave'
+gem 'fog-aws'
+gem 'mini_magick'
