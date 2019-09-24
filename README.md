@@ -24,6 +24,7 @@
 
 ## addresssテーブル
 |zip_code|string|null: false|
+|------|----|-------|
 |prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
 |jusho_shikuchoson|string|null: false|
 |jusho_banchi|string|null: false|
