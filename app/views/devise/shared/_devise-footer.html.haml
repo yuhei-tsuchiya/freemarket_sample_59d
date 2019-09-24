@@ -1,0 +1,13 @@
+.footer
+  %nav
+    %ul.registration
+      %li.registration__li
+        =link_to "プライバシーポリシー", "" 
+      %li.registration__li
+        =link_to "メルカリ利用規約", ""
+      %li.registration__li
+        =link_to "特定商取引に関する表記", ""
+  =link_to '', class: 'registration' do
+    = image_tag 'logo-gray.svg', class: 'registration-footer-logo'
+  %p.registration
+    © 2019 Mercari
