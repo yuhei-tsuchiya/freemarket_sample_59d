@@ -17,7 +17,7 @@ CarrierWave.configure do |config|
     config.fog_directory  = 'uploadcarriewavetest'
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/uploadcarriewavetest'
   else
-    # 開発環境用
+    # 開発、テスト環境用
     config.storage :file
   end
 
