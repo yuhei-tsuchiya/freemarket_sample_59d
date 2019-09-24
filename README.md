@@ -16,16 +16,22 @@
 |birth_day|integer|null: false|
 |cellphone_number|string|null: false|
 |phone_credential|integer||
+|address_id|integer|null: false, foreign_key: true|
+|introduction|text||
+### Association
+- has_many :items
+- has_one :address
+
+## addresssテーブル
 |zip_code|string|null: false|
-|todofuken_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
+|prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
 |jusho_shikuchoson|string|null: false|
 |jusho_banchi|string|null: false|
 |jusho_tatemono|string|null: false|
 |phone_number|string||
-|introduction|text||
 ### Association
-- has_many :items
-- belongs_to :todofuken
+- belongs_to :user
+- belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
 
 ## credit_cardsテーブル(Gem PAYJPの仕様に準拠)
 |Column|Type|Options|
@@ -48,7 +54,7 @@
 |category_id|int|null: false, foreign_key: true|  ※ 多階層カテゴリ(Gem ancestry)を使用
 |size_id|int|null: false, foreign_key: true|  ※ 多階層カテゴリ(Gem ancestry)を使用
 |burden_id|integer|null: false, foreign_key: true|    ※ 多階層カテゴリ(Gem ancestry)を使用
-|todofuken_id|integer|null: false, foreign_key: true|  ※ 発送元
+|prefecture_id|integer|null: false, foreign_key: true|  ※ 発送元
 ### Association
 - has_many :images
 - has_many :comments
@@ -56,7 +62,7 @@
 - belongs_to :category
 - belongs_to :size
 - belongs_to :burden
-- belongs_to :todofuken
+- belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
 
 ## imagesテーブル
 |Column|Type|Options|
@@ -65,8 +71,8 @@
 |user_id|integer|null: false, foreign_key: true|
 |item_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ## commentsテーブル
 |Column|Type|Options|
@@ -75,8 +81,8 @@
 |user_id|integer|null: false, foreign_key: true|
 |item_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ## categorysテーブル  ※カテゴリー×3、ブランドを含む
 |Column|Type|Options|
@@ -107,12 +113,3 @@
 ### Association
 - has_many :items
 - has_ancestry
-
-## todofukensテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-### Association
-- has_many :user
-- has_many :item
-
