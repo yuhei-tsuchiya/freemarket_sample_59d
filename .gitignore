@@ -27,4 +27,4 @@
 /config/master.key
 
 # Ignore the uploaded files
-/uploads/*
+public/uploads/*
