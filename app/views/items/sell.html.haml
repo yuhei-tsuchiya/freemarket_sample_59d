@@ -1,0 +1,226 @@
+.header
+  .header__logo
+    = link_to '' do 
+      = image_tag 'logo.svg', class: 'registration-header-logo'
+
+
+.contents-item
+  .contents-item__message
+    商品の情報を入力
+  .contents-item__container
+    %form{action: "/", method: "post"}
+      .contents-item__container__uploadbox
+        .contentsitem__container__uploadbox__text.label
+          出品画像
+          %span.hissu 必須
+        .contents-item__container__uploadbox__info.info
+          最大10枚までアップロードできます
+        %label.contents-item__container__uploadbox__dropbox
+          %input.contents-item__container__uploadbox__dropbox--fileform{name: "image", type: "file"}
+          %p.contents-item__container__uploadbox__dropbox--fileinfo
+            ドラッグアンドドロップ
+            %br
+            またはクリックしてファイルをアップロード
+      
+      .contents-item__container__sell-contents
+        .contents-item__container__sell-contents__form-group
+          %label.label--small
+            商品名
+            %span.hissu 必須
+          .contents-item__container__sell-contents__form-group__inputname
+            %input.contents-item__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: "商品名（必須40文字まで）"}
+        .contents-item__container__sell-contents__form-group{style: "margin-top: 40px;"}
+          %label.label--small
+            商品の説明
+            %span.hissu 必須
+          .contents-item__container__sell-contents__form-group__inputname
+            %textarea.contents-item__container__sell-contents__form-group__inputname--input-description{name: "description",
+              rows: "5",
+              placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+
+      .contents-item__container__sell-contents.clearfix
+        %h3.contents-item__container__sell-contents--greyout 商品の詳細
+        .contents-item__container__sell-contents__form-box
+          %div
+            %label.label--small
+              カテゴリー
+              %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select.contents-item__container__sell-contents__form-box__select-wrap--select
+                  %option ---
+                  %option レディース
+                  %option メンズ
+                  %option ベビー・キッズ
+                  %option インテリア・住まい・小物
+                  %option 本・音楽・ゲーム
+                  %option おもちゃ・ホビー・グッズ
+                  %option コスメ・香水・美容
+                  %option 家電・スマホ・カメラ
+                  %option スポーツ・レジャー
+                  %option ハンドメイド
+                  %option チケット
+                  %option 自動車・オートバイ
+                  %option その他
+
+        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+          %div
+            %label.label--small
+              商品の状態
+              %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select.contents-item__container__sell-contents__form-box__select-wrap--select
+                  %option ---
+                  %option 新品、未使用
+                  %option 未使用に近い
+                  %option 目立った傷や汚れなし
+                  %option やや傷や汚れあり
+                  %option 傷や汚れあり
+                  %option 全体的に状態が悪い
+
+      .contents-item__container__sell-contents.clearfix
+        %h3.contents-item__container__sell-contents--greyout 配送について
+        %a.contents-item__container__sell-contents--help{href: "#", } ?
+        .contents-item__container__sell-contents__form-box
+          %div
+            %label.label--small
+              配送料の負担
+              %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select.contents-item__container__sell-contents__form-box__select-wrap--select
+                  %option ---
+                  %option 送料込み
+                  %option 着払い(購入者負担)
+
+        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+          %div
+            %label.label--small
+              発送元の地域
+              %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select.contents-item__container__sell-contents__form-box__select-wrap--select
+                  %option ---
+                  %option 北海道
+                  %option 青森県
+                  %option 岩手県
+                  %option 宮城県
+                  %option 秋田県
+                  %option 山形県
+                  %option 福島県
+                  %option 茨城県
+                  %option 栃木県
+                  %option 群馬県
+                  %option 埼玉県
+                  %option 千葉県
+                  %option 東京都
+                  %option 神奈川県
+                  %option 新潟県
+                  %option 富山県
+                  %option 石川県
+                  %option 福井県
+                  %option 山梨県
+                  %option 長野県
+                  %option 岐阜県
+                  %option 静岡県
+                  %option 愛知県
+                  %option 三重県
+                  %option 滋賀県
+                  %option 京都府
+                  %option 大阪府
+                  %option 兵庫県
+                  %option 奈良県
+                  %option 和歌山県
+                  %option 鳥取県
+                  %option 島根県
+                  %option 岡山県
+                  %option 広島県
+                  %option 山口県
+                  %option 徳島県
+                  %option 香川県
+                  %option 愛媛県
+                  %option 高知県
+                  %option 福岡県
+                  %option 佐賀県
+                  %option 長崎県
+                  %option 熊本県
+                  %option 大分県
+                  %option 宮崎県
+                  %option 鹿児島県
+                  %option 沖縄県
+        
+        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+          %div
+            %label.label--small
+              発送までの日数
+              %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select.contents-item__container__sell-contents__form-box__select-wrap--select
+                  %option ---
+                  %option 1~2日で発送
+                  %option 2~3日で発送
+                  %option 4~7日で発送
+
+      .contents-item__container__sell-contents.clearfix
+        %h3.contents-item__container__sell-contents--greyout 販売価格(300〜9,999,999)
+        %a.contents-item__container__sell-contents--help{href: "#", } ?
+        .contents-item__container__sell-contents__form-box
+          %div.clearfix
+            %label.label--small.contents-item__container__sell-contents__form-box--label
+              価格
+              %span.hissu 必須
+            .contents-item__container__sell-contents__form-box__pricebox
+              %div{style: "float: left; width: 10px; margin-top: 15px;"} ¥
+              %div  
+                %input.contents-item__container__sell-contents__form-box__pricebox--input{ placeholder: "例）300"}
+          .contents-item__container__sell-contents__form-box__form-fee.clearfix
+            .contents-item__container__sell-contents__form-box__form-fee__fee-left.info
+              販売手数料 (10%)
+            .contents-item__container__sell-contents__form-box__form-fee__fee-right.info
+              \-
+          .contents-item__container__sell-contents__form-box__form-fee.clearfix
+            .contents-item__container__sell-contents__form-box__form-fee__fee-left.label
+              販売利益
+            .contents-item__container__sell-contents__form-box__form-fee__fee-right.lable
+              \-
+      .contents-item__container__sell-btn
+        %div
+          %p.kiyaku
+            %a.kiyaku--blue{href: '#'}> 禁止されている出品、行為 
+            を必ずご確認ください。
+            %br
+            またブランド品でシリアルナンバー等がある場合はご記載ください。
+            %a.kiyaku--blue{href: '#'}> 偽ブランドの販売
+            は犯罪であ
+            %br
+            り処罰される可能性があります。
+            %br
+            また、出品をもちまして
+            %a.kiyaku--blue{href: '#'}> 加盟店規約
+            に同意したことになります。
+        %button.contents-item__container__sell-btn--btn-red 出品する
+        %a.contents-item__container__sell-btn--btn-red.grey もどる
+
+
+.footer
+  %nav
+    %ul.registration
+      %li.registration__li
+        =link_to "プライバシーポリシー", "" 
+      %li.registration__li
+        =link_to "メルカリ利用規約", ""
+      %li.registration__li
+        =link_to "特定商取引に関する表記", ""
+  =link_to '', class: 'registration' do
+    = image_tag 'logo-gray.svg', class: 'registration-footer-logo'
+  %p.registration
+    © 2019 Mercari

@@ -81,3 +81,6 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'jquery-rails'
+
+# Font Awesome導入
+gem 'font-awesome-rails'
