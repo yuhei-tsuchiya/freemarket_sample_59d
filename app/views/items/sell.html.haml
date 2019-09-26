@@ -15,13 +15,110 @@
           %span.hissu 必須
         .contents-item__container__uploadbox__info.info
           最大10枚までアップロードできます
-        %label.contents-item__container__uploadbox__dropbox
-          %input.contents-item__container__uploadbox__dropbox--fileform{name: "image", type: "file"}
-          %p.contents-item__container__uploadbox__dropbox--fileinfo
-            ドラッグアンドドロップ
-            %br
-            またはクリックしてファイルをアップロード
-      
+        %div
+          .contents-item__container__uploadbox__have-item.clearfix
+            %ul
+              -# li要素一つにつき画像ボックス1個分
+              %li.contents-item__container__uploadbox__have-item--upload-item
+                %figure.contents-item__container__uploadbox__have-item--upload-figure
+                  %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+                .contents-item__container__uploadbox__have-item__upload-btnbox
+                  %a.contents-item__container__uploadbox__have-item--upload-btn 　
+                  %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+              -# li要素一つにつき画像ボックス1個分
+              -# %li.contents-item__container__uploadbox__have-item--upload-item
+              -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+              -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+              -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+              -# -# li要素一つにつき画像ボックス1個分
+              -# %li.contents-item__container__uploadbox__have-item--upload-item
+              -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+              -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+              -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+              -# -# li要素一つにつき画像ボックス1個分
+              -# %li.contents-item__container__uploadbox__have-item--upload-item
+              -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+              -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+              -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+              -# -# li要素一つにつき画像ボックス1個分
+              -# %li.contents-item__container__uploadbox__have-item--upload-item
+              -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+              -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+              -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+              -# -# -# li要素一つにつき画像ボックス1個分
+              -# %li.contents-item__container__uploadbox__have-item--upload-item
+              -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+              -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+              -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+              -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+
+          %label.contents-item__container__uploadbox__dropbox.clearfix
+            %input.contents-item__container__uploadbox__dropbox--fileform{name: "image", type: "file"}
+            %p.contents-item__container__uploadbox__dropbox--fileinfo
+              ドラッグアンドドロップ
+              %br          
+              またはクリックしてファイルをアップロード
+          -# .contents-item__container__uploadbox__have-item.clearfix
+          -#   %ul
+          -#     -# li要素一つにつき画像ボックス1個分
+          -#     %li.contents-item__container__uploadbox__have-item--upload-item
+          -#       %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#         %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#       .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+          -#     -# li要素一つにつき画像ボックス1個分
+          -#     %li.contents-item__container__uploadbox__have-item--upload-item
+          -#       %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#         %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#       .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+          -#     -# li要素一つにつき画像ボックス1個分
+          -#     %li.contents-item__container__uploadbox__have-item--upload-item
+          -#       %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#         %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#       .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+          -#     -# li要素一つにつき画像ボックス1個分
+          -#     %li.contents-item__container__uploadbox__have-item--upload-item
+          -#       %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#         %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#       .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#         %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+          -#     -# li要素一つにつき画像ボックス1個分
+          -#     -# %li.contents-item__container__uploadbox__have-item--upload-item
+          -#     -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#     -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#     -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#     -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#     -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+          -#     -# -# -# li要素一つにつき画像ボックス1個分
+          -#     -# %li.contents-item__container__uploadbox__have-item--upload-item
+          -#     -#   %figure.contents-item__container__uploadbox__have-item--upload-figure
+          -#     -#     %img.contents-item__container__uploadbox__have-item--upload-image{src: "/default.jpg", width: "100"}
+          -#     -#   .contents-item__container__uploadbox__have-item__upload-btnbox
+          -#     -#     %a.contents-item__container__uploadbox__have-item--upload-btn 　
+          -#     -#     %a.contents-item__container__uploadbox__have-item--upload-btn.btn-left{href: "#"} 削除
+
+          -# %label.contents-item__container__uploadbox__dropbox.clearfix
+          -#   %input.contents-item__container__uploadbox__dropbox--fileform{name: "image", type: "file"}
+          -#   %p.contents-item__container__uploadbox__dropbox--fileinfo
+          -#     ドラッグアンドドロップ
+          -#     %br
+          -#     またはクリックしてファイルをアップロード
+     
       .contents-item__container__sell-contents
         .contents-item__container__sell-contents__form-group
           %label.label--small
