@@ -64,6 +64,7 @@ body {
       display: flex;
       justify-content: space-between;
       padding-top: 10px;
+      margin-bottom: 16px;
 
       a {
         text-decoration: none;
@@ -174,6 +175,7 @@ body {
   }
 
   .popular-category{
+
     padding: 56px 0px 30px;
     background-color: rgb(255, 255, 255);
     left: 50%;
@@ -226,18 +228,39 @@ body {
 
   .product{
     background-color: rgb(245, 245, 245);
-    height: 2102px;
-
+    // height: 2102px;
+    padding: 42px 0px 0px 0px;
     .ladys-new-items{
       max-width: 1020px;
       width: 100%;
       margin: 0px auto;
       &__top{
-        display:flex;
+        margin-bottom: 16px;
+        align-items: flex-end;
+        display: flex;
+        -webkit-box-pack: justify;
         justify-content: space-between;
 
         &__title{
           font-size: 24px;
+          flex: 1 1 0%;
+          margin: 0;
+
+        }
+
+        &__more{
+          font-size: 14px;
+          padding: 5px 0px 5px 5px;
+          color: rgb(0, 149, 238);
+          display: block;
+          font-size: 12px;
+          position: relative;
+          font-weight: 600;
+
+
+        }
+        a{
+          text-decoration: none;
         }
       }
       &__bottom{
@@ -488,7 +511,7 @@ body {
       }
     }
   }
-  .__bottom{
+  &__bottom{
     display: flex;
   }
 
