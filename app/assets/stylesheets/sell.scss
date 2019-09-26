@@ -14,16 +14,12 @@
     box-sizing: border-box;
     &__uploadbox{
       box-sizing: border-box;
-      // height: 300px;
       height: 100%;
       padding: 40px;
       border-top: 1px solid #f5f5f5;
       &__have-item{
-        // 画像が登録されたら追加する要素
         box-sizing: border-box;
         flex: 1;
-        // width: 50px;
-        // height: 50px;
         float: left;
         display: block;
         ul{
@@ -31,20 +27,13 @@
           padding: 0;
           box-sizing: border-box;
           display: block;
-          // width: 100%;
           list-style: none;
-          // margin-block-start: 1em;
-          // margin-block-end: 1em;
-          // margin-inline-start: 0px;
-          // margin-inline-end: 0px;
-          // padding-inline-start: 40px;
         }
         &--upload-item{
           box-sizing: border-box;
           width: 113px;
           margin-bottom: 10px;
           margin-right: 2px;
-          // position: relative;
           display: inline-block;
           border: 1px solid #eee;
           vertical-align: top;
@@ -57,10 +46,7 @@
           height: 116px;
         }
         &--upload-image{
-          // position: static;
           height: 140px;
-          // top: 0;
-          // left: 50%;
         }
         &__upload-btnbox{
           font-size: 14px;
@@ -83,19 +69,10 @@
       }
       &__dropbox{
         box-sizing: border-box;
-        // 画像0の時
-        // float: right;
-        // width: 100%;
-        // 画像が登録された時(１段目)
-        // width: calc(100% - 240px);
         margin: 0;
         height: 160px;
-        // position: relative;
-        // width: 100%;
-        // float: right;
-        overflow: hidden;//これが大事
-        width: auto;//幅を決めない
-
+        overflow: hidden;
+        width: auto;
         padding: 40px;
         min-height: 162px;
         background: #f5f5f5;
@@ -110,9 +87,7 @@
           display: block;
           text-align: center;
           font-size: 14px;
-          // line-height: 1.5;
           font-family: monospace,monospace;
-          // position: absolute;
         }
       }
     }
