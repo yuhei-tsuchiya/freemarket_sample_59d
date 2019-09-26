@@ -1,5 +1,6 @@
 #wrapper
 
+  // #step1用のヘッダー
   .header-email-registration
     .header-email-registration__logo
       = link_to '' do 
@@ -22,6 +23,179 @@
           完了
           .progress-status
 
+-# 会員情報入力フォーム
+.personal-input
+  .personal-input__message
+    商品の情報を入力
+  .personal-input__container
+    .personal-input__container__sell-contents
+      .personal-input__container__sell-contents__form-group
+        %label.label--small
+          ニックネーム
+          %span.hissu 必須
+        .personal-input__container__sell-contents__form-group__inputname
+          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) メルカリ太郎"}
+    .personal-input__container__sell-contents
+      .personal-input__container__sell-contents__form-group
+        %label.label--small
+          メールアドレス
+          %span.hissu 必須
+        .personal-input__container__sell-contents__form-group__inputname
+          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+            type: "text", placeholder: " PC・携帯どちらでも可"}
+    .personal-input__container__sell-contents
+      .personal-input__container__sell-contents__form-group
+        %label.label--small
+          パスワード
+          %span.hissu 必須
+        .personal-input__container__sell-contents__form-group__inputname
+          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+            type: "text", placeholder: " 7文字以上"}
+    .personal-input__container__sell-contents
+      .personal-input__container__sell-contents__form-group
+        %label.label--small
+          パスワード (確認)
+          %span.hissu 必須
+        .personal-input__container__sell-contents__form-group__inputname
+          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+            type: "text", placeholder: " 7文字以上"}
+
+    .personal-input__sort-message
+      %h1
+        本人確認
+      %p
+        安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+
+    .personal-input__namekanji
+      %label.label--small
+        お名前(全角)
+        %span.hissu 必須
+      .name-box
+        %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 山田"}
+        %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 彩"}
+
+    .personal-input__namehira
+      %label.label--small
+        お名前カナ(全角) 
+        %span.hissu 必須
+      .name-box
+        %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) ヤマダ"}
+        %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) アヤ"}
+
+    -# .personal-input__container__sell-contents.clearfix
+    -#   %h3.personal-input__container__sell-contents--greyout 商品の詳細
+    -#   .personal-input__container__sell-contents__form-box
+    -#     %div
+    -#       %label.label--small
+    -#         カテゴリー
+    -#         %span.hissu 必須
+    -#       %div
+    -#         .personal-input__container__sell-contents__form-box__select-wrap
+    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
+    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
+    -#             %option ---
+    -#             %option レディース
+    -#             %option メンズ
+    -#             %option ベビー・キッズ
+    -#             %option インテリア・住まい・小物
+    -#             %option 本・音楽・ゲーム
+    -#             %option おもちゃ・ホビー・グッズ
+    -#             %option コスメ・香水・美容
+    -#             %option 家電・スマホ・カメラ
+    -#             %option スポーツ・レジャー
+    -#             %option ハンドメイド
+    -#             %option チケット
+    -#             %option 自動車・オートバイ
+    -#             %option その他
+    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
+    -#     %div
+    -#       %label.label--small
+    -#         商品の状態
+    -#         %span.hissu 必須
+    -#       %div
+    -#         .personal-input__container__sell-contents__form-box__select-wrap
+    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
+    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
+    -#             %option ---
+    -#             %option 新品、未使用
+    -#             %option 未使用に近い
+    -#             %option 目立った傷や汚れなし
+    -#             %option やや傷や汚れあり
+    -#             %option 傷や汚れあり
+    -#             %option 全体的に状態が悪い
+    -# .personal-input__container__sell-contents.clearfix
+    -#   %h3.personal-input__container__sell-contents--greyout 配送について
+    -#   %a.personal-input__container__sell-contents--help{href: "#", } ?
+    -#   .personal-input__container__sell-contents__form-box
+    -#     %div
+    -#       %label.label--small
+    -#         配送料の負担
+    -#         %span.hissu 必須
+    -#       %div
+    -#         .personal-input__container__sell-contents__form-box__select-wrap
+    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
+    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
+    -#             %option ---
+    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
+    -#     %div
+    -#       %label.label--small
+    -#         発送元の地域
+    -#         %span.hissu 必須
+    -#       %div
+    -#         .personal-input__container__sell-contents__form-box__select-wrap
+    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
+    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
+    -#             %option ---
+      
+    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
+    -#     %div
+    -#       %label.label--small
+    -#         発送までの日数
+    -#         %span.hissu 必須
+    -#       %div
+    -#         .personal-input__container__sell-contents__form-box__select-wrap
+    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
+    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
+    -#             %option ---
+    -# .personal-input__container__sell-contents.clearfix
+    -#   %h3.personal-input__container__sell-contents--greyout 販売価格(300〜9,999,999)
+    -#   %a.personal-input__container__sell-contents--help{href: "#", } ?
+    -#   .personal-input__container__sell-contents__form-box
+    -#     %div.clearfix
+    -#       %label.label--small.personal-input__container__sell-contents__form-box--label
+    -#         価格
+    -#         %span.hissu 必須
+    -#       .personal-input__container__sell-contents__form-box__pricebox
+    -#         %div{style: "float: left; width: 10px; margin-top: 15px;"} ¥
+    -#         %div  
+    -#           %input.personal-input__container__sell-contents__form-box__pricebox--input{ placeholder: "例）300"}
+    -#     .personal-input__container__sell-contents__form-box__form-fee.clearfix
+    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-left.info
+    -#         販売手数料 (10%)
+    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-right.info
+    -#         \-
+    -#     .personal-input__container__sell-contents__form-box__form-fee.clearfix
+    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-left.label
+    -#         販売利益
+    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-right.lable
+    -#         \-
+    -# .personal-input__container__sell-btn
+      %div
+        %p.kiyaku
+          %a.kiyaku--blue{href: '#'}> 禁止されている出品、行為 
+          を必ずご確認ください。
+          %br
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a.kiyaku--blue{href: '#'}> 偽ブランドの販売
+          は犯罪であ
+          %br
+          り処罰される可能性があります。
+          %br
+          また、出品をもちまして
+          %a.kiyaku--blue{href: '#'}> 加盟店規約
+          に同意したことになります。
+      %button.personal-input__container__sell-btn--btn-red 出品する
+      %a.personal-input__container__sell-btn--btn-red.grey もどる
 
 = render 'devise/shared/devise-footer'
 
