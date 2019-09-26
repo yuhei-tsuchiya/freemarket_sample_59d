@@ -1,0 +1,499 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: white;
+  height: 100px;
+  width: 100vw;
+
+  .header-box{
+    margin: 0px auto;
+    width: 1020px;
+    &__top{
+      display:flex;
+
+      &__image{
+        margin-right: 45px;
+        .mercari-image{
+          height: 36px;
+          width: 134px;
+        }
+      }
+      &__search{
+        width: 100%;
+        display:flex;
+        box-sizing: border-box;
+        .header-form{
+          width: 100%;
+          display:flex;
+          .input-default{
+            background-color: rgb(245, 245, 245);
+            font-size: 16px;
+            height: 40px;
+            line-height: 1.4em;
+            position: relative;
+            width: 100%;
+            -webkit-appearance: none;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(204, 204, 204);
+            border-image: initial;
+            border-radius: 4px;
+            outline: none;
+            padding: 0px 0px 0px 10px;
+            transition: all 0.3s ease-out 0s;
+            border-right:none;
+          }
+          .search-button{
+            border-color: rgb(204, 204, 204);
+            background-color: rgb(245, 245, 245);
+            height: 40px;
+            right: 0px;
+            top: 0px;
+            width: 40px;
+            border-radius: 0px 4px 4px 0px;
+            padding: 0px;
+          }
+        }
+      }
+    }
+
+    &__bottom{
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+
+      a {
+        text-decoration: none;
+      }
+      &__left{
+        display: flex;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 36px;
+        white-space: nowrap;
+
+        &__category-seach{
+          height: 44px;
+          padding: 0px 20px 0px 0px;
+        }
+      }
+
+      &__right{
+        display: flex;
+        font-size: 14px;
+        white-space: nowrap;
+        &__good{
+          padding: 0 14px;
+          // position: relative;
+          display: block;
+          height: 44px;
+          line-height: 32px;
+
+          color: #333;
+        }
+
+
+        &__news{
+          padding: 0 14px;
+          padding: 0 14px;
+          // position: relative;
+          display: block;
+          height: 44px;
+          line-height: 32px;
+          color: #333;
+        }
+
+        &__todo{
+          padding: 0 14px;
+          padding: 0 14px;
+          padding: 0 14px;
+          // position: relative;
+          display: block;
+          height: 44px;
+          line-height: 32px;
+          color: #333;
+        }
+
+        &__mypage{
+          padding: 0 0 0 14px;
+          padding: 0 14px;
+          padding: 0 14px;
+          // position: relative;
+          display: block;
+          height: 44px;
+          line-height: 32px;
+          color: #333;
+        }
+      }
+
+    }
+
+
+  }
+}
+
+
+.body{
+  width: 100vw;
+
+  .slide{
+    height: 390px;
+    position: relative;
+    overflow:hidden;
+
+    &__box{
+      position:absolute;
+      display:flex;
+
+      &__image1{
+        width: 100vw;
+      }
+
+      &__image2{
+        width: 100vw;
+      }
+
+      &__image3{
+        width: 100vw;
+      }
+    }
+    .prevbtn{
+      position:absolute;
+      top:225;
+      left:20px;
+    }
+
+    .nextbtn{
+      position:absolute;
+      top:225;
+      right:20px;
+    }
+  }
+
+  .popular-category{
+    padding: 56px 0px 30px;
+    background-color: rgb(255, 255, 255);
+    left: 50%;
+    margin-left: -50vw;
+    position: relative;
+    top: 0px;
+    width: 100vw;
+
+    &__top{
+      background-color: rgb(255, 255, 255);
+
+      font-weight: 600;
+      line-height: 1.4em;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      top: 0px;
+      width: 100vw;
+      margin-bottom: 16px;
+      text-align: center;
+      font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+      font-size: 28px;
+    }
+
+    &__bottom{
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+
+      &__box{
+        // display: ;
+        text-align: center;
+        width: 100%;
+        margin: -10px 0px 0px -10px;
+        list-style: none;
+        li{
+          background-color: rgb(239, 239, 239);
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 600;
+          border-radius: 15px;
+          padding: 8px 16px;
+          margin: 10px 0px 0px 10px;
+        }
+      }
+
+    }
+  }
+
+  .product{
+    background-color: rgb(245, 245, 245);
+    height: 2102px;
+
+    .ladys-new-items{
+      max-width: 1020px;
+      width: 100%;
+      margin: 0px auto;
+      &__top{
+        display:flex;
+        justify-content: space-between;
+
+        &__title{
+          font-size: 24px;
+        }
+      }
+      &__bottom{
+
+        &__grid{
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px 20px;
+          display: grid;
+
+          .index-item__link{
+            width: 100%;
+
+            &__small-box{
+              width: 100%;
+              font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+              height: 252px;
+              &__top{
+                height: 0;
+                overflow: hidden;
+                padding: 0 0 100%;
+                width: 100%;
+
+                .jojo{
+                  width: 100%;
+                  height: 188px;
+                }
+
+
+                .item-valu-box{
+                  align-items: center;
+                  background: rgba(0,0,0,.4);
+                  border-radius: 0 14px 14px 0;
+                  bottom: 8px;
+                  box-sizing: border-box;
+                  color: #fff;
+                  display: inline-flex;
+                  font-size: 17px;
+                  height: 32px;
+                  height: 28px;
+                  letter-spacing: .02em;
+                  padding: 0 12px;
+
+                  z-index: 2;
+
+                }
+              }
+
+              &__bottom{
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                color: #222;
+                font-size: 14px;
+                height: 64px;
+                line-height: 1.4em;
+                padding: 0 12px;
+                white-space: normal;
+                word-break: break-word;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                width: 100%;
+
+                .item-name111{
+                  display: inline-block;
+                  height: 2.8em;
+                  overflow: hidden;
+                  position: relative;
+
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.arginine{
+  height: 260px;
+  color: rgb(255, 255, 255);
+  background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg);
+
+
+  &__vitamin{
+    background-position: center center;
+
+    &__v{
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      width: 750px;
+      margin: 0px auto;
+
+      .arginine-left{
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+
+        &__top{
+          color: rgb(255, 255, 255);
+          font-size: 24px;
+          font-weight: 600;
+
+        }
+        &__middle{
+          color: rgb(255, 255, 255);
+          font-size: 35px;
+          margin-bottom: 20px;
+        }
+
+        &__bottom{
+          display: flex;
+          align-items: center;
+
+
+          .rib{
+            height: 68px;
+            margin-right: 20px;
+            width: 68px;
+          }
+
+          .zabieru {
+            &__World{
+            height: 40px;
+            margin-right: 8px;
+            width: 144px;
+            }
+          }
+
+          .santamonica{
+            .santamonica__family {
+              height: 40px;
+              width: 144px;
+            }
+          }
+        }
+      }
+      .arginine-right{
+
+        &__image66{
+          height: 260px;
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+.footer{
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+  font-weight: 500;
+  padding: 0 20px 10px 20px;
+  background: #212121;
+  color: #fff;
+  background-color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 0px 20px 10px;
+
+  &__top{
+    width: 1020px;
+    margin: 0 auto;
+    display:flex;
+
+    a {
+      text-decoration: none;
+    }
+
+    ul{
+      list-style: none;
+      padding: 0,
+
+    }
+
+    .mercari-about{
+      padding: 0 20px 0 0;
+      width: 20%;
+
+      &__title{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      &__list{
+
+      }
+    }
+
+    .mercari-help{
+      width: 23%;
+      padding: 0 40px 0 0;
+      vertical-align: top;
+
+      &__title{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      &__list{
+        line-height: 1.4em;
+        margin: 16px 0px 0px;
+      }
+    }
+
+    .mercari-privacy{
+      margin-top: 18px;
+      padding: 0 40px 0 0;
+      width: 42%;
+
+      &__title{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      &__list{
+        line-height: 1.4em;
+        margin: 16px 0px 0px;
+      }
+    }
+    .mercari-country{
+      width: auto;
+      margin-top: 18px;
+      padding: 0;
+
+      &__title{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      ul{
+        line-height: 1.4em;
+        margin: 16px 0px 0px;
+
+        .li{
+          color: rgb(255, 255, 255);
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  .__bottom{
+    display: flex;
+  }
+
+}
+
+
+
+
