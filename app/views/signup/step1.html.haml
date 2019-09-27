@@ -24,49 +24,49 @@
           .progress-status
 
 -# 会員情報入力フォーム
-.personal-input
-  .personal-input__message
+.user-input
+  .user-input__message
     商品の情報を入力
-  .personal-input__container
-    .personal-input__container__sell-contents
-      .personal-input__container__sell-contents__form-group
+  .user-input__container
+    .user-input__container__sell-contents
+      .user-input__container__sell-contents__form-group
         %label.label--small
           ニックネーム
           %span.hissu 必須
-        .personal-input__container__sell-contents__form-group__inputname
-          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) メルカリ太郎"}
-    .personal-input__container__sell-contents
-      .personal-input__container__sell-contents__form-group
+        .user-input__container__sell-contents__form-group__inputname
+          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) メルカリ太郎"}
+    .user-input__container__sell-contents
+      .user-input__container__sell-contents__form-group
         %label.label--small
           メールアドレス
           %span.hissu 必須
-        .personal-input__container__sell-contents__form-group__inputname
-          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+        .user-input__container__sell-contents__form-group__inputname
+          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
             type: "text", placeholder: " PC・携帯どちらでも可"}
-    .personal-input__container__sell-contents
-      .personal-input__container__sell-contents__form-group
+    .user-input__container__sell-contents
+      .user-input__container__sell-contents__form-group
         %label.label--small
           パスワード
           %span.hissu 必須
-        .personal-input__container__sell-contents__form-group__inputname
-          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+        .user-input__container__sell-contents__form-group__inputname
+          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
             type: "text", placeholder: " 7文字以上"}
-    .personal-input__container__sell-contents
-      .personal-input__container__sell-contents__form-group
+    .user-input__container__sell-contents
+      .user-input__container__sell-contents__form-group
         %label.label--small
           パスワード (確認)
           %span.hissu 必須
-        .personal-input__container__sell-contents__form-group__inputname
-          %input.personal-input__container__sell-contents__form-group__inputname--input{name: "name",
+        .user-input__container__sell-contents__form-group__inputname
+          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
             type: "text", placeholder: " 7文字以上"}
 
-    .personal-input__sort-message
+    .user-input__sort-message
       %h1
         本人確認
       %p
         安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
 
-    .personal-input__namekanji
+    .user-input__namekanji
       %label.label--small
         お名前(全角)
         %span.hissu 必須
@@ -74,7 +74,7 @@
         %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 山田"}
         %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 彩"}
 
-    .personal-input__namehira
+    .user-input__namehira
       %label.label--small
         お名前カナ(全角) 
         %span.hissu 必須
@@ -82,7 +82,27 @@
         %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) ヤマダ"}
         %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) アヤ"}
 
-    -# .personal-input__container__sell-contents.clearfix
+    .user-input__birthday
+      %label.label--small
+        生年月日
+        %span.hissu 必須
+      .birthday-box
+        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+        %p
+          年
+        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+        %p
+          月
+        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+        %p
+          日
+
+    .user-input__sort-message2
+      %p
+        ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+
+
+    -# .user-input__container__sell-contents.clearfix
     -#   %h3.personal-input__container__sell-contents--greyout 商品の詳細
     -#   .personal-input__container__sell-contents__form-box
     -#     %div

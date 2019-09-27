@@ -80,7 +80,7 @@
 
 // 会員情報入力フォーム
 
-.personal-input {
+.user-input {
   flex: 1;
   width:700px;
   margin: 0 auto;
@@ -265,6 +265,7 @@
       margin: 8px 0 0;
     }
   }
+  // お名前(全角)
   &__namekanji {
     padding: 10px 0;
     .name-box {
@@ -294,6 +295,7 @@
       }
     }
   }
+  // お名前カナ(全角)
   &__namehira {
     padding: 10px 0;
     .name-box {
@@ -323,7 +325,47 @@
       }
     }
   }
+  &__birthday {
+    padding-top: 10px;
+    .birthday-box {
+      display: flex;
+      &__ymd {
+        &--input{
+          box-sizing: border-box;
+          width: 76px;
+          margin: 8px 8px 0 0;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          text-rendering: auto;
+          letter-spacing: normal;
+          word-spacing: normal;
+          text-transform: none;
+          text-indent: 0px;
+          text-shadow: none;
+          display: inline-block;
+          text-align: start;
+          cursor: text;
+        }
+      }
+      p {
+        margin: 20px 20px 20px 0;
+      }
+    }
+  }
+  &__sort-message2 {
+    p{
+      font-size: 14px;
+      color: #888888;
+    }
+  }
 }
+
+
 .hissu{
   background: #ea352d;
   margin: 0 0 0 8px;
