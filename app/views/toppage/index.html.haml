@@ -7,7 +7,7 @@
             = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", alt: '', class: 'mercari-image'
         .header-box__top__search
           %form.header-form{action: "https://www.mercari.com/jp/search/"}
-            %input.input-default{name: "keyword", placeholder: "何かお探しですか？", type: "search", value: ""}/
+            %input.input-default{name: "keyword", placeholder: "何かお探しですか？", type: "search", value: "", style: 'border-right: none'}/
             %button.search-button
               %i.icon-search
                 %svg.sc-jDwBTQ.sc-kgAjT.gKFuLS{"aria-hidden" => "true", :height => "14", :viewbox => "0 0 16 16", :width => "14"}
@@ -177,37 +177,39 @@
             = link_to root_path, class: 'ii' do
               メルカリボックス
       .mercari-privacy
-        %h2.mercari-help__title
+        %h2.mercari-privacy__title
           プライバシーと利用規約
-        %ul.mercari-help__list
-          %li
-            = link_to root_path, class: 'ii' do
-              プライバシーポリシー
-          %li
-            = link_to root_path, class: 'ii' do
-              メルカリ利用規約
-          %li
-            = link_to root_path, class: 'ii' do
-              あんしんスマホサポート制度に関する利用特約
-          %li
-            = link_to root_path, class: 'ii' do
-              コンプライアンスポリシー
-          %li
-            = link_to root_path, class: 'ii' do
-              個人データの安全管理に係る基本方針
-          %li
-            = link_to root_path, class: 'ii' do
-              特定商取引に関する表記
-          %li
-            = link_to root_path, class: 'ii' do
-              資金決済法に基づく表示
-          %li
-            = link_to root_path, class: 'ii' do
-              法令順守と犯罪抑止のために
+        .mercari-privacy__box
+          %ul.mercari-privacy__box__list
+            %li
+              = link_to root_path, class: 'ii' do
+                プライバシーポリシー
+            %li
+              = link_to root_path, class: 'ii' do
+                メルカリ利用規約
+            %li
+              = link_to root_path, class: 'ii' do
+                あんしんスマホサポート制度に関する利用特約
+            %li
+              = link_to root_path, class: 'ii' do
+                コンプライアンスポリシー
+          %ul.mercari-privacy__box__list2
+            %li
+              = link_to root_path, class: 'ii' do
+                個人データの安全管理に係る基本方針
+            %li
+              = link_to root_path, class: 'ii' do
+                特定商取引に関する表記
+            %li
+              = link_to root_path, class: 'ii' do
+                資金決済法に基づく表示
+            %li
+              = link_to root_path, class: 'ii' do
+                法令順守と犯罪抑止のために
       .mercari-country
-        %h2.mercari-help__title
+        %h2.mercari-country__title
           国
-        %ul.mercari-help__list
+        %ul.mercari-country__list
           %li
             = link_to root_path, class: 'ii' do
               日本
@@ -219,3 +221,12 @@
         = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?3296506464", class: 'jiiil'
       .footer__bottom__center
         © 2019 Mercari
+
+    .toppage-shouhin-botton
+      = link_to root_path, class: 'toppage-shouhin-botton__link' do
+        .toppage-shouhin-botton__secound
+          .toppage-shouhin-botton__secound__Usyi
+            出品
+          %svg.toppage-shouhin-botton__secound__Ydhi{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 18 16", :width => "18"}
+            %path{:d => "M6.3 0L4.653 1.778H1.8c-.99 0-1.8.8-1.8 1.778v10.666C0 15.2.81 16 1.8 16h14.4c.99 0 1.8-.8 1.8-1.778V3.556c0-.978-.81-1.778-1.8-1.778h-2.853L11.7 0H6.3zM9 13.333c-2.484 0-4.5-1.99-4.5-4.444 0-2.453 2.016-4.445 4.5-4.445s4.5 1.992 4.5 4.445c0 2.453-2.016 4.444-4.5 4.444zm0-1.6c1.59 0 2.88-1.273 2.88-2.844S10.59 6.044 9 6.044c-1.59 0-2.88 1.274-2.88 2.845 0 1.57 1.29 2.844 2.88 2.844z", :fill => "currentColor", "fill-rule" => "nonzero"}
+

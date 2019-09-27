@@ -7,6 +7,7 @@ body {
   background-color: white;
   height: 100px;
   width: 100vw;
+  padding: 8px 0px 0px;
 
   .header-box{
     margin: 0px auto;
@@ -40,11 +41,10 @@ body {
             border-style: solid;
             border-color: rgb(204, 204, 204);
             border-image: initial;
-            border-radius: 4px;
             outline: none;
             padding: 0px 0px 0px 10px;
             transition: all 0.3s ease-out 0s;
-            border-right:none;
+            border-right: none;
           }
           .search-button{
             border-color: rgb(204, 204, 204);
@@ -55,6 +55,7 @@ body {
             width: 40px;
             border-radius: 0px 4px 4px 0px;
             padding: 0px;
+            border-left: none;
           }
         }
       }
@@ -68,8 +69,16 @@ body {
 
       a {
         text-decoration: none;
+        color: #333;
+      }
+      svg{
+        color: rgb(234, 53, 45);
+        height:12px;
+        width :15px;
+        margin: 0px 4px 0px 0px;
       }
       &__left{
+
         display: flex;
         font-size: 14px;
         font-weight: 600;
@@ -83,17 +92,23 @@ body {
       }
 
       &__right{
+
         display: flex;
         font-size: 14px;
         white-space: nowrap;
+        svg{
+          color: rgb(204, 204, 204);
+        }
+
+        a{
+          color: #333;
+        }
         &__good{
           padding: 0 14px;
           // position: relative;
           display: block;
           height: 44px;
           line-height: 32px;
-
-          color: #333;
         }
 
 
@@ -104,7 +119,7 @@ body {
           display: block;
           height: 44px;
           line-height: 32px;
-          color: #333;
+
         }
 
         &__todo{
@@ -115,7 +130,7 @@ body {
           display: block;
           height: 44px;
           line-height: 32px;
-          color: #333;
+
         }
 
         &__mypage{
@@ -126,13 +141,10 @@ body {
           display: block;
           height: 44px;
           line-height: 32px;
-          color: #333;
+
         }
       }
-
     }
-
-
   }
 }
 
@@ -435,15 +447,25 @@ body {
 
     a {
       text-decoration: none;
-    }
+      color: rgb(255, 255, 255);
+      opacity: 0.7;
 
+    }
+    h2{
+      margin: 0;
+      padding: 0;
+    }
     ul{
       list-style: none;
       padding: 0,
-
+    }
+    li{
+      line-height: 1.4em;
+      margin: 16px 0px 0px;
     }
 
     .mercari-about{
+      margin-top: 18px;
       padding: 0 20px 0 0;
       width: 20%;
 
@@ -459,8 +481,9 @@ body {
     }
 
     .mercari-help{
+      margin-top: 18px;
       width: 23%;
-      padding: 0 40px 0 0;
+      // padding: 0 40px 0 0;
       vertical-align: top;
 
       &__title{
@@ -483,11 +506,21 @@ body {
         color: #fff;
         font-size: 16px;
         font-weight: 700;
-      }
 
-      &__list{
-        line-height: 1.4em;
-        margin: 16px 0px 0px;
+      }
+      &__box{
+        display: flex;
+        &__list{
+          line-height: 1.4em;
+          margin: 16px 0px 0px;
+          padding: 0px 20px 0px 0px;
+        }
+
+        &__list2{
+          line-height: 1.4em;
+          margin: 16px 0px 0px;
+
+        }
       }
     }
     .mercari-country{
@@ -500,21 +533,78 @@ body {
         font-size: 16px;
         font-weight: 700;
       }
+
       ul{
         line-height: 1.4em;
         margin: 16px 0px 0px;
-
-        .li{
-          color: rgb(255, 255, 255);
-          opacity: 0.7;
-        }
       }
+
     }
   }
   &__bottom{
+    width: 1020px;
+    margin: 30px auto 20px;
+    align-items: center;
     display: flex;
+    img{
+      vertical-align: middle;
+    }
+    &__center{
+      padding-left: 15px;
+      width: 75%;
+      text-align: center;
+    }
   }
 
+  .toppage-shouhin-botton{
+    bottom: 32px;
+    font-size: 22px;
+    height: 160px;
+    right: 32px;
+    width: 160px;
+    position: fixed;
+    text-align: center;
+    z-index: 2;
+
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &__link{
+
+      .toppage-shouhin-botton__secound{
+        box-sizing:border-box;
+        width: 160px;
+        height: 160px;
+        padding-top: 32px;
+        text-align: center;
+        background-color: rgb(234, 53, 45);
+        border-radius: 50%;
+      &__Usyi{
+        font-size: 22px;
+        color: rgb(255, 255, 255);
+      }
+
+      &__Ydhi{
+        width: 60px;
+        height: 54px;
+        margin-top: 8px;
+        max-width: 100%;
+        max-height: 100%;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin: 5px auto 0px;
+        path{
+          height: 53px;
+          width : 60px;
+        }
+      }
+
+      }
+    }
+  }
 }
 
 
