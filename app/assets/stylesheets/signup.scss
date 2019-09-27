@@ -364,25 +364,28 @@
       color: #888888;
     }
   }
+// recaptcha
   .recaptcha {
-    margin: 35px 0;
+    margin: 30px 0;
   }
 }
 
+// 本人情報の登録について
 .user-input__about-user-info {
   margin: 40px 0;
   font-size: 14px;
   text-align: right;
 }
 
-.hissu{
+// 追記用のクラス
+.hissu {
   background: #ea352d;
   margin: 0 0 0 8px;
   padding: 2px 4px;
   border-radius: 2px;
   color: #fff;
   font-size: 12px;
-  vertical-align: top;
+  // vertical-align: top;
 }
 .label{
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
@@ -406,5 +409,25 @@
   border-top: none;
   line-height: 1.5;
   font-size: 14px;
-  margin: 0px;
+  margin: 0;
+}
+
+// step2用の修正
+.steppagefixstep2 {
+  padding: 0;
+  border-top: none;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+// step3用の修正
+//fontcolorのみ
+.steppagefixstep3 {
+  color: white;
+  background: gray;
+}
+
+.steppagefixstep3padding {
+  padding-bottom: 40px;
 }

@@ -22,8 +22,30 @@
           完了
           .progress-status
 
--# 会員情報入力フォーム
+-# 電話番号の確認
+.user-input
+  .user-input__message
+    電話番号の確認
+  .user-input__container
+    .user-input__container__sell-contents
+      .user-input__container__sell-contents__form-group
+        %label.label--small
+          携帯電話の番号 
+        .user-input__container__sell-contents__form-group__inputname
+          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 携帯電話の番号を入力"}
+    .user-input__sort-message
+      %p
+        本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+      
 
+    .user-input__container__sell-btn.steppagefix
+      %button.user-input__container__sell-btn--btn-red SMSを送信する
+      %p.steppagefixstep2
+        ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+
+    .user-input__about-user-info
+      = link_to '電話番号の確認が必要な理由', '#', class: 'kiyaku--blue'
+      = fa_icon 'chevron-right', class: 'kiyaku--blue'
 
 = render 'devise/shared/devise-footer'
 
