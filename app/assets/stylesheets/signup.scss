@@ -325,6 +325,7 @@
       }
     }
   }
+    // 生年月日
   &__birthday {
     padding-top: 10px;
     .birthday-box {
@@ -363,8 +364,16 @@
       color: #888888;
     }
   }
+  .recaptcha {
+    margin: 35px 0;
+  }
 }
 
+.user-input__about-user-info {
+  margin: 40px 0;
+  font-size: 14px;
+  text-align: right;
+}
 
 .hissu{
   background: #ea352d;
@@ -385,39 +394,17 @@
     // color: red;
   }
 }
-.info{
-  margin: 6px 0 0;
-  line-height: 1.5;
-  display: block;
-  // margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-  color: #333;
-  font: 75% sans-serif;
-}
-.clearfix:after {
-  content: ".";
-  display: block;
-  clear: both;
-  height: 0;
-  visibility: hidden;
-}
-.clearfix {
-  display: block;
-}
-.grey{
-  background: #aaa;
-  border: 1px solid #aaa;
-  color: #fff;
-  display: block;
-  width: 50%;
-  margin: 24px auto 0;
-}
 .kiyaku{
   font-size: 14px;
   &--blue{
     color: #0099e8;
   }
+}
+
+.steppagefix {
+  padding: 0;
+  border-top: none;
+  line-height: 1.5;
+  font-size: 14px;
+  margin: 0px;
 }

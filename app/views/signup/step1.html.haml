@@ -26,7 +26,7 @@
 -# 会員情報入力フォーム
 .user-input
   .user-input__message
-    商品の情報を入力
+    会員情報入力
   .user-input__container
     .user-input__container__sell-contents
       .user-input__container__sell-contents__form-group
@@ -101,121 +101,20 @@
       %p
         ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
 
-
-    -# .user-input__container__sell-contents.clearfix
-    -#   %h3.personal-input__container__sell-contents--greyout 商品の詳細
-    -#   .personal-input__container__sell-contents__form-box
-    -#     %div
-    -#       %label.label--small
-    -#         カテゴリー
-    -#         %span.hissu 必須
-    -#       %div
-    -#         .personal-input__container__sell-contents__form-box__select-wrap
-    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
-    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
-    -#             %option ---
-    -#             %option レディース
-    -#             %option メンズ
-    -#             %option ベビー・キッズ
-    -#             %option インテリア・住まい・小物
-    -#             %option 本・音楽・ゲーム
-    -#             %option おもちゃ・ホビー・グッズ
-    -#             %option コスメ・香水・美容
-    -#             %option 家電・スマホ・カメラ
-    -#             %option スポーツ・レジャー
-    -#             %option ハンドメイド
-    -#             %option チケット
-    -#             %option 自動車・オートバイ
-    -#             %option その他
-    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
-    -#     %div
-    -#       %label.label--small
-    -#         商品の状態
-    -#         %span.hissu 必須
-    -#       %div
-    -#         .personal-input__container__sell-contents__form-box__select-wrap
-    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
-    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
-    -#             %option ---
-    -#             %option 新品、未使用
-    -#             %option 未使用に近い
-    -#             %option 目立った傷や汚れなし
-    -#             %option やや傷や汚れあり
-    -#             %option 傷や汚れあり
-    -#             %option 全体的に状態が悪い
-    -# .personal-input__container__sell-contents.clearfix
-    -#   %h3.personal-input__container__sell-contents--greyout 配送について
-    -#   %a.personal-input__container__sell-contents--help{href: "#", } ?
-    -#   .personal-input__container__sell-contents__form-box
-    -#     %div
-    -#       %label.label--small
-    -#         配送料の負担
-    -#         %span.hissu 必須
-    -#       %div
-    -#         .personal-input__container__sell-contents__form-box__select-wrap
-    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
-    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
-    -#             %option ---
-    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
-    -#     %div
-    -#       %label.label--small
-    -#         発送元の地域
-    -#         %span.hissu 必須
-    -#       %div
-    -#         .personal-input__container__sell-contents__form-box__select-wrap
-    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
-    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
-    -#             %option ---
-      
-    -#   .personal-input__container__sell-contents__form-box{style: "margin-top: 40px"}
-    -#     %div
-    -#       %label.label--small
-    -#         発送までの日数
-    -#         %span.hissu 必須
-    -#       %div
-    -#         .personal-input__container__sell-contents__form-box__select-wrap
-    -#           %i.personal-input__container__sell-contents__form-box__select-wrap--icon
-    -#           %select.personal-input__container__sell-contents__form-box__select-wrap--select
-    -#             %option ---
-    -# .personal-input__container__sell-contents.clearfix
-    -#   %h3.personal-input__container__sell-contents--greyout 販売価格(300〜9,999,999)
-    -#   %a.personal-input__container__sell-contents--help{href: "#", } ?
-    -#   .personal-input__container__sell-contents__form-box
-    -#     %div.clearfix
-    -#       %label.label--small.personal-input__container__sell-contents__form-box--label
-    -#         価格
-    -#         %span.hissu 必須
-    -#       .personal-input__container__sell-contents__form-box__pricebox
-    -#         %div{style: "float: left; width: 10px; margin-top: 15px;"} ¥
-    -#         %div  
-    -#           %input.personal-input__container__sell-contents__form-box__pricebox--input{ placeholder: "例）300"}
-    -#     .personal-input__container__sell-contents__form-box__form-fee.clearfix
-    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-left.info
-    -#         販売手数料 (10%)
-    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-right.info
-    -#         \-
-    -#     .personal-input__container__sell-contents__form-box__form-fee.clearfix
-    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-left.label
-    -#         販売利益
-    -#       .personal-input__container__sell-contents__form-box__form-fee__fee-right.lable
-    -#         \-
-    -# .personal-input__container__sell-btn
+    .recaptcha
+      = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
+        
+    .user-input__container__sell-btn.steppagefix
       %div
         %p.kiyaku
-          %a.kiyaku--blue{href: '#'}> 禁止されている出品、行為 
-          を必ずご確認ください。
-          %br
-          またブランド品でシリアルナンバー等がある場合はご記載ください。
-          %a.kiyaku--blue{href: '#'}> 偽ブランドの販売
-          は犯罪であ
-          %br
-          り処罰される可能性があります。
-          %br
-          また、出品をもちまして
-          %a.kiyaku--blue{href: '#'}> 加盟店規約
-          に同意したことになります。
-      %button.personal-input__container__sell-btn--btn-red 出品する
-      %a.personal-input__container__sell-btn--btn-red.grey もどる
+        <center>「次へ進む」のボタンを押すことにより、
+        %a.kiyaku--blue{href: '#'}>利用規約
+        に同意したものとみなします</center>
+      %button.user-input__container__sell-btn--btn-red 次へ進む
+
+    .user-input__about-user-info
+      = link_to '本人情報の登録について', '#', class: 'kiyaku--blue'
+      = fa_icon 'chevron-right', class: 'kiyaku--blue'
 
 = render 'devise/shared/devise-footer'
 

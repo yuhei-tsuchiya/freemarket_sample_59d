@@ -70,3 +70,4 @@ gem 'devise'
 gem 'haml-rails'
 gem "font-awesome-rails"
 # gem "omniauth-rails_csrf_protection"
+gem 'recaptcha', require: 'recaptcha/rails'
