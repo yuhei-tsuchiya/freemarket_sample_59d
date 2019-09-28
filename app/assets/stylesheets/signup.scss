@@ -1,0 +1,462 @@
+  #wrapper {
+
+    // #step1用のヘッダー
+  .header-email-registration {
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 128px;
+    display: flex; /* 子要素をflexboxで揃える */
+    justify-content: center; /* 子要素をflexboxにより中央に配置する */
+    align-items: center;  /* 子要素をflexboxにより中央に配置する */
+    &__logo {
+      .registration-header-logo {
+        width: 185px;
+        height: 49px;
+      }
+    }
+    .progress-bar {
+      padding-left: 60px;
+      padding-bottom: 30px;
+      ul {
+        display: flex;
+        li{
+          color: #888;
+          text-align: center;
+          min-width: 100px;
+          .progress-status {
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            background: #ccc;
+            position:relative;
+            z-index:0; /* parent z-index */
+            &:before {
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: inline-block;
+              content: '';
+              width: 100px;
+              height: 2px;
+              right: 0;
+              background: #ccc;
+            }
+            &__done {
+              width: 12px;
+              height: 12px;
+              margin: 8px auto 0;
+              border-radius: 50%;
+              background: #ccc;
+            }
+          }
+          .red {
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            background: red;
+            &:before {
+              position: absolute;
+              bottom: 5px;
+              z-index: -1;
+              display: inline-block;
+              content: '';
+              width: 100px;
+              height: 2px;
+              right: 0;
+              background: red;
+            }
+          }
+        }
+        li.active {
+          font-weight: 600;
+          color: #ea352d;
+        }
+      }
+    }
+  }
+}
+
+// 会員情報入力フォーム
+
+.user-input {
+  flex: 1;
+  width:700px;
+  margin: 0 auto;
+  background-color: white;
+  &__message{
+    padding: 32px;
+    font-size:22px;
+    font-weight: 600; 
+    text-align: center;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  &__container{
+    box-sizing: border-box;
+    width: 343px;
+    margin: 0 auto;
+    &__sell-contents{
+      padding-top: 20px;
+      box-sizing: border-box;
+      &__form-group{
+        &__inputname{
+          &--input{
+            box-sizing: border-box;
+            width: 100%;
+            margin: 8px 0 0;
+            height: 40px;
+            padding: 10px 16px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 16px;
+            text-rendering: auto;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            cursor: text;
+          }
+        }
+      }
+      &--greyout{
+        float: left;
+        color: #888;
+        font-size: 12px;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+      }
+      &--help{
+        display: inline-block;
+        margin-top: 15px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #0099e8;
+        color: #fff;
+        line-height: 14px;
+        font-size: 12px;
+        text-align: center;
+      }
+      &__form-box{
+        float: right;
+        width: 400px;
+        margin: 0;
+        
+        &__select-wrap{
+          margin: 8px 0 0;
+          position: relative;
+          background: #fff;
+          &--icon{
+            position: absolute;
+            right: 16px;
+            top: 15%;
+            z-index: 2;
+            color: #888;
+            font-size: 8px;
+            transform:rotate(90deg);
+            display: inline-block;
+            font-family: 'icon-font';
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            display: inline-block;
+          }
+          &--icon:before{
+            content: "\f105";
+            font-family: FontAwesome;
+            font-size: 4em;
+            color: #888;
+            transform:rotate(90deg);
+          }
+          &--select{
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            padding: 0 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            cursor: pointer;
+            min-height: 1.5em;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+          }
+        }
+        &--label{
+          width: 50%;
+          line-height: 48px;
+          float: left;
+        }
+        &__pricebox{
+          width: 50%;
+          text-align: right;
+          float: right;
+          margin-bottom: 25px;
+          &--input{
+            box-sizing: border-box;
+            width: calc(100% - 15px);
+            height: 48px;
+            float: right;
+            padding: 10px 16px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 16px;
+            text-align: right;
+          }
+        }
+        &__form-fee{
+          padding: 20px 0 15px 0;
+          border-top: 1px solid #ccc;
+          font-style: bold;
+          &__fee-left{
+            float: left;
+          }
+          &__fee-right{
+            float: right;
+          }
+        }
+      }
+      
+    }
+    &__sell-btn{
+      padding: 30px 40px 40px;
+      border-top: 1px solid #eee;
+      line-height: 1.5;
+      &--btn-red{
+        margin: 40px 0 0;
+        background: #ea352d;
+        border: 1px solid #ea352d;
+        color: #fff;
+        display: block;
+        width: 100%;
+        line-height: 48px;
+        font-size: 14px;
+        transition: all ease-out .3s;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+  }
+// #本人確認
+  &__sort-message {
+    margin: 16px 0;
+    h1 {
+      font-weight: 600;
+    }
+    p{
+      font-size: 14px;
+      margin: 8px 0 0;
+    }
+  }
+  // お名前(全角)
+  &__namekanji {
+    padding: 10px 0;
+    .name-box {
+      display: flex;
+      &__kanji {
+        &--input{
+          box-sizing: border-box;
+          width: 165px;
+          margin: 8px 8px 0 0;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          text-rendering: auto;
+          letter-spacing: normal;
+          word-spacing: normal;
+          text-transform: none;
+          text-indent: 0px;
+          text-shadow: none;
+          display: inline-block;
+          text-align: start;
+          cursor: text;
+        }
+      }
+    }
+  }
+  // お名前カナ(全角)
+  &__namehira {
+    padding: 10px 0;
+    .name-box {
+      display: flex;
+      &__hira {
+        &--input{
+          box-sizing: border-box;
+          width: 165px;
+          margin: 8px 8px 0 0;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          text-rendering: auto;
+          letter-spacing: normal;
+          word-spacing: normal;
+          text-transform: none;
+          text-indent: 0px;
+          text-shadow: none;
+          display: inline-block;
+          text-align: start;
+          cursor: text;
+        }
+      }
+    }
+  }
+    // 生年月日
+  &__birthday {
+    padding-top: 10px;
+    .birthday-box {
+      display: flex;
+      &__ymd {
+        &--input{
+          box-sizing: border-box;
+          width: 76px;
+          margin: 8px 8px 0 0;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          text-rendering: auto;
+          letter-spacing: normal;
+          word-spacing: normal;
+          text-transform: none;
+          text-indent: 0px;
+          text-shadow: none;
+          display: inline-block;
+          text-align: start;
+          cursor: text;
+        }
+      }
+      p {
+        margin: 20px 20px 20px 0;
+      }
+    }
+  }
+  &__sort-message2 {
+    p{
+      font-size: 14px;
+      color: #888888;
+    }
+  }
+// recaptcha
+  .recaptcha {
+    margin: 30px 0;
+  }
+}
+
+// 本人情報の登録について
+.user-input__about-user-info {
+  margin: 40px 0;
+  font-size: 14px;
+  text-align: right;
+}
+
+// 追記用のクラス
+.hissu {
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  // vertical-align: top;
+}
+.label{
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  font-weight: 600;
+  color: #333;
+  &--small{
+    font-weight: 600;
+    font-size: 85%;
+    // color: red;
+  }
+}
+.kiyaku{
+  font-size: 14px;
+  &--blue{
+    color: #0099e8;
+  }
+}
+
+.steppagefix {
+  padding: 0;
+  border-top: none;
+  line-height: 1.5;
+  font-size: 14px;
+  margin: 0;
+}
+
+// step2用の修正
+.steppagefixstep2 {
+  padding: 0;
+  border-top: none;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+// step3用の修正
+//fontcolorのみ
+.steppagefixstep3 {
+  color: white;
+  background: gray;
+}
+
+.steppagefixstep3padding {
+  padding-bottom: 40px;
+}
+
+// step3用の修正
+.credit-card-icon {
+  width: 12%;
+  height: 12%;
+  padding-top:5px;
+}
+
+// step4用の修正
+.steppagefixstep4padding {
+  padding: 40px 0 20px 0;
+}
+.steppagefixstep4padding2 {
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+// done用の修正
+.steppagefixstepdonecenter {
+  text-align: center;
+  margin: 40px;
+}
+
+.done-footer {
+  width: calc(100% - 10px);
+  height: 260px;
+  margin: 0 auto;
+  border: solid 1px;
+}
