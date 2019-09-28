@@ -22,7 +22,7 @@
 - has_many :items
 - has_one :address
 
-## addresssテーブル
+## addressesテーブル
 |zip_code|string|null: false|
 |------|----|-------|
 |prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
