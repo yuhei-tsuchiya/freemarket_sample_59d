@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'toppage#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get 'testimages' => 'testimages#index'    # S3テスト用ファイルアップロード画面
   post 'testimages' => 'testimages#create'    # S3テスト用ファイルアップロードのPOST
-  
+
 end
