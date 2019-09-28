@@ -50,6 +50,7 @@ set :application, 'freemarket_sample_59d'
 # どのリポジトリからアプリをpullするかを指定する
 set :repo_url,  'git@github.com:yuhei-tsuchiya/freemarket_sample_59d.git'
 
+# 自動デプロイ実行時にブランチを指定できる
 ask(:branch, 'master')
 
 # バージョンが変わっても共通で参照するディレクトリを指定
