@@ -1,17 +1,47 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+#wrapper
+
+  = render 'devise/shared/devise-header'
+
+  .login-contents
+    .login-contents__message
+      %p
+        アカウントをお持ちでない方はこちら
+      .registration
+      =link_to "", class: "registration__btn registration__btn--new" do
+        %span<>
+          新規会員登録
+    .login-contents__container
+      .registration
+      =link_to "", class: "registration__btn registration__btn--facebook" do
+        = fa_icon 'facebook-square', class: "registration__btn--icon"
+        %span<>
+          Facebookでログイン
+      =link_to "", class: "registration__btn registration__btn--google" do
+        = fa_icon 'google', class: "registration__btn--icon"
+        %span<>
+          Googleでログイン
+
+      .user-input__container__sell-contents.loginwidthfix 
+        .user-input__container__sell-contents__form-group
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: " メールアドレス"}
+
+      .user-input__container__sell-contents.loginwidthfix 
+        .user-input__container__sell-contents__form-group
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: " パスワード"}
+
+      .centeringfix
+        .recaptcha.loginwidthfix2
+          = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
+
+        .user-input__container__sell-btn.steppagefix.loginwidthfix
+          %div
+          %button.user-input__container__sell-btn--btn-red ログイン
+
+        .user-input__about-user-info
+          = link_to 'パスワードをお忘れの方', '#', class: 'kiyaku--blue'
+        
+  = render 'devise/shared/devise-footer'
