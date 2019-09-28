@@ -87,3 +87,12 @@ gem 'fog-aws'
 gem 'mini_magick'
 gem 'jquery-rails'
 
+# Font Awesome導入
+gem 'font-awesome-rails'
+
+# 都道府県データ処理用
+gem 'active_hash'
+
+# jQeury
+gem 'jquery-rails'
+
