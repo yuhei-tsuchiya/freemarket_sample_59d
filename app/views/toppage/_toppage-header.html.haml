@@ -1,0 +1,125 @@
+
+.arginine
+  .arginine__vitamin
+    .arginine__vitamin__v
+      .arginine-left
+        .arginine-left__top
+          スマホでかんたんフリマアプリ
+        .arginine-left__middle
+          今すぐ無料ダウンロード！
+        .arginine-left__bottom
+          = image_tag 'https://web-jp-assets.mercdn.net/_next/static/images/mercari_icon-f75780e32e41e052c8aaa8b446331cd8.png', class: 'rib'
+          = link_to 'https://apps.apple.com/jp/app/%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA-%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA-%E3%82%B9%E3%83%9E%E3%83%9B%E6%B1%BA%E6%B8%88%E3%83%A1%E3%83%AB%E3%83%9A%E3%82%A4/id667861049', class: 'zabieru' do
+            = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg", alt: '', class: 'zabieru__World'
+          = link_to 'https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja', class: 'santamonica' do
+            = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg", alt: '', class: 'santamonica__family'
+      .arginine-right
+        = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/download_app_pc-a4418175e8be071827ac88d073f40e4a.png", class: 'arginine-right__image66'
+
+.footer
+  .footer__top
+    .mercari-about
+      %h2.mercari-about__title
+        メルカリについて
+      %ul.mercari-about__list
+        %li
+          = link_to root_path, class: 'ii' do
+            会社概要（運営会社）
+        %li
+          = link_to root_path, class: 'ii' do
+            採用情報
+        %li
+          = link_to root_path, class: 'ii' do
+            プレスリリース
+        %li
+          = link_to root_path, class: 'ii' do
+            公式ブログ
+        %li
+          = link_to root_path, class: 'ii' do
+            メルカリロゴ利用ガイドライン
+        = link_to root_path, class: 'mercari-twitter' do
+          %i
+        = link_to root_path, class: 'mercari-facebook' do
+          %i
+    .mercari-help
+      %h2.mercari-help__title
+        ヘルプ＆ガイド
+      %ul.mercari-help__list
+        %li
+          = link_to root_path, class: 'ii' do
+            メルカリガイド
+        %li
+          = link_to root_path, class: 'ii' do
+            らくらくメルカリ便
+        %li
+          = link_to root_path, class: 'ii' do
+            ゆうゆうメルカリ便
+        %li
+          = link_to root_path, class: 'ii' do
+            大型メルカリ便
+        %li
+          = link_to root_path, class: 'ii' do
+            車体取引ガイド
+        %li
+          = link_to root_path, class: 'ii' do
+            メルカリあんしん・あんぜん宣言！
+        %li
+          = link_to root_path, class: 'ii' do
+            偽ブランド品撲滅への取り組み
+        %li
+          = link_to root_path, class: 'ii' do
+            メルカリボックス
+    .mercari-privacy
+      %h2.mercari-privacy__title
+        プライバシーと利用規約
+      .mercari-privacy__box
+        %ul.mercari-privacy__box__list
+          %li
+            = link_to root_path, class: 'ii' do
+              プライバシーポリシー
+          %li
+            = link_to root_path, class: 'ii' do
+              メルカリ利用規約
+          %li
+            = link_to root_path, class: 'ii' do
+              あんしんスマホサポート制度に関する利用特約
+          %li
+            = link_to root_path, class: 'ii' do
+              コンプライアンスポリシー
+        %ul.mercari-privacy__box__list2
+          %li
+            = link_to root_path, class: 'ii' do
+              個人データの安全管理に係る基本方針
+          %li
+            = link_to root_path, class: 'ii' do
+              特定商取引に関する表記
+          %li
+            = link_to root_path, class: 'ii' do
+              資金決済法に基づく表示
+          %li
+            = link_to root_path, class: 'ii' do
+              法令順守と犯罪抑止のために
+    .mercari-country
+      %h2.mercari-country__title
+        国
+      %ul.mercari-country__list
+        %li
+          = link_to root_path, class: 'ii' do
+            日本
+        %li
+          = link_to root_path, class: 'ii' do
+            United States
+  .footer__bottom
+    = link_to root_path, class: 'footer__bottom__img' do
+      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?3296506464", class: 'jiiil'
+    .footer__bottom__center
+      © 2019 Mercari
+
+  .toppage-shouhin-botton
+    = link_to root_path, class: 'toppage-shouhin-botton__link' do
+      .toppage-shouhin-botton__secound
+        .toppage-shouhin-botton__secound__Usyi
+          出品
+        %svg.toppage-shouhin-botton__secound__Ydhi{ height: "16", viewbox: "0 0 18 16", width: "18"}
+          %path{d: "M6.3 0L4.653 1.778H1.8c-.99 0-1.8.8-1.8 1.778v10.666C0 15.2.81 16 1.8 16h14.4c.99 0 1.8-.8 1.8-1.778V3.556c0-.978-.81-1.778-1.8-1.778h-2.853L11.7 0H6.3zM9 13.333c-2.484 0-4.5-1.99-4.5-4.444 0-2.453 2.016-4.445 4.5-4.445s4.5 1.992 4.5 4.445c0 2.453-2.016 4.444-4.5 4.444zm0-1.6c1.59 0 2.88-1.273 2.88-2.844S10.59 6.044 9 6.044c-1.59 0-2.88 1.274-2.88 2.845 0 1.57 1.29 2.844 2.88 2.844z", fill: "currentColor"}
+
