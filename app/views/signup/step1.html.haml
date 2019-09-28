@@ -23,98 +23,98 @@
           完了
           .progress-status
 
--# 会員情報入力フォーム
-.user-input
-  .user-input__message
-    会員情報入力
-  .user-input__container
-    .user-input__container__sell-contents
-      .user-input__container__sell-contents__form-group
-        %label.label--small
-          ニックネーム
-          %span.hissu 必須
-        .user-input__container__sell-contents__form-group__inputname
-          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) メルカリ太郎"}
-    .user-input__container__sell-contents
-      .user-input__container__sell-contents__form-group
-        %label.label--small
-          メールアドレス
-          %span.hissu 必須
-        .user-input__container__sell-contents__form-group__inputname
-          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-            type: "text", placeholder: " PC・携帯どちらでも可"}
-    .user-input__container__sell-contents
-      .user-input__container__sell-contents__form-group
-        %label.label--small
-          パスワード
-          %span.hissu 必須
-        .user-input__container__sell-contents__form-group__inputname
-          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-            type: "text", placeholder: " 7文字以上"}
-    .user-input__container__sell-contents
-      .user-input__container__sell-contents__form-group
-        %label.label--small
-          パスワード (確認)
-          %span.hissu 必須
-        .user-input__container__sell-contents__form-group__inputname
-          %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-            type: "text", placeholder: " 7文字以上"}
+  -# 会員情報入力フォーム
+  .user-input
+    .user-input__message
+      会員情報入力
+    .user-input__container
+      .user-input__container__sell-contents
+        .user-input__container__sell-contents__form-group
+          %label.label--small
+            ニックネーム
+            %span.hissu 必須
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) メルカリ太郎"}
+      .user-input__container__sell-contents
+        .user-input__container__sell-contents__form-group
+          %label.label--small
+            メールアドレス
+            %span.hissu 必須
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: " PC・携帯どちらでも可"}
+      .user-input__container__sell-contents
+        .user-input__container__sell-contents__form-group
+          %label.label--small
+            パスワード
+            %span.hissu 必須
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: " 7文字以上"}
+      .user-input__container__sell-contents
+        .user-input__container__sell-contents__form-group
+          %label.label--small
+            パスワード (確認)
+            %span.hissu 必須
+          .user-input__container__sell-contents__form-group__inputname
+            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
+              type: "text", placeholder: " 7文字以上"}
 
-    .user-input__sort-message
-      %h1
-        本人確認
-      %p
-        安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-
-    .user-input__namekanji
-      %label.label--small
-        お名前(全角)
-        %span.hissu 必須
-      .name-box
-        %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 山田"}
-        %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 彩"}
-
-    .user-input__namehira
-      %label.label--small
-        お名前カナ(全角) 
-        %span.hissu 必須
-      .name-box
-        %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) ヤマダ"}
-        %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) アヤ"}
-
-    .user-input__birthday
-      %label.label--small
-        生年月日
-        %span.hissu 必須
-      .birthday-box
-        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+      .user-input__sort-message
+        %h1
+          本人確認
         %p
-          年
-        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+          安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+
+      .user-input__namekanji
+        %label.label--small
+          お名前(全角)
+          %span.hissu 必須
+        .name-box
+          %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 山田"}
+          %input.name-box__kanji--input{name: "name", type: "text", placeholder: " 例) 彩"}
+
+      .user-input__namehira
+        %label.label--small
+          お名前カナ(全角) 
+          %span.hissu 必須
+        .name-box
+          %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) ヤマダ"}
+          %input.name-box__hira--input{name: "name", type: "text", placeholder: " 例) アヤ"}
+
+      .user-input__birthday
+        %label.label--small
+          生年月日
+          %span.hissu 必須
+        .birthday-box
+          %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+          %p
+            年
+          %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+          %p
+            月
+          %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
+          %p
+            日
+
+      .user-input__sort-message2
         %p
-          月
-        %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " --"}
-        %p
-          日
+          ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
 
-    .user-input__sort-message2
-      %p
-        ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+      .recaptcha
+        = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
+          
+      .user-input__container__sell-btn.steppagefix
+        %div
+          %p.kiyaku
+          <center>「次へ進む」のボタンを押すことにより、
+          %a.kiyaku--blue{href: '#'}>利用規約
+          に同意したものとみなします</center>
+        %button.user-input__container__sell-btn--btn-red 次へ進む
 
-    .recaptcha
-      = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
-        
-    .user-input__container__sell-btn.steppagefix
-      %div
-        %p.kiyaku
-        <center>「次へ進む」のボタンを押すことにより、
-        %a.kiyaku--blue{href: '#'}>利用規約
-        に同意したものとみなします</center>
-      %button.user-input__container__sell-btn--btn-red 次へ進む
+      .user-input__about-user-info
+        = link_to '本人情報の登録について', '#', class: 'kiyaku--blue'
+        = fa_icon 'chevron-right', class: 'kiyaku--blue'
 
-    .user-input__about-user-info
-      = link_to '本人情報の登録について', '#', class: 'kiyaku--blue'
-      = fa_icon 'chevron-right', class: 'kiyaku--blue'
-
-= render 'devise/shared/devise-footer'
+  = render 'devise/shared/devise-footer'
 

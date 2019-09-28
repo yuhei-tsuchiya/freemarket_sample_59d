@@ -452,5 +452,11 @@
 .steppagefixstepdonecenter {
   text-align: center;
   margin: 40px;
+}
 
+.done-footer {
+  width: calc(100% - 10px);
+  height: 260px;
+  margin: 0 auto;
+  border: solid 1px;
 }
