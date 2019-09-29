@@ -96,3 +96,5 @@ gem 'active_hash'
 # jQeury
 gem 'jquery-rails'
 
+# category,size,burdenでancestry使用
+gem 'ancestry'
