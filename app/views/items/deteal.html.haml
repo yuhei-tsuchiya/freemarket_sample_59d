@@ -1,0 +1,117 @@
+
+= render 'toppage/header'
+
+.item-deteal
+  .item-deteal__box
+    %h1.item-deteal__box__title
+      トマト
+    .item-deteal__box__item
+      .item-deteal__box__item__left
+        .left__top
+          = image_tag "yuhei.jpg", alt: '', class: 'slide__box__image3'
+
+        .left__down
+          .left__down__iir
+            .left__down__iir__gffk
+              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+
+              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+
+              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+
+              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+
+              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+
+      %table.item-detail-table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              %a{:href => "https://www.mercari.com/jp/u/676750793/"} milky
+              .yyy
+                .item-user-ratings
+                  %i.icon-good
+                  %span 40
+                .item-user-ratings
+                  %i.icon-normal
+                  %span 0
+                .item-user-ratings
+                  %i.icon-bad
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              %a{href: "https://www.mercari.com/jp/category/2/"}
+                %div メンズ
+              %a{href: "https://www.mercari.com/jp/category/30/"}
+                .item-detail-table-sub-category
+                  %i.icon-arrow-right
+                  トップス
+              %a{href: "https://www.mercari.com/jp/category/304/"}
+                .item-detail-table-sub-sub-category
+                  %i.icon-arrow-right
+                  シャツ
+          %tr
+            %th ブランド
+            %td
+              %a{href: "https://www.mercari.com/jp/brand/5150/"}
+                %div
+                  バックボーン
+          %tr
+            %th 商品のサイズ
+            %td M
+          %tr
+            %th 商品の状態
+            %td 目立った傷や汚れなし
+          %tr
+            %th 配送料の負担
+            %td 送料込み(出品者負担)
+          %tr
+            %th 配送の方法
+            %td 未定
+          %tr
+            %th 配送元地域
+            %td
+              %a{href: "https://www.mercari.com/jp/area/26/"} 京都府
+          %tr
+            %th 発送日の目安
+            %td 1~2日で発送
+
+
+    .item-deteal__box__price
+      %span.oooo
+        ￥5,200
+      %span.rrrr
+        （税込）
+      %span.wwww
+        送料込み
+    = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
+      購入画面に進む
+    .item-deteal__box__description
+      %p.item-deteal__box__description__idjs
+        バックボーン  五分丈の厚手シャツです。
+        サイズMです。
+        数年前に購入し数回着用し、ずっと自宅保管していました。
+        目立った汚れ等はありませんが、中古品の自宅保管品ですのでご理解頂ける方でお願いします
+
+    .item-button-container.clearfix
+      .item-button-left
+        %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m38799137224", "data-toggle" => "like", :name => "like!", :type => "button"}
+          %i.icon-like-border
+          %span いいね!
+          %span.fade-in-down{"data-num" => "like"} 4
+
+        .item-button-report
+          %span 不適切な商品の報告
+        %input{:name => "like_add_url", :type => "hidden", :value => "https://www.mercari.com/jp/like/add/m38799137224/?_s=U2FsdGVkX18e5ceg1R5dtdpcyL4dl3fTQ3VyiDPP1VTsNGZOOKOjezT7pI0SlQq35ya2DM-tS4gaYEP37AF7PBYxE-0DRzNdNTzFiHigtOcDxd2zhem7cNLrftEaYEw6"}/
+        %input{:name => "like_del_url", :type => "hidden", :value => "https://www.mercari.com/jp/like/delete/m38799137224/?_s=U2FsdGVkX18e5ceg1R5dtdpcyL4dl3fTQ3VyiDPP1VTsNGZOOKOjezT7pI0SlQq35ya2DM-tS4gaYEP37AF7PBYxE-0DRzNdNTzFiHigtOcDxd2zhem7cNLrftEaYEw6"}/
+        %input{:name => "__csrf_value", :type => "hidden", :value => "b66f76f0af6533a7ef8ffd1e819cd400923f651ad5edd7640b653da1b612bbbe5f9e0cf00d1fc4ec682f3ad5a5480b2f7b7e98409d8a3023f092f7096722b7c00"}/
+      .item-button-right
+        %a{:href => "https://www.mercari.com/jp/safe/description/", :target => "_blank"}
+          %i.icon-lock
+          %span あんしん・あんぜんへの取り組み
+
+= render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'
