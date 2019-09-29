@@ -96,3 +96,5 @@ gem 'active_hash'
 # jQeury
 gem 'jquery-rails'
 
+#多階層構造
+gem 'ancestry'
