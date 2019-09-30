@@ -1,0 +1,62 @@
+.buy-body
+  .buy-header
+    %h1
+      = link_to root_path, class: 'header-link' do
+        = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2687693852'
+  .buy-main
+    %section.buy-main__all
+      %h2.buy-item-title
+        購入内容の確認
+      %section.buy-content.buy-item
+        .buy-content-inner
+          .buy-content-inner__on
+            %h3.buy-item-image
+              = image_tag 'https://static.mercdn.net/thumb/photos/m52817775865_1.jpg?1569681859'
+            %p.buy-item-name.bold
+              ankoROCK(アンコロック)病みかわいいバラバラパーカー カラフル
+          = form_with url: root_path, method: :get, class: 'buy-form' do |f|
+            %P.buy-price-ja.bold
+              ¥14,200
+              %span.item-shipping-fee.f14.bold
+                送料込み
+              %ul.buy-accordion.not-have
+                %li.accordion-parent
+                  .accordion-toggle
+                    ポイントはありません
+              %ul.buy-price-table
+                %li.buy-price-row.buy-you-pay.bold
+                  .buy-price-cell
+                    支払い金額
+                  .buy-price-cell
+                    %span{data:{buy:{pay: "14200"}}}
+                      ¥14,200
+              %button.btn-default.btn-red.bold{type: "submit"}
+                購入する
+      %section.buy-content.buy-user-info
+        .buy-content-inner
+          %h3 配送先
+          %address.buy-user-info-text
+            〒406-0027
+            %br/
+            山梨県 笛吹市
+            石和町下平井419-5
+            %br/
+            土屋 悠平
+          %p.buy-user-info-text
+          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/address/m52817775865/?_s=U2FsdGVkX19qf-PmE2bU0OHPpU5wPM7kVTl_0V1IXeJBV3Y0eF6vlebhfhmdjnc9V2RHWfk4yr5p2r2GEZXcb0B-_lUoryvfWE6xiMhZVxRxTn3tRSVjP1yIajNYwpbf"}
+            %span 変更する
+            %i.icon-arrow-right
+
+      %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
+        .buy-content-inner
+          %h3 支払い方法
+          %p.buy-user-info-text
+            %br/
+            \2222333232323/
+            %figure
+              %img{:alt => "", :height => "", :src => "", :width => ""}/
+          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/card/m52817775865/?_s=U2FsdGVkX19qf-PmE2bU0OHPpU5wPM7kVTl_0V1IXeJBV3Y0eF6vlebhfhmdjnc9V2RHWfk4yr5p2r2GEZXcb0B-_lUoryvfWE6xiMhZVxRxTn3tRSVjP1yIajNYwpbf"}
+            %span 変更する
+            %i.icon-arrow-right
+
+      = render 'devise/shared/devise-footer'

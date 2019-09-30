@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # root to: 'toppage#index'
-  root to: 'items#deteal'
+  root to: 'toppage#index'
   devise_for :users
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 #   resources :signup do
 #     collection do
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :items do
     collection do
       get :sell  # 商品出品ページ
+      get :buy   # 商品購入ページ
     end
   end
 end

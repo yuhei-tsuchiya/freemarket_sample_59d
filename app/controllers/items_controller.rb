@@ -6,4 +6,9 @@ class ItemsController < ApplicationController
   def deteal
 
   end
+
+  def buy
+
+
+  end
 end
