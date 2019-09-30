@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   # => #<Category id: 160, name: "Tシャツ/カットソー(半袖/袖なし)", created_at: "2019-09-30 01:11:27", updated_at: "2019-09-30 01:11:27", size_id: nil, ancestry: "1/2/15">
   # > item.category.parent
   # => #<Category id: 15, name: "トップス", created_at: "2019-09-30 01:11:26", updated_at: "2019-09-30 01:11:26", size_id: 1, ancestry: "1/2">
-  # > test.category.parent.parent.name
+  # > item.category.parent.parent.name
   # => "レディース"
   # > item.size
   # => #<Size id: 10, name: "M", created_at: "2019-09-30 01:11:26", updated_at: "2019-09-30 01:11:26", ancestry: "1">
@@ -41,5 +41,14 @@ class ItemsController < ApplicationController
   # => "4~7日"
   # > item.display_product_state
   # => "未使用"
+
+  # 取引状況、配送日数、商品状態を配列で一覧表示するメソッド(item.rbで定義)
+  # > @item = Item.new
+  # > @item.torihiki_info_list
+  # => ["出品中", "取引中", "売却済"]
+  # > @item.shipping_days_list
+  # => ["1~2日", "2~3日", "4~7日"]
+  # > @item.product_state_list
+  # => ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
 
 end
