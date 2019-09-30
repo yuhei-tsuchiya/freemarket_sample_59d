@@ -23,7 +23,7 @@
           .progress-status
 
   -# 電話番号の確認
-  = form_for(@user, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'}) do |f|
+  = form_with model: @user, local: true, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
     .user-input
       .user-input__message
         電話番号の確認
@@ -33,14 +33,14 @@
             %label.label--small
               携帯電話の番号 
             .user-input__container__sell-contents__form-group__inputname
-              %input.user-input__container__sell-contents__form-group__inputname--input{name: "cellphone_number", type: "text", placeholder: " 携帯電話の番号を入力"}
+              = f.text_field :cellphone_number, placeholder: '　携帯電話の番号を入力'
         .user-input__sort-message
           %p
             本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
           
 
         .user-input__container__sell-btn.steppagefix
-          %button.user-input__container__sell-btn--btn-red SMSを送信する
+          = f.submit 'SMSを送信する', class: 'nextbotton'
           %p.steppagefixstep2
             ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
 

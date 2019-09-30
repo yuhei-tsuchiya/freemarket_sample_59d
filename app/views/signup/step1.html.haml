@@ -24,39 +24,42 @@
           .progress-status
 
   -# 会員情報入力フォーム
-  = form_with model: @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+  = form_with model: @user, local: true, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
     .user-input
       .user-input__message
         会員情報入力
       .user-input__container
+
         .user-input__container__sell-contents
           .user-input__container__sell-contents__form-group
             %label.label--small
               ニックネーム
               %span.hissu 必須
-          .user-input__container__sell-contents__form-group
-            = f.text_field :nickname, placeholder: ' 例) メルカリ太郎'
+            .user-input__container__sell-contents__form-group
+              = f.text_field :nickname, placeholder: '　例) メルカリ太郎'
+
         .user-input__container__sell-contents
           .user-input__container__sell-contents__form-group
             %label.label--small
               メールアドレス
               %span.hissu 必須
             .user-input__container__sell-contents__form-group__inputname
-              %input.user-input__container__sell-contents__form-group__inputname--input{name: "email", type: "email", placeholder: " PC・携帯どちらでも可"}
+              = f.email_field :email, placeholder: '　PC・携帯どちらでも可'
+
         .user-input__container__sell-contents
           .user-input__container__sell-contents__form-group
             %label.label--small
               パスワード
               %span.hissu 必須
             .user-input__container__sell-contents__form-group__inputname
-              %input.user-input__container__sell-contents__form-group__inputname--input{name: "password_confirmation", type: "password", placeholder: " 7文字以上", id:'user_password'}
+              = f.password_field :password, placeholder: '　7文字以上'
         .user-input__container__sell-contents
           .user-input__container__sell-contents__form-group
             %label.label--small
               パスワード (確認)
               %span.hissu 必須
             .user-input__container__sell-contents__form-group__inputname
-              %input.user-input__container__sell-contents__form-group__inputname--input{name: "password_confirmation", type: "password", placeholder: " 7文字以上", id:'user_password_confirmation'}
+              = f.password_field :password_confirmation, placeholder: '　7文字以上'
 
         .user-input__sort-message
           %h1
@@ -69,16 +72,16 @@
             お名前(全角)
             %span.hissu 必須
           .name-box
-            %input.name-box__kanji--input{name: "lastname_kanji", type: "text", placeholder: " 例) 山田"}
-            %input.name-box__kanji--input{name: "firstname_kanji", type: "text", placeholder: " 例) 彩"}
+            = f.text_field :lastname_kanji, placeholder: '　例) 山田', class: 'field-namebox'
+            = f.text_field :firstname_kanji, placeholder: '　例) 彩', class: 'field-namebox'
 
         .user-input__namehira
           %label.label--small
             お名前カナ(全角) 
             %span.hissu 必須
           .name-box
-            %input.name-box__hira--input{name: "lastname_kana", type: "text", placeholder: " 例) ヤマダ"}
-            %input.name-box__hira--input{name: "firstname_kana", type: "text", placeholder: " 例) アヤ"}
+            = f.text_field :lastname_kana, placeholder: '　例) ヤマダ', class: 'field-namebox'
+            = f.text_field :firstname_kana, placeholder: '　例) アヤ', class: 'field-namebox'
 
         .user-input__birthday
           %label.label--small
@@ -86,16 +89,6 @@
             %span.hissu 必須
           .birthday-box
             != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
-
-        -#     -# %input.birthday-box__ymd--input{name: "birth_year", type: "text", placeholder: " --"}
-        -#     -# %p
-        -#     -#   年
-        -#     -# %input.birthday-box__ymd--input{name: "birth_month", type: "text", placeholder: " --"}
-        -#     -# %p
-        -#     -#   月
-        -#     -# %input.birthday-box__ymd--input{name: "birth_day", type: "text", placeholder: " --"}
-        -#     -# %p
-        -#     -#   日
 
         .user-input__sort-message2
           %p
@@ -110,13 +103,11 @@
             <center>「次へ進む」のボタンを押すことにより、
             %a.kiyaku--blue{href: '#'}>利用規約
             に同意したものとみなします</center>
-          %button.user-input__container__sell-btn--btn-red 次へ進む
-
+          = f.submit '次へ進む', class: 'nextbotton'
         
 
         .user-input__about-user-info
           = link_to '本人情報の登録について', step2_signup_index_path, class: 'kiyaku--blue'
           = fa_icon 'chevron-right', class: 'kiyaku--blue'
-          -# = f.submit '次へ進む'
   = render 'devise/shared/devise-footer'
 

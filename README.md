@@ -16,6 +16,7 @@
 |phone_credential|integer||
 |address_id|integer|null: false, foreign_key: true|
 |introduction|text||
+|password_digest|string||
 ### Association
 - has_many :items
 - has_one :address

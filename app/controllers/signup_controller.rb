@@ -5,7 +5,6 @@ class SignupController < ApplicationController
   end
 
   def step2
-    # binding.pry
     # step1で入力された値をsessionに保存
     session[:nickname]              = user_params[:nickname]
     session[:email]                 = user_params[:email]
@@ -19,6 +18,18 @@ class SignupController < ApplicationController
     @user = User.new # 新規インスタンス作成
   end
 
+  def step3
+    # step2で入力された値をsessionに保存
+    session[:cellphone_number]      = user_params[:cellphone_number]
+    @user = User.new # 新規インスタンス作成
+  end
+
+  # def step4
+  #   # step3で入力された値をsessionに保存
+  #   session[:cellphone_number]
+  #   @user = User.new # 新規インスタンス作成
+  # end
+
   def create
     @user = User.new(
       nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -30,6 +41,7 @@ class SignupController < ApplicationController
       lastname_kana: session[:lastname_kana], 
       firstname_kana: session[:firstname_kana], 
       birthday: session[:birthday], 
+      cellphone_number: session[:cellphone_number], 
     )
   end
 
@@ -46,6 +58,7 @@ class SignupController < ApplicationController
         :lastname_kana, 
         :firstname_kana, 
         :birthday,
+        :cellphone_number
       )
     end
 
