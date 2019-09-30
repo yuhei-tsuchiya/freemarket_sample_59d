@@ -327,9 +327,10 @@
   }
     // 生年月日
   &__birthday {
-    padding-top: 10px;
+    padding: 10px 0;
     .birthday-box {
       display: flex;
+      align-items: center;  /* 子要素をflexboxにより中央に配置する */
       &__ymd {
         &--input{
           box-sizing: border-box;
@@ -387,6 +388,7 @@
   font-size: 12px;
   // vertical-align: top;
 }
+
 .label{
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
   font-weight: 600;
@@ -426,6 +428,10 @@
 .steppagefixstep3 {
   color: white;
   background: gray;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 12px;
 }
 
 .steppagefixstep3padding {
@@ -459,4 +465,17 @@
   height: 260px;
   margin: 0 auto;
   border: solid 1px;
+}
+
+.year,.month,.day{
+  // 指定したいCSSを記述する
+  width: 76px;
+  height: 48px;
+  margin: 5px;
+}
+
+// フォームのサイズを変更する記述
+input[type="text"] {
+  width: 339px;
+  height: 36px;
 }

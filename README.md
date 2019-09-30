@@ -11,9 +11,7 @@
 |firstname_kanji|string|null: false|
 |lastname_kana|string|null: false|
 |firstname_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
+|birthday|integer|null: false|
 |cellphone_number|string|null: false|
 |phone_credential|integer||
 |address_id|integer|null: false, foreign_key: true|
@@ -22,7 +20,7 @@
 - has_many :items
 - has_one :address
 
-## addresssテーブル
+## addressesテーブル
 |zip_code|string|null: false|
 |------|----|-------|
 |prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
