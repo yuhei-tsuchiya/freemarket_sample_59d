@@ -1419,3 +1419,13 @@ men.children.create(:name=>"未定")
 men.children.create(:name=>"クロネコヤマト")
 men.children.create(:name=>"ゆうパック")
 men.children.create(:name=>"ゆうメール")
+
+require "csv"
+
+CSV.foreach('db/users.csv', headers: true) do |row|
+  User.create(
+              email: row['email'],
+              password: row['encrypted_password'],
+              # password_confirmation: row['encrypted_password'],
+                  )
+end

@@ -4,7 +4,7 @@
 .item-deteal
   .item-deteal__box
     %h1.item-deteal__box__title
-      トマト
+      = @items.name
     .item-deteal__box__item
       .item-deteal__box__item__left
         .left__top
@@ -28,7 +28,8 @@
           %tr
             %th 出品者
             %td
-              %a{:href => "https://www.mercari.com/jp/u/676750793/"} milky
+              %a{href: "https://www.mercari.com/jp/u/676750793/"}
+                = @items.user_id
               .yyy
                 .item-user-ratings
                   %i.icon-good
@@ -43,15 +44,16 @@
             %th カテゴリー
             %td
               %a{href: "https://www.mercari.com/jp/category/2/"}
-                %div メンズ
+                %div
+                  = @items.category.parent.parent.name #親
               %a{href: "https://www.mercari.com/jp/category/30/"}
                 .item-detail-table-sub-category
                   %i.icon-arrow-right
-                  トップス
+                  = @items.category.parent.name        #子
               %a{href: "https://www.mercari.com/jp/category/304/"}
                 .item-detail-table-sub-sub-category
                   %i.icon-arrow-right
-                  シャツ
+                  = @items.category.name               #孫
           %tr
             %th ブランド
             %td
@@ -60,28 +62,35 @@
                   バックボーン
           %tr
             %th 商品のサイズ
-            %td M
+            %td
+              = @items.size.name
           %tr
             %th 商品の状態
-            %td 目立った傷や汚れなし
+            %td
+              = @items.display_product_state
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td
+              = @items.burden.parent.name
           %tr
             %th 配送の方法
-            %td 未定
+            %td
+              = @items.burden.name
           %tr
             %th 配送元地域
             %td
-              %a{href: "https://www.mercari.com/jp/area/26/"} 京都府
+              %a{href: "https://www.mercari.com/jp/area/26/"}
+                = @items.prefecture.name
           %tr
             %th 発送日の目安
-            %td 1~2日で発送
+            %td
+              = @items.display_shipping_days
 
 
     .item-deteal__box__price
       %span.oooo
-        ￥5,200
+        ¥
+        = @items.price
       %span.rrrr
         （税込）
       %span.wwww
@@ -90,10 +99,7 @@
       購入画面に進む
     .item-deteal__box__description
       %p.item-deteal__box__description__idjs
-        バックボーン  五分丈の厚手シャツです。
-        サイズMです。
-        数年前に購入し数回着用し、ずっと自宅保管していました。
-        目立った汚れ等はありませんが、中古品の自宅保管品ですのでご理解頂ける方でお願いします
+        = @items.description
 
     .item-button-container.clearfix
       .item-button-left

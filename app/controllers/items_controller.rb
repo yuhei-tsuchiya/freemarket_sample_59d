@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   end
 
   def deteal
-
+    @items = Item.find(1)
   end
 
 
