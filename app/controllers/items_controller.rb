@@ -1,10 +1,27 @@
 class ItemsController < ApplicationController
+
+  protect_from_forgery except: :create # createアクションを除外
+
   def sell
+    @item = Item.new
+    @category = Category.find(1)
+    @burden = Burden.roots
     @prefectures = Prefecture.all
+  end
+
+  def create
+    binding.pry
+    Item.create(item_params)
+    redirect_to root_path  # 動作確認で一時的な措置としてrootへリダイレクト
   end
 
   def deteal
 
+  end
+
+  private
+  def item_params
+    
   end
 
   # itemレコードの保存方法(コンソールで確認)

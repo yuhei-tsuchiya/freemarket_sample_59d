@@ -7,7 +7,7 @@
   .contents-item__message
     商品の情報を入力
   .contents-item__container
-    %form{action: "/", method: "post"}
+    %form{action: "/items", method: "post"}
       .contents-item__container__uploadbox
         .contentsitem__container__uploadbox__text.label
           出品画像
@@ -61,19 +61,22 @@
                 %i.contents-item__container__sell-contents__form-box__select-wrap--icon
                 %select.contents-item__container__sell-contents__form-box__select-wrap--select
                   %option ---
-                  %option レディース
-                  %option メンズ
-                  %option ベビー・キッズ
-                  %option インテリア・住まい・小物
-                  %option 本・音楽・ゲーム
-                  %option おもちゃ・ホビー・グッズ
-                  %option コスメ・香水・美容
-                  %option 家電・スマホ・カメラ
-                  %option スポーツ・レジャー
-                  %option ハンドメイド
-                  %option チケット
-                  %option 自動車・オートバイ
-                  %option その他
+                  - @category.children.each do |cat1|
+                    %option{value: cat1.id}
+                      = cat1.name
+                  -# %option レディース
+                  -# %option メンズ
+                  -# %option ベビー・キッズ
+                  -# %option インテリア・住まい・小物
+                  -# %option 本・音楽・ゲーム
+                  -# %option おもちゃ・ホビー・グッズ
+                  -# %option コスメ・香水・美容
+                  -# %option 家電・スマホ・カメラ
+                  -# %option スポーツ・レジャー
+                  -# %option ハンドメイド
+                  -# %option チケット
+                  -# %option 自動車・オートバイ
+                  -# %option その他
 
         .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
           %div
@@ -85,12 +88,15 @@
                 %i.contents-item__container__sell-contents__form-box__select-wrap--icon
                 %select.contents-item__container__sell-contents__form-box__select-wrap--select
                   %option ---
-                  %option 新品、未使用
-                  %option 未使用に近い
-                  %option 目立った傷や汚れなし
-                  %option やや傷や汚れあり
-                  %option 傷や汚れあり
-                  %option 全体的に状態が悪い
+                  - @item.product_state_list.each_with_index do |state, i_state|
+                    %option{value: i_state}
+                      = state
+                  -# %option 新品、未使用
+                  -# %option 未使用に近い
+                  -# %option 目立った傷や汚れなし
+                  -# %option やや傷や汚れあり
+                  -# %option 傷や汚れあり
+                  -# %option 全体的に状態が悪い
 
       .contents-item__container__sell-contents.clearfix
         %h3.contents-item__container__sell-contents--greyout 配送について
@@ -105,8 +111,11 @@
                 %i.contents-item__container__sell-contents__form-box__select-wrap--icon
                 %select.contents-item__container__sell-contents__form-box__select-wrap--select
                   %option ---
-                  %option 送料込み
-                  %option 着払い(購入者負担)
+                  - @burden.each do |burden|
+                    %option{value: burden.id}
+                      = burden.name
+                  -# %option 送料込み
+                  -# %option 着払い(購入者負担)
 
         .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
           %div
@@ -118,9 +127,9 @@
                 %i.contents-item__container__sell-contents__form-box__select-wrap--icon
                 %select.contents-item__container__sell-contents__form-box__select-wrap--select
                   %option ---
-                  - @prefectures.each do |pref|
-                    %option
-                      =pref.name
+                  - @prefectures.each_with_index do |pref|
+                    %option{value: pref.id}
+                      = pref.name
 
         .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
           %div
@@ -132,9 +141,12 @@
                 %i.contents-item__container__sell-contents__form-box__select-wrap--icon
                 %select.contents-item__container__sell-contents__form-box__select-wrap--select
                   %option ---
-                  %option 1~2日で発送
-                  %option 2~3日で発送
-                  %option 4~7日で発送
+                  - @item.shipping_days_list.each_with_index do |days, i_days|
+                    %option{value: i_days}
+                      = days
+                  -# %option 1~2日で発送
+                  -# %option 2~3日で発送
+                  -# %option 4~7日で発送
 
       .contents-item__container__sell-contents.clearfix
         %h3.contents-item__container__sell-contents--greyout 販売価格(300〜9,999,999)
@@ -173,7 +185,7 @@
             また、出品をもちまして
             %a.kiyaku--blue{href: '#'}> 加盟店規約
             に同意したことになります。
-        %button.contents-item__container__sell-btn--btn-red 出品する
+        %input.contents-item__container__sell-btn--btn-red{type: "submit", value: "出品する"} 
         %a.contents-item__container__sell-btn--btn-red.grey もどる
 
 
