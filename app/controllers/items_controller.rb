@@ -7,6 +7,12 @@ class ItemsController < ApplicationController
 
   end
 
+
+  def buy
+
+
+  end
+
   # itemレコードの保存方法(コンソールで確認)
   # $ rails c
   # > item = Item.create(name: "test", price: 1000, good: 2, torihiki_info: 2, product_state: 1, description: "test desu", shipping_days: 2, user_id: 1, prefecture_id: 3, category_id: 160, size_id: 10, burden_id: 4)
@@ -50,5 +56,6 @@ class ItemsController < ApplicationController
   # => ["1~2日", "2~3日", "4~7日"]
   # > @item.product_state_list
   # => ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
+
 
 end
