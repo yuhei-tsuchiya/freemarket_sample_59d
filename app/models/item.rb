@@ -5,9 +5,24 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :size, optional: true
   belongs_to :burden
+
+#バリデーション
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :torihiki_info, presence: true
+  validates :product_state, presence: true
+  validates :description, presence: true
+  validates :shipping_days, presence: true
+  validates :user_id, presence: true
+  validates :prefecture_id, {presence: true, numericality: { less_than: 48 }}
+  validates :category_id, presence: true
+  validates :size_id, presence: true
+  1validates :burden_id, presence: true
+
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-  
+
   @@torihiki_info_list = ["出品中", "取引中", "売却済"]
   @@product_state_list = ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
   @@shipping_days_list = ["1~2日", "2~3日", "4~7日"]
@@ -16,7 +31,7 @@ class Item < ApplicationRecord
   def torihiki_info_list
     @@torihiki_info_list
   end
-  
+
   def product_state_list
     @@product_state_list
   end

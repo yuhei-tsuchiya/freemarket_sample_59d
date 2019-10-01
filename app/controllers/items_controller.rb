@@ -3,8 +3,8 @@ class ItemsController < ApplicationController
     @prefectures = Prefecture.all
   end
 
-  def deteal
-    @items = Item.find(1)
+  def show
+    @items = Item.find(params[:id])
   end
 
 

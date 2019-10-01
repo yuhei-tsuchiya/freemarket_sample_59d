@@ -8,20 +8,23 @@
     .item-deteal__box__item
       .item-deteal__box__item__left
         .left__top
-          = image_tag "yuhei.jpg", alt: '', class: 'slide__box__image3'
+          = image_tag @items.images[0].image, alt: '', class: 'slide__box__image3'
 
         .left__down
+
           .left__down__iir
             .left__down__iir__gffk
-              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
+            .left__down__iir__gffk
+              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
+            .left__down__iir__gffk
+              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
+            .left__down__iir__gffk
+              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
+            .left__down__iir__gffk
+              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
 
-              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
 
-              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
-
-              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
-
-              = image_tag "yuhei.jpg", alt: '', class: 'left__down__iir__gffk__image'
 
       %table.item-detail-table
         %tbody
@@ -59,7 +62,7 @@
             %td
               %a{href: "https://www.mercari.com/jp/brand/5150/"}
                 %div
-                  バックボーン
+                  シャネル
           %tr
             %th 商品のサイズ
             %td
@@ -90,11 +93,11 @@
     .item-deteal__box__price
       %span.oooo
         ¥
-        = @items.price
+        = @items.price.to_s(:delimited)
       %span.rrrr
         （税込）
       %span.wwww
-        送料込み
+        = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
     = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
       購入画面に進む
     .item-deteal__box__description
@@ -121,3 +124,4 @@
 = render 'toppage/toppage-footer'
 
 = render 'toppage/exhibition-button'
+
