@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_many :images
+  accepts_nested_attributes_for :images
   has_many :comments
   belongs_to :user
   belongs_to :category
@@ -12,7 +13,7 @@ class Item < ApplicationRecord
   @@product_state_list = ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
   @@shipping_days_list = ["1~2日", "2~3日", "4~7日"]
 
-  # orihiki_info、shipping_days、product_stateの配列を返すメソッドを定義
+  # torihiki_info、shipping_days、product_stateの配列を返すメソッドを定義
   def torihiki_info_list
     @@torihiki_info_list
   end

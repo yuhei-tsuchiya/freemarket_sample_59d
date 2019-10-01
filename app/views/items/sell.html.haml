@@ -4,10 +4,11 @@
       = image_tag 'logo.svg', class: 'registration-header-logo'
 
 .contents-item
-  .contents-item__message
-    商品の情報を入力
-  .contents-item__container
-    %form{action: "/items", method: "post"}
+  = form_with model: @item, local: true do |f|
+    .contents-item__message
+      商品の情報を入力
+    .contents-item__container
+
       .contents-item__container__uploadbox
         .contentsitem__container__uploadbox__text.label
           出品画像
@@ -17,188 +18,116 @@
         .contents-item__container__uploadbox__zone-item
           .contents-item__container__uploadbox__zone-item__have-item.clearfix
             %ul{id: "item-append-target"}
-              -# -# li要素一つにつき画像ボックス1個分
-              -# %li.contents-item__container__uploadbox__zone-item__have-item--upload-item
-              -#   %figure.contents-item__container__uploadbox__zone-item__have-item--upload-figure
-              -#     %img.contents-item__container__uploadbox__zone-item__have-item--upload-image{src: "/default.jpg", width: "100"}
-              -#   .contents-item__container__uploadbox__zone-item__have-item__upload-btnbox
-              -#     %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn 　
-              -#     %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn.btn-left{href: "#"} 削除
-          %label.contents-item__container__uploadbox__zone-item__dropbox.clearfix{id: "item-drop-zone"}
-            %input.contents-item__container__uploadbox__zone-item__dropbox--fileform{type: "file", name: "images[]", multiple: true}
-            %p.contents-item__container__uploadbox__zone-item__dropbox--fileinfo
-              ドラッグアンドドロップ
-              %br          
-              またはクリックしてファイルをアップロード
-          
-     
-      .contents-item__container__sell-contents
-        .contents-item__container__sell-contents__form-group
-          %label.label--small
-            商品名
-            %span.hissu 必須
-          .contents-item__container__sell-contents__form-group__inputname
-            %input.contents-item__container__sell-contents__form-group__inputname--input{name: "name",
-              type: "text", placeholder: "商品名（必須40文字まで）"}
-        .contents-item__container__sell-contents__form-group{style: "margin-top: 40px;"}
-          %label.label--small
-            商品の説明
-            %span.hissu 必須
-          .contents-item__container__sell-contents__form-group__inputname
-            %textarea.contents-item__container__sell-contents__form-group__inputname--input-description{name: "description",
-              rows: "5",
-              placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+            = f.fields_for :images do |f_image|
+              -# = f_image.label :image, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", id: "item-drop-zone" do
+              = f_image.label :label, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", id: "item-drop-zone" do
+                = f_image.file_field :image, type: 'file', class: "contents-item__container__uploadbox__zone-item__dropbox--fileform"
+                = f_image.hidden_field :id
+                %p.contents-item__container__uploadbox__zone-item__dropbox--fileinfo
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
 
-      .contents-item__container__sell-contents.clearfix
-        %h3.contents-item__container__sell-contents--greyout 商品の詳細
-        .contents-item__container__sell-contents__form-box
-          %div
-            %label.label--small
-              カテゴリー
-              %span.hissu 必須
-            %div
-              .contents-item__container__sell-contents__form-box__select-wrap
-                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-                %select.contents-item__container__sell-contents__form-box__select-wrap--select
-                  %option ---
-                  - @category.children.each do |cat1|
-                    %option{value: cat1.id}
-                      = cat1.name
-                  -# %option レディース
-                  -# %option メンズ
-                  -# %option ベビー・キッズ
-                  -# %option インテリア・住まい・小物
-                  -# %option 本・音楽・ゲーム
-                  -# %option おもちゃ・ホビー・グッズ
-                  -# %option コスメ・香水・美容
-                  -# %option 家電・スマホ・カメラ
-                  -# %option スポーツ・レジャー
-                  -# %option ハンドメイド
-                  -# %option チケット
-                  -# %option 自動車・オートバイ
-                  -# %option その他
-
-        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
-          %div
-            %label.label--small
-              商品の状態
-              %span.hissu 必須
-            %div
-              .contents-item__container__sell-contents__form-box__select-wrap
-                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-                %select.contents-item__container__sell-contents__form-box__select-wrap--select
-                  %option ---
-                  - @item.product_state_list.each_with_index do |state, i_state|
-                    %option{value: i_state}
-                      = state
-                  -# %option 新品、未使用
-                  -# %option 未使用に近い
-                  -# %option 目立った傷や汚れなし
-                  -# %option やや傷や汚れあり
-                  -# %option 傷や汚れあり
-                  -# %option 全体的に状態が悪い
-
-      .contents-item__container__sell-contents.clearfix
-        %h3.contents-item__container__sell-contents--greyout 配送について
-        %a.contents-item__container__sell-contents--help{href: "#", } ?
-        .contents-item__container__sell-contents__form-box
-          %div
-            %label.label--small
-              配送料の負担
-              %span.hissu 必須
-            %div
-              .contents-item__container__sell-contents__form-box__select-wrap
-                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-                %select.contents-item__container__sell-contents__form-box__select-wrap--select
-                  %option ---
-                  - @burden.each do |burden|
-                    %option{value: burden.id}
-                      = burden.name
-                  -# %option 送料込み
-                  -# %option 着払い(購入者負担)
-
-        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
-          %div
-            %label.label--small
-              発送元の地域
-              %span.hissu 必須
-            %div
-              .contents-item__container__sell-contents__form-box__select-wrap
-                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-                %select.contents-item__container__sell-contents__form-box__select-wrap--select
-                  %option ---
-                  - @prefectures.each_with_index do |pref|
-                    %option{value: pref.id}
-                      = pref.name
-
-        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
-          %div
-            %label.label--small
-              発送までの日数
-              %span.hissu 必須
-            %div
-              .contents-item__container__sell-contents__form-box__select-wrap
-                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-                %select.contents-item__container__sell-contents__form-box__select-wrap--select
-                  %option ---
-                  - @item.shipping_days_list.each_with_index do |days, i_days|
-                    %option{value: i_days}
-                      = days
-                  -# %option 1~2日で発送
-                  -# %option 2~3日で発送
-                  -# %option 4~7日で発送
-
-      .contents-item__container__sell-contents.clearfix
-        %h3.contents-item__container__sell-contents--greyout 販売価格(300〜9,999,999)
-        %a.contents-item__container__sell-contents--help{href: "#", } ?
-        .contents-item__container__sell-contents__form-box
-          %div.clearfix
-            %label.label--small.contents-item__container__sell-contents__form-box--label
-              価格
-              %span.hissu 必須
-            .contents-item__container__sell-contents__form-box__pricebox
-              %div{style: "float: left; width: 10px; margin-top: 15px;"} ¥
-              %div  
-                %input.contents-item__container__sell-contents__form-box__pricebox--input{ placeholder: "例）300"}
-          .contents-item__container__sell-contents__form-box__form-fee.clearfix
-            .contents-item__container__sell-contents__form-box__form-fee__fee-left.info
-              販売手数料 (10%)
-            .contents-item__container__sell-contents__form-box__form-fee__fee-right.info
-              \-
-          .contents-item__container__sell-contents__form-box__form-fee.clearfix
-            .contents-item__container__sell-contents__form-box__form-fee__fee-left.label
-              販売利益
-            .contents-item__container__sell-contents__form-box__form-fee__fee-right.lable
-              \-
-      .contents-item__container__sell-btn
+    .contents-item__container__sell-contents
+      .contents-item__container__sell-contents__form-group
+        = f.label :name, class: "label--small", value: "商品名"
+        %span.hissu 必須
+        .contents-item__container__sell-contents__form-group__inputname
+          = f.text_field :name, class: "contents-item__container__sell-contents__form-group__inputname--input", placeholder: "商品名（必須40文字まで）"
+      .contents-item__container__sell-contents__form-group{style: "margin-top: 40px;"}
+        = f.label :description, class: "label--small", value: "商品の説明"
+        %span.hissu 必須
+        .contents-item__container__sell-contents__form-group__inputname
+          = f.text_area :description, class: "contents-item__container__sell-contents__form-group__inputname--input-description", rows: "5", placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 商品の詳細
+      .contents-item__container__sell-contents__form-box
         %div
-          %p.kiyaku
-            %a.kiyaku--blue{href: '#'}> 禁止されている出品、行為 
-            を必ずご確認ください。
-            %br
-            またブランド品でシリアルナンバー等がある場合はご記載ください。
-            %a.kiyaku--blue{href: '#'}> 偽ブランドの販売
-            は犯罪であ
-            %br
-            り処罰される可能性があります。
-            %br
-            また、出品をもちまして
-            %a.kiyaku--blue{href: '#'}> 加盟店規約
-            に同意したことになります。
-        %input.contents-item__container__sell-btn--btn-red{type: "submit", value: "出品する"} 
-        %a.contents-item__container__sell-btn--btn-red.grey もどる
+          = f.label :category_id, class: "label--small", value: "カテゴリー"
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :category_id, @category.children.map{|category| [category.name, category.id]}, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
 
+      .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+        %div
+          = f.label :product_state, {class: "label--small", value: "商品の状態"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :product_state, @item.product_state_list.map { |state| [state, @item.product_state_list.index(state)] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
 
-.sign-in_footer
-  %nav
-    %ul.registration
-      %li.registration__li
-        =link_to "プライバシーポリシー", "" 
-      %li.registration__li
-        =link_to "メルカリ利用規約", ""
-      %li.registration__li
-        =link_to "特定商取引に関する表記", ""
-  =link_to '', class: 'registration' do
-    = image_tag 'logo-gray.svg', class: 'registration-footer-logo'
-  %p.registration
-    © 2019 Mercari
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 配送について
+      %a.contents-item__container__sell-contents--help{href: "#", } ?
+      .contents-item__container__sell-contents__form-box
+        %div
+          = f.label :burden_id, {class: "label--small", value: "配送料の負担"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :burden_id, @burden.map { |burden| [burden.name, burden.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+      .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+        %div
+          = f.label :prefecture_id, {class: "label--small", value: "発送元の地域"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+      .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
+        %div
+          = f.label :shipping_days, {class: "label--small", value: "発送までの日数"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :shipping_days, @item.shipping_days_list.map { |days| [days, @item.shipping_days_list.index(days)] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 販売価格(300〜9,999,999)
+      %a.contents-item__container__sell-contents--help{href: "#", } ?
+      .contents-item__container__sell-contents__form-box
+        %div.clearfix{style: "position: relative;"}
+          = f.label :price, {class: "label--small", value: "価格", style: "position: absolute; top: 10px;"}
+          %span.hissu.price 必須
+          .contents-item__container__sell-contents__form-box__pricebox
+            %div{style: "float: left; width: 10px; margin-top: 15px;"} ¥
+            %div  
+              = f.text_field :price, {class: "contents-item__container__sell-contents__form-box__pricebox--input", placeholder: "例）300"}
+        .contents-item__container__sell-contents__form-box__form-fee.clearfix
+          .contents-item__container__sell-contents__form-box__form-fee__fee-left.info
+            販売手数料 (10%)
+          .contents-item__container__sell-contents__form-box__form-fee__fee-right.info
+            \-
+        .contents-item__container__sell-contents__form-box__form-fee.clearfix
+          .contents-item__container__sell-contents__form-box__form-fee__fee-left.label
+            販売利益
+          .contents-item__container__sell-contents__form-box__form-fee__fee-right.lable
+            \-
+
+    .contents-item__container__sell-btn
+      %div
+        %p.kiyaku
+          %a.kiyaku--blue{href: '#'}> 禁止されている出品、行為 
+          を必ずご確認ください。
+          %br
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a.kiyaku--blue{href: '#'}> 偽ブランドの販売
+          は犯罪であ
+          %br
+          り処罰される可能性があります。
+          %br
+          また、出品をもちまして
+          %a.kiyaku--blue{href: '#'}> 加盟店規約
+          に同意したことになります。
+      
+      = f.submit '出品する', class: "contents-item__container__sell-btn--btn-red"
+      %a.contents-item__container__sell-btn--btn-red.grey{href: '#'}もどる
+

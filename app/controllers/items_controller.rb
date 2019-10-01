@@ -1,18 +1,16 @@
 class ItemsController < ApplicationController
 
-  protect_from_forgery except: :create # createアクションを除外
-
   def sell
     @item = Item.new
+    @item.images.build
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
   end
 
   def create
-    binding.pry
-    Item.create(item_params)
-    redirect_to root_path  # 動作確認で一時的な措置としてrootへリダイレクト
+    @item = Item.create(item_params)
+    redirect_to root_path  # 一時的な措置としてrootへリダイレクト
   end
 
   def deteal
@@ -21,8 +19,10 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    
+    params.require(:item).permit(:name, :description, :category_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: 1, torihiki_info: 0)
   end
+
+end
 
   # itemレコードの保存方法(コンソールで確認)
   # $ rails c
@@ -68,4 +68,4 @@ class ItemsController < ApplicationController
   # > @item.product_state_list
   # => ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
 
-end
+
