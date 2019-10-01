@@ -21,8 +21,8 @@
             = f.fields_for :images do |f_image|
               -# = f_image.label :image, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", id: "item-drop-zone" do
               = f_image.label :label, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", id: "item-drop-zone" do
-                = f_image.file_field :image, type: 'file', class: "contents-item__container__uploadbox__zone-item__dropbox--fileform"
-                = f_image.hidden_field :id
+                = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform"
+                -# = f_image.hidden_field :id
                 %p.contents-item__container__uploadbox__zone-item__dropbox--fileinfo
                   ドラッグアンドドロップ
                   %br
