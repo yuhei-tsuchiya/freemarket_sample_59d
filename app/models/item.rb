@@ -14,10 +14,10 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :shipping_days, presence: true
   validates :user_id, presence: true
-  validates :prefecture_id, {presence: true, numericality: { less_than: 48 }}
+  validates :prefecture_id, presence: true, numericality: { less_than: 49 }
   validates :category_id, presence: true
   validates :size_id, presence: true
-  1validates :burden_id, presence: true
+  validates :burden_id, presence: true
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
