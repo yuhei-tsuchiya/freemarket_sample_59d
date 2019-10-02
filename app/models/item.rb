@@ -14,11 +14,11 @@ with_options presence: true do
   validates :product_state
   validates :description
   validates :shipping_days
-  validates :user_id
+  # validates :user_id
   validates :prefecture_id
-  validates :category_id
-  validates :size_id
-  validates :burden_id
+  # validates :category_id
+  # validates :size_id
+  # validates :burden_id
 end
 
   validates :prefecture_id,  numericality: { less_than: 49 }
