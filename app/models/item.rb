@@ -7,17 +7,22 @@ class Item < ApplicationRecord
   belongs_to :burden
 
 #バリデーション
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :torihiki_info, presence: true
-  validates :product_state, presence: true
-  validates :description, presence: true
-  validates :shipping_days, presence: true
-  validates :user_id, presence: true
-  validates :prefecture_id, presence: true, numericality: { less_than: 49 }
-  validates :category_id, presence: true
-  validates :size_id, presence: true
-  validates :burden_id, presence: true
+with_options presence: true do
+  validates :name
+  validates :price
+  validates :torihiki_info
+  validates :product_state
+  validates :description
+  validates :shipping_days
+  validates :user_id
+  validates :prefecture_id
+  validates :category_id
+  validates :size_id
+  validates :burden_id
+end
+
+  validates :prefecture_id,  numericality: { less_than: 49 }
+
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
