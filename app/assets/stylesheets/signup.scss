@@ -380,32 +380,24 @@
 }
 
 // 追記用のクラス
-.hissu {
-  background: #ea352d;
-  margin: 0 0 0 8px;
-  padding: 2px 4px;
-  border-radius: 2px;
-  color: #fff;
-  font-size: 12px;
-  // vertical-align: top;
-}
 
-.label{
-  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-  font-weight: 600;
-  color: #333;
-  &--small{
-    font-weight: 600;
-    font-size: 85%;
-    // color: red;
-  }
-}
-.kiyaku{
-  font-size: 14px;
-  &--blue{
-    color: #0099e8;
-  }
-}
+
+// .label{
+//   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+//   font-weight: 600;
+//   color: #333;
+//   &--small{
+//     font-weight: 600;
+//     font-size: 85%;
+//     // color: red;
+//   }
+// }
+// .kiyaku{
+//   font-size: 14px;
+//   &--blue{
+//     color: #0099e8;
+//   }
+// }
 
 .steppagefix {
   padding: 0;

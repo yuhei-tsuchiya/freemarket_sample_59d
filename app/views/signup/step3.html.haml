@@ -23,78 +23,81 @@
           .progress-status
 
   -# 住所入力フォーム
-  .user-input
-    .user-input__message
-      住所入力
-    .user-input__container
+  = form_with model: @user, local: true, url: step4_signup_index_path, method: :get, html: {class: 'third-wrapper__box'} do |f|
+    = hidden_field_tag :current_step, 'step3'
+    .user-input
+      .user-input__message
+        住所入力
+      .user-input__container
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            お名前
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 山田"}
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 彩"}
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              お名前
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              = f.text_field :cellphone_number, value: "#{session[:lastname_kanji]}"
+              = f.text_field :cellphone_number, value: "#{session[:firstname_kanji]}"
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            お名前カナ
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) ヤマダ"}
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) アヤ"}
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              お名前カナ
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              = f.text_field :cellphone_number, value: "#{session[:lastname_kana]}"
+              = f.text_field :cellphone_number, value: "#{session[:firstname_kana]}"
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            郵便番号
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 123-4567"}
+        = f.fields_for :address do |address|
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                郵便番号
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :zip_code, placeholder: '　例) 123-4567'
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            都道府県
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 北海道"}
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            市町村
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 横浜市緑区"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                都道府県
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = f.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                市町村
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_shikuchoson, placeholder: '　例) 横浜市緑区'
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            番地
-            %span.hissu 必須
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 青山1-1-1"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                番地
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_banchi, placeholder: '　例) 青山1-1-1'
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            建物名
-            %span.steppagefixstep3 任意
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 柳ビル103"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                建物名
+                %span.steppagefixstep3 任意
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_tatemono, placeholder: '　例) 柳ビル103'
 
-      .user-input__container__sell-contents
-        .user-input__container__sell-contents__form-group
-          %label.label--small
-            電話
-            %span.steppagefixstep3 任意
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 例) 09012345678"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                電話
+                %span.steppagefixstep3 任意
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :phone_number, placeholder: '　例) 09012345678'
 
-      .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
-        %button.user-input__container__sell-btn--btn-red 次へ進む
+        .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
+          = f.submit '次へ進む', class: 'nextbotton'
 
   = render 'devise/shared/devise-footer'
 
