@@ -29,6 +29,7 @@ class SignupController < ApplicationController
   end
 
   def step4
+    session[:address_attributes] = user_params[:address_attributes]
     # step4で入力された値をsessionに保存
     @user = User.new # 新規インスタンス作成
   end
@@ -38,7 +39,7 @@ class SignupController < ApplicationController
   end
 
   def create
-    # binding.pry
+    
     @user = User.new(
       nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
       email: session[:email],
@@ -52,18 +53,17 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       cellphone_number: session[:cellphone_number],
     )
-    # @user.build_address(user_params[:address_attributes])
+    @user.build_address(session[:address_attributes])
 
-    
-    session[:id] = @user.id
-    @user.save
-  #   if @user.save
-  # 　　　# ログインするための情報を保管
-  #       session[:id] = @user.id
-  #       redirect_to done_signup_index_path
-  #     else
-  #       render '/signup/registration'
-  #     end
+    # session[:id] = @user.id
+    # @user.save
+    if @user.save
+      # ログインするための情報を保管
+      session[:id] = @user.id
+      redirect_to done_signup_index_path
+    else
+      redirect_to step1_signup_index_path
+    end
 
   end
 
@@ -82,7 +82,7 @@ class SignupController < ApplicationController
         # :birthday,
         :cellphone_number,
 
-        address_attributes: [:id, :zip_code, :jusho_shikuchoson, :jusho_banchi, :jusho_tatemono, :phone_number]
+        address_attributes: [:id, :zip_code, :prefecture_id, :jusho_shikuchoson, :jusho_banchi, :jusho_tatemono, :phone_number]
       )
     end
 

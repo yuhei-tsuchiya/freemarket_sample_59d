@@ -63,7 +63,7 @@
                 都道府県
                 %span.hissu 必須
               .user-input__container__sell-contents__form-group__inputname
-                = f.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+                = address.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
           .user-input__container__sell-contents
             .user-input__container__sell-contents__form-group
               %label.label--small
