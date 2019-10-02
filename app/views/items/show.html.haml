@@ -31,7 +31,7 @@
           %tr
             %th 出品者
             %td
-              %a{href: "https://www.mercari.com/jp/u/676750793/"}
+              = link_to "https://www.mercari.com/jp/u/676750793/" do
                 = @items.user_id
               .yyy
                 .item-user-ratings
@@ -46,14 +46,14 @@
           %tr
             %th カテゴリー
             %td
-              %a{href: "https://www.mercari.com/jp/category/2/"}
+              = link_to "https://www.mercari.com/jp/category/2/" do
                 %div
                   = @items.category.parent.parent.name #親
-              %a{href: "https://www.mercari.com/jp/category/30/"}
+              = link_to "https://www.mercari.com/jp/category/30/" do
                 .item-detail-table-sub-category
                   %i.icon-arrow-right
                   = @items.category.parent.name        #子
-              %a{href: "https://www.mercari.com/jp/category/304/"}
+              = link_to "https://www.mercari.com/jp/category/304/" do
                 .item-detail-table-sub-sub-category
                   %i.icon-arrow-right
                   = @items.category.name               #孫
@@ -117,7 +117,7 @@
         %input{:name => "like_del_url", :type => "hidden", :value => "https://www.mercari.com/jp/like/delete/m38799137224/?_s=U2FsdGVkX18e5ceg1R5dtdpcyL4dl3fTQ3VyiDPP1VTsNGZOOKOjezT7pI0SlQq35ya2DM-tS4gaYEP37AF7PBYxE-0DRzNdNTzFiHigtOcDxd2zhem7cNLrftEaYEw6"}/
         %input{:name => "__csrf_value", :type => "hidden", :value => "b66f76f0af6533a7ef8ffd1e819cd400923f651ad5edd7640b653da1b612bbbe5f9e0cf00d1fc4ec682f3ad5a5480b2f7b7e98409d8a3023f092f7096722b7c00"}/
       .item-button-right
-        %a{:href => "https://www.mercari.com/jp/safe/description/", :target => "_blank"}
+        = link_to 'https://www.mercari.com/jp/safe/description/', target: '_blank' do
           %i.icon-lock
           %span あんしん・あんぜんへの取り組み
 
