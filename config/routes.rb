@@ -20,8 +20,9 @@ Rails.application.routes.draw do
   # 商品用ルーティング
   resources :items do
     collection do
-      get :sell  # 商品出品ページ
-      get :buy   # 商品購入ページ
+      get :sell   # 商品出品ページ
+      get :deteal # 商品詳細ページ
+      get :buy    # 商品購入ページ
     end
   end
 end
