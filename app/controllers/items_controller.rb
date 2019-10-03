@@ -12,20 +12,8 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
-    respond_to do |format|
-      if @item.save
-        item_params[:images_attributes].each do |image|
-          @item.images.create(image: image['image'], item_id: @item.id)
-        end
-      format.html{redirect_to root_path}
-      else
-        @item.images.build
-        @category = Category.find(1)
-        @burden = Burden.roots
-        @prefectures = Prefecture.all
-        format.html{render action: "sell"}
-      end
-    end
+    @item.save
+    redirect_to root_path
   end
 
   def deteal

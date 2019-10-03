@@ -1,0 +1,9 @@
+%div
+  .contents-item__container__sell-contents__form-box__select-wrap
+    %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+    %select.contents-item__container__sell-contents__form-box__select-wrap--select{id: "select-cat2"}
+      %option{value: nil} ---
+      - @category.each do |cat|
+        %option{value: cat.id}
+          = cat.name
+    -# = f.select :category_id, @category.children.map{|category| [category.name, category.id]}, {include_blank: "---"}, {id: "select-cat1", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}

@@ -20,8 +20,16 @@ Rails.application.routes.draw do
   # 商品用ルーティング
   resources :items do
     collection do
-      get :sell  # 商品出品ページ
+      # get :sell  # 商品出品ページ
+      get 'sell' => 'items#sell'  # 商品出品ページ
+      get 'sell/:id' => 'items#sell'  # 商品出品ページ
     end
   end
+
+  # Ajax通信用
+  namespace :api do
+    get "select_child", to: "categorys#select_child"
+  end
+
 end
 

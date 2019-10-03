@@ -74,11 +74,6 @@ group :production do
   gem 'unicorn', '5.4.1'
 end
 
-# 本番環境用gemファイル
-group :production do
-  gem 'unicorn', '5.4.1'
-end
-
 # ユーザー管理機能及びビュー作成
 gem 'devise'
 gem 'haml-rails'
@@ -87,7 +82,6 @@ gem 'haml-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
-gem 'jquery-rails'
 
 # Font Awesome導入
 gem 'font-awesome-rails'
