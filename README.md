@@ -21,7 +21,8 @@
 ### Association
 - has_many :items
 - has_one :address
-
+- has_many :buyer_transactions, class_name: 'Transaction', :foreign_key => 'buyer_id'
+- has_many :seller_transactions, class_name: 'Transaction', :foreign_key => 'seller_id'
 ## addressesテーブル
 |zip_code|string|null: false|
 |------|----|-------|
@@ -30,6 +31,7 @@
 |jusho_banchi|string|null: false|
 |jusho_tatemono|string|null: false|
 |phone_number|string||
+
 ### Association
 - belongs_to :user
 - belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
@@ -64,6 +66,7 @@
 - belongs_to :size
 - belongs_to :burden
 - belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
+- has_one    :transaction
 
 ## imagesテーブル
 |Column|Type|Options|
@@ -114,3 +117,90 @@
 ### Association
 - has_many :items
 - has_ancestry
+
+## transactionテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|foreign_key: true|
+|seller_id|integer|null: false|
+### Association
+- belongs_to :item
+- belongs_to :buyer, class_name 'User', foreign_key: 'buyer_id'
+- belongs_to :seller, class_name: 'User', foreign_key:  'seller_id'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

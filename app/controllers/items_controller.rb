@@ -9,9 +9,11 @@ class ItemsController < ApplicationController
 
 
   def buy
-
+    @items = Item.find(params[:id])
 
   end
+
+
 
   # itemレコードの保存方法(コンソールで確認)
   # $ rails c
