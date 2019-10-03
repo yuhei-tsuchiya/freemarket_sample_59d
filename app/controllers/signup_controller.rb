@@ -1,11 +1,12 @@
 class SignupController < ApplicationController
+  before_action :validates_step1, only: :step2 # step1のバリデーション
+  before_action :validates_step2, only: :step3 # step2のバリデーション
 
   def step1
     @user = User.new # 新規インスタンス作成
   end
 
   def step2
-    # binding.pry
     # step1で入力された値をsessionに保存
     session[:nickname]              = user_params[:nickname]
     session[:email]                 = user_params[:email]
@@ -15,8 +16,13 @@ class SignupController < ApplicationController
     session[:firstname_kanji]       = user_params[:firstname_kanji]
     session[:lastname_kana]         = user_params[:lastname_kana]
     session[:firstname_kana]        = user_params[:firstname_kana]
-    # session[:birthday]              = birthday_join[:birthday]
-    session[:birthday]              = birthday_join
+    # session["birthday(1i)"]         = birthday_params["birthday(1i)"]
+    # session["birthday(2i)"]         = birthday_params["birthday(2i)"]
+    # session["birthday(3i)"]         = birthday_params["birthday(3i)"]
+    # session["birthday(1i)"]         = user_params["birthday(1i)"]
+    # session["birthday(2i)"]         = user_params["birthday(2i)"]
+    # session["birthday(3i)"]         = user_params["birthday(3i)"]
+    session[:birthday]              = birthday_params
     @user = User.new # 新規インスタンス作成
   end
 
@@ -39,7 +45,6 @@ class SignupController < ApplicationController
   end
 
   def create
-    
     @user = User.new(
       nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
       email: session[:email],
@@ -49,9 +54,12 @@ class SignupController < ApplicationController
       firstname_kanji: session[:firstname_kanji], 
       lastname_kana: session[:lastname_kana], 
       firstname_kana: session[:firstname_kana], 
-      # params[:user][:birthday] = birthday_join,
       birthday: session[:birthday],
       cellphone_number: session[:cellphone_number],
+
+      # "birthday(1i)": session["birthday(1i)"],
+      # "birthday(2i)": session["birthday(2i)"],
+      # "birthday(3i)": session["birthday(3i)"]
     )
     @user.build_address(session[:address_attributes])
 
@@ -60,12 +68,69 @@ class SignupController < ApplicationController
     if @user.save
       # ログインするための情報を保管
       session[:id] = @user.id
-      redirect_to done_signup_index_path
+      render done_signup_index_path
     else
-      redirect_to step1_signup_index_path
+      render step1_signup_index_path
     end
-
   end
+
+  def validates_step1
+    # step1で入力された値をsessionに保存
+    session[:nickname]              = user_params[:nickname]
+    session[:email]                 = user_params[:email]
+    session[:password]              = user_params[:password]
+    session[:password_confirmation] = user_params[:password_confirmation]
+    session[:lastname_kanji]        = user_params[:lastname_kanji]
+    session[:firstname_kanji]       = user_params[:firstname_kanji]
+    session[:lastname_kana]         = user_params[:lastname_kana]
+    session[:firstname_kana]        = user_params[:firstname_kana]
+    # session["birthday(1i)"]         = user_params["birthday(1i)"]
+    # session["birthday(2i)"]         = user_params["birthday(2i)"]
+    # session["birthday(3i)"]         = user_params["birthday(3i)"]
+    session[:birthday]              = birthday_params
+
+    # バリデーション用に、仮でインスタンスを作成する
+    @user = User.new(
+      nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      lastname_kanji: session[:lastname_kanji], 
+      firstname_kanji: session[:firstname_kanji], 
+      lastname_kana: session[:lastname_kana], 
+      firstname_kana: session[:firstname_kana], 
+      birthday: session[:birthday],
+      # "birthday(1i)": session["birthday(1i)"],
+      # "birthday(2i)": session["birthday(2i)"],
+      # "birthday(3i)": session["birthday(3i)"]
+      # last_name: "山田", # 入力前の情報は、バリデーションに通る値を仮で入れる
+      # cellphone_number: session[:cellphone_number],
+      # first_name: "太郎", 
+      # last_name_kana: "ヤマダ", 
+      # first_name_kana: "タロウ", 
+    )
+    # 仮で作成したインスタンスのバリデーションチェックを行う
+    render step1_signup_index_path unless @user.valid?(:validates_step1)
+  end
+
+  def validates_step2
+    # step2で入力された値をsessionに保存
+    session[:cellphone_number] = user_params[:cellphone_number]
+    @user = User.new(
+      nickname: session[:nickname], # session1に保存された値をインスタンスに渡す
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      lastname_kanji: session[:lastname_kanji], 
+      firstname_kanji: session[:firstname_kanji], 
+      lastname_kana: session[:lastname_kana], 
+      firstname_kana: session[:firstname_kana], 
+      birthday: session[:birthday],
+      cellphone_number: session[:cellphone_number] # session2
+    )
+    # 仮で作成したインスタンスのバリデーションチェックを行う
+　　render step2_signup_index_path unless @user.valid?
+  end 
 
   private
     def user_params
@@ -86,18 +151,15 @@ class SignupController < ApplicationController
       )
     end
 
-    # def birthday_params
-    #   params.require(:birthday).permit(
-    #     :birthday,
-    #     birthday.each do |birthymd|
-
-    #   )
-    # end
-
-    def birthday_join
+    def birthday_params
       # パラメータ取得
       # date = params[:user][:birthday]
       date = params[:birthday]
+
+      # params[:birthday]
+      # session["birthday(1i)"]         = user_params["birthday(1i)"]
+      # session["birthday(2i)"]         = user_params["birthday(2i)"]
+      # session["birthday(3i)"]         = user_params["birthday(3i)"]
   
       # ブランク時のエラー回避のため、ブランクだったら何もしない
       if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
@@ -105,8 +167,7 @@ class SignupController < ApplicationController
       end
   
       # 年月日別々できたものを結合して新しいDate型変数を作って返す
-      Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
-  
+      Date.new(date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i)
     end
 
 end
