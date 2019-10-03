@@ -1,10 +1,14 @@
 
-
 $(function() {
-  function readURL(input) {
-    
+
+  // var list = [];
+  var list = new DataTransfer();
+  // filelist.push(file)
+
+  function readURL(input, list) {
     if (input.files && input.files[0]) {
       $.each(input.files, function(index, file) {
+        list.items .add(file);
         var reader = new FileReader();
         var target_ul = $("#item-append-target");
         reader.onload = function (e) {
@@ -25,9 +29,30 @@ $(function() {
       })
     }
   }
+
   $("#item-drop-zone").change(function(){
-    console.log
-    readURL(this);
+    console.log("hoge")
+
+    // プレビュー表示
+    readURL(this, list);
+
+    // 既存の選択中ファイルをフォームに入れる(リセットされるため)
+    // list
+    console.log(list)
+    if (list.files && list.files[0]) {
+
+      let myFileList = list.files;
+
+      console.log("myFileList")
+      console.log(myFileList)
+
+      document.querySelector('input[type=file]').files = myFileList;
+
+      console.log("input[type=file]")
+      console.log(document.querySelector('input[type=file]').files)
+      
+    }
+   
   });
 });
 
