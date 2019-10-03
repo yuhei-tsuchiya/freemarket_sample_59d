@@ -21,8 +21,8 @@
 ### Association
 - has_many :items
 - has_one :address
-- has_many :buyer_transactions, class_name: 'Transaction', :foreign_key => 'buyer_id'
-- has_many :seller_transactions, class_name: 'Transaction', :foreign_key => 'seller_id'
+- has_many :buyer_transacts, class_name: 'Transacts', foreign_key: 'buyer_id'
+- has_many :seller_transacts, class_name: 'Transacts', foreign_key: 'seller_id'
 ## addressesテーブル
 |zip_code|string|null: false|
 |------|----|-------|
@@ -118,12 +118,12 @@
 - has_many :items
 - has_ancestry
 
-## transactionテーブル
+## transactsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item_id|integer|null: false, foreign_key: true|
 |buyer_id|integer|foreign_key: true|
-|seller_id|integer|null: false|
+|seller_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :item
 - belongs_to :buyer, class_name 'User', foreign_key: 'buyer_id'
