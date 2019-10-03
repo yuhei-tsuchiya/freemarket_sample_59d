@@ -8,7 +8,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :address
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
   # step1入力項目
   validates :nickname,                presence: true, length: {maximum: 20}, on: :validates_step1
   validates :email,                   presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, on: :validates_step1
@@ -22,4 +21,5 @@ class User < ApplicationRecord
   
   # step2入力項目
   validates :cellphone_number,        presence: true, on: :validates_step2
+
 end
