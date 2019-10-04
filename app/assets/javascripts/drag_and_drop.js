@@ -2,21 +2,37 @@
 $(function() {
 
   var count = 0;
+  // var file_count = 0;
+  var dict = {}
   var list = new DataTransfer();
   // filelist.push(file)
 
-  function deleteWidth(num, count) {
-    if (count == 5) {
-      $(".contents-item__container__uploadbox__zone-item__dropbox").css('display', 'none')  
-    }
+  function deleteWidth(num) {
+    // if (count == 5) {
+    //   $(".contents-item__container__uploadbox__zone-item__dropbox").css('display', 'none')
+    // }
     var del = 615 - num * 115
     $(".contents-item__container__uploadbox__zone-item__dropbox").css('width', `${del}px`)
   }
 
+  // function readURL(input, list) {
   function readURL(input, list) {
     if (input.files && input.files[0]) {
       $.each(input.files, function(index, file) {
-        list.items .add(file);
+        count += 1;
+        // file_count += 1
+        console.log("count")
+        console.log(count)
+        console.log("file")
+        console.log(file.name)
+
+        // var tag = count - 1
+        // var gat = 1
+        if (count >= 6){
+          count -= 1
+          return false;
+        }
+        list.items.add(file);
         var reader = new FileReader();
         var target_ul = $("#item-append-target");
         reader.onload = function (e) {
@@ -28,15 +44,19 @@ $(function() {
             </figure>
             <div class="contents-item__container__uploadbox__zone-item__have-item__upload-btnbox">
             <a class="contents-item__container__uploadbox__zone-item__have-item--upload-btn">　</a>
-            <a class="contents-item__container__uploadbox__zone-item__have-item--upload-btn btn-left" href="#">削除</a>
+            <a class="contents-item__container__uploadbox__zone-item__have-item--upload-btn btn-left" href="#" data-pict="${file.name}" id="pict-delete">削除</a>
             </div>
             </li>`;
-          target_ul.append(html);
-          count += 1;
-          if (count <= 5) {
-            deleteWidth(input.files.length, count)
-          }
 
+          if (count < 5) {
+            deleteWidth(input.files.length)
+          } else {
+            $(".contents-item__container__uploadbox__zone-item__dropbox").hide()
+            // target_ul.append(html);
+            // console.log("return false")
+            // return false;
+          }
+          target_ul.append(html);
         }
         reader.readAsDataURL(input.files[index]);
       })
@@ -44,27 +64,61 @@ $(function() {
   }
 
   $("#item-drop-zone").change(function(){
-    console.log("hoge")
+    // console.log("hoge")
 
     // プレビュー表示
+    // readURL(this, list);
     readURL(this, list);
+    
 
     // 既存の選択中ファイルをフォームに入れる(リセットされるため)
-    console.log(list)
+    // console.log(list)
     if (list.files && list.files[0]) {
 
-      let myFileList = list.files;
+      var myFileList = list.files;
 
       document.querySelector('input[type=file]').files = myFileList;
 
-      console.log("input[type=file]")
-      console.log(document.querySelector('input[type=file]').files)
-      
+      // console.log("input[type=file]")
+      // console.log(document.querySelector('input[type=file]').files) 
     }
-
-
-   
   });
+
+  $(document).on("click", "#pict-delete", function (e) {
+    // $('#pict-delete').on('click', function(e){
+    e.preventDefault();
+    console.log("hoge")
+    var target = $(e.target);
+    var pict_name = target.data('pict');
+    target.parent().parent().remove();
+    // list.splice( pict_id, pict_id + 1 );
+    $.each(list.files, function(index, file) {
+      console.log(`list: ${file.name}`)
+      if (file.name == pict_name) {
+        console.log(`pict_name: ${pict_name}`)
+        list.items.remove(index);
+      }
+    })
+    console.log(list)
+
+    if (list.files && list.files[0]) {
+    
+      var myFileList = list.files;
+
+      document.querySelector('input[type=file]').files = myFileList;
+      console.log(document.querySelector('input[type=file]').files)
+    }
+    count -= 1
+    if (count == 4){
+      var width = 615 - 115 * 4
+      $(".contents-item__container__uploadbox__zone-item__dropbox").show()
+      $(".contents-item__container__uploadbox__zone-item__dropbox").css("width", `${width}px`)
+    } else {
+      deleteWidth(count)
+    }
+    console.log(count)
+  })
+
 });
 
 
