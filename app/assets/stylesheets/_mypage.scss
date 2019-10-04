@@ -1,0 +1,42 @@
+
+.mypage-main{
+  margin: 40px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+
+  font-family: 'Source Sans Pro', Helvetica , Arial, 'æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“', 'YuGothic', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Meiryo', sans-serif;
+  margin:40px 210px 0px;
+  &__side-menu{
+    float: left;
+    width: 280px;
+    margin: 0 40px 0 0;
+
+    &__box{
+
+
+      li{
+        position: relative;
+        display: block;
+        // min-height: 48px;
+        padding: 16px;
+        background: #fff;
+        font-size: 14px;
+        color: #333;
+        border: 0;
+        border-top: 1px solid #eee;
+      }
+      h3{
+        margin: 32px 0 0;
+        font-size: 16px;
+
+      }
+
+
+
+    }
+  }
+
+  &__right-contents{
+
+  }
+}
