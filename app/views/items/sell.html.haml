@@ -14,19 +14,22 @@
           出品画像
           %span.hissu 必須
         .contents-item__container__uploadbox__info.info
-          最大10枚までアップロードできます
+          最大5枚までアップロードできます
         .contents-item__container__uploadbox__zone-item
           .contents-item__container__uploadbox__zone-item__have-item.clearfix
             %ul{id: "item-append-target"}
             = f.fields_for :images do |f_image|
               -# = f_image.label :image, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", id: "item-drop-zone" do
-              = f_image.label :label, for: nil, class: "contents-item__container__uploadbox__zone-item__dropbox clearfix" do
-                = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
-                -# = f_image.hidden_field :id
-                %p.contents-item__container__uploadbox__zone-item__dropbox--fileinfo
-                  ドラッグアンドドロップ
+              = f_image.label :image, for: nil , class: "contents-item__container__uploadbox__zone-item__dropbox clearfix" do
                 %br
-                  またはクリックしてファイルをアップロード
+                ドラッグアンドドロップ
+                %br
+                またはクリックしてファイルをアップロード
+                = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
+                -# %div.contents-item__container__uploadbox__zone-item__dropbox--fileinfo
+                -#   ドラッグアンドドロップ
+                -#   %br
+                -#   またはクリックしてファイルをアップロード
 
     .contents-item__container__sell-contents
       .contents-item__container__sell-contents__form-group

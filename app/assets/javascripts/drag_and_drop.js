@@ -1,9 +1,17 @@
 
 $(function() {
 
-  // var list = [];
+  var count = 0;
   var list = new DataTransfer();
   // filelist.push(file)
+
+  function deleteWidth(num, count) {
+    if (count == 5) {
+      $(".contents-item__container__uploadbox__zone-item__dropbox").css('display', 'none')  
+    }
+    var del = 615 - num * 115
+    $(".contents-item__container__uploadbox__zone-item__dropbox").css('width', `${del}px`)
+  }
 
   function readURL(input, list) {
     if (input.files && input.files[0]) {
@@ -24,6 +32,11 @@ $(function() {
             </div>
             </li>`;
           target_ul.append(html);
+          count += 1;
+          if (count <= 5) {
+            deleteWidth(input.files.length, count)
+          }
+
         }
         reader.readAsDataURL(input.files[index]);
       })
@@ -37,14 +50,10 @@ $(function() {
     readURL(this, list);
 
     // 既存の選択中ファイルをフォームに入れる(リセットされるため)
-    // list
     console.log(list)
     if (list.files && list.files[0]) {
 
       let myFileList = list.files;
-
-      console.log("myFileList")
-      console.log(myFileList)
 
       document.querySelector('input[type=file]').files = myFileList;
 
@@ -52,6 +61,8 @@ $(function() {
       console.log(document.querySelector('input[type=file]').files)
       
     }
+
+
    
   });
 });
