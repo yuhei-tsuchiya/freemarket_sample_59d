@@ -35,19 +35,17 @@
             もっと見る ＞
         .ladys-new-items__bottom
           .ladys-new-items__bottom__grid
-            - for num in 1..10 do
+            - @items.each do |i|
               .index-item
                 = link_to root_path, class: 'index-item__link' do
                   .index-item__link__small-box
                     .index-item__link__small-box__top
                       %p
-                        ￥1233
-                      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQHhzNxu-viaLTdCfuehlHt408PgnLKLKPeEQlzYwEFrSpvpw3p", alt: 'next', class:'jojo'
-
-
+                        ¥
+                        = i.price
+                      = image_tag i.images[0].image, alt: 'next', class:'jojo'
                     .item-small-box__bottom
                       %span.item-name111
-                        スウェット トレーナー
-
+                        = i.name
 
   = render 'toppage/toppage-footer'
