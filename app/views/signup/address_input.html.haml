@@ -1,0 +1,103 @@
+#wrapper
+
+  .header-email-registration
+    .header-email-registration__logo
+      = link_to '' do 
+        = image_tag 'logo.svg', class: 'registration-header-logo'
+    .progress-bar
+      %ul
+        %li
+          会員情報
+          .progress-status__done.red
+        %li
+          電話番号認証
+          .progress-status.red
+        %li.active
+          お届け先住所入力
+          .progress-status.red
+        %li
+          支払い方法
+          .progress-status
+        %li
+          完了
+          .progress-status
+
+  -# 住所入力フォーム
+  = form_with model: @user, local: true, url: payment_signup_index_path, method: :get, html: {class: 'third-wrapper__box'} do |f|
+    = hidden_field_tag :current_step, 'address_input'
+    .user-input
+      .user-input__message
+        住所入力
+      .user-input__container
+
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              お名前
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              = f.text_field :cellphone_number, value: "#{session[:lastname_kanji]}"
+              = f.text_field :cellphone_number, value: "#{session[:firstname_kanji]}"
+
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              お名前カナ
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              = f.text_field :cellphone_number, value: "#{session[:lastname_kana]}"
+              = f.text_field :cellphone_number, value: "#{session[:firstname_kana]}"
+
+        = f.fields_for :address do |address|
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                郵便番号
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :zip_code, placeholder: '　例) 123-4567'
+
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                都道府県
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                市町村
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_shikuchoson, placeholder: '　例) 横浜市緑区'
+
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                番地
+                %span.hissu 必須
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_banchi, placeholder: '　例) 青山1-1-1'
+
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                建物名
+                %span.steppagefixstep3 任意
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :jusho_tatemono, placeholder: '　例) 柳ビル103'
+
+          .user-input__container__sell-contents
+            .user-input__container__sell-contents__form-group
+              %label.label--small
+                電話
+                %span.steppagefixstep3 任意
+              .user-input__container__sell-contents__form-group__inputname
+                = address.text_field :phone_number, placeholder: '　例) 09012345678'
+
+        .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
+          = f.submit '次へ進む', class: 'nextbotton'
+
+  = render 'devise/shared/devise-footer'
+
