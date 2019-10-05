@@ -13,7 +13,6 @@
 
     &__box{
 
-
       li{
         position: relative;
         display: block;
@@ -37,6 +36,129 @@
   }
 
   &__right-contents{
+    float: right;
+    width: 700px;
 
+    .mypage-user-icon{
+      height: 130px;
+      position: relative;
+      padding: 50px 0 20px;
+      background: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?2870273);
+      background-repeat: no-repeat;
+      background-size: cover;
+      text-align: center;
+
+      figure{
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+
+        img{
+
+          width: 60px;
+          height: 60px;
+        }
+      }
+      .mypage-number{
+        margin-top: 8px;
+
+        .kk{
+          display: inline-block;
+          margin: 0 8px 0 8px;
+
+          .bold{
+            margin: 0 0 0 8px;
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+
+      }
+    }
+    .mypage-tab-container-notification-todo{
+
+      height: 310px;
+      margin: 0;
+
+
+      .mypage-tabs{
+
+        border: 0;
+        background: #eee;
+        font-size: 0;
+
+        .active{
+          background: #fff;
+          font-size: 16px;
+          border-top: 2px solid #ea352d;
+        }
+
+        li{
+          width: 50%;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+          height: 72px;
+          position: relative;
+          color: #333;
+
+          h3{
+            padding: 25px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .tab-content{
+      height:236px;
+      background: #fff;
+
+      .mypage-item-list{
+
+        position: center 40px;
+        text-align: center;
+        font-weight: 600;
+
+        img{
+          width: 78px ;
+          height: 85px;
+          text-align: center;
+          position: center 40px;
+          padding-top: 40px;
+        }
+        .mypage-item-not-found{
+
+          background-repeat: no-repeat !important;
+          background-size: 78px 85px !important;
+          font-size: 16px;
+          color: #ccc;
+          padding-top: 25px;
+
+        }
+      }
+    }
+    .mypage-tab-container{
+      margin: 40px 0 0;
+      background: #fff;
+      font-size: 16px;
+      .mypage-tab-head{
+
+        padding: 0 4%;
+        background: #fafafa;
+        font-size: 16px !important;
+        line-height: 72px !important;
+        font-size: 22px;
+        line-height: 1.4;
+        padding: 0 16px;
+        font-weight: bold;
+
+      }
+      .mypage-tabs{
+
+      }
+    }
   }
 }
