@@ -41,7 +41,7 @@
     
     .contents-item__container__sell-contents.clearfix
       %h3.contents-item__container__sell-contents--greyout 商品の詳細
-      .contents-item__container__sell-contents__form-box
+      .contents-item__container__sell-contents__form-box{id: "category-select-box"}
         %div#select-category-box
           = f.label :category, class: "label--small", value: "カテゴリー"
           %span.hissu 必須

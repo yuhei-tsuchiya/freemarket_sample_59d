@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   # Ajax通信用
   namespace :api do
     get "select_child", to: "categorys#select_child"
+    get "display_size", to: "categorys#display_size"
   end
 
 end

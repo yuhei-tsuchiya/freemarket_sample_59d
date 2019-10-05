@@ -1,7 +1,9 @@
 $(function() {
 
+  // カテゴリー用変数定義
   var count = 0
 
+  // カテゴリー用関数-カテゴリー選択表示
   function ajaxSelectbox(cat, flag, cat_id){
     $.ajax({
       type: 'GET',
@@ -30,7 +32,30 @@ $(function() {
       console.log('fail')
     })
   }
+
+  // カテゴリー用関数-サイズ選択表示
+  function ajaxSize(cat){
+    $.ajax({
+      type: 'GET',
+      url: '/api/display_size',
+      data: { cat: cat },
+      dataType: 'html',
+    })
+    .done(function(html) {
+      console.log("size done")
+      if (html != 0){
+        $('#category-select-box').after(html)
+      }
+    })
+    .fail(function() {
+      console.log("size fail")
+    })
+  }
+
+
+
  
+  // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
     if (count == 0){
       var cat = $('#select-cat1 option:selected').val();
@@ -44,6 +69,9 @@ $(function() {
       $('#select-cat3').prev().remove()
       $('#select-cat3').remove()
     }
+    if ($('#size-select-box').length){ // サイズがあれば削除
+      $('#size-select-box').remove()
+    }
     var cat = $('#select-cat1 option:selected').val();
     if (cat == '---' || cat == '') {  // カテゴリー1が空の時
       $('#select-cat2').prev().remove()  // カテゴリー2を消す
@@ -55,9 +83,13 @@ $(function() {
     }
   })
 
+  // カテゴリー2&サイズ用トリガー
   $(document).on("change", "#select-cat2", function(){
     console.log("2つ目のcatクリック")
     var cat = $('#select-cat2 option:selected').val();
+    if ($('#size-select-box').length){ // サイズがあれば削除
+      $('#size-select-box').remove()
+    }
     if (cat != '---') {  // カテゴリー2が空でない場合
       if ($('#select-cat3').length){
         console.log("hoge")
@@ -67,13 +99,20 @@ $(function() {
         console.log(`cat2: ${cat}`)
         ajaxSelectbox(cat, 1, 3)
       }
+      // サイズを表示するか判別
+      ajaxSize(cat)
+
     } else {
-      if ($('#select-cat3')) {
+      if ($('#select-cat3')) {  // カテゴリー2が空の時、カテゴリー3を消す
         $('#select-cat3').prev().remove()
         $('#select-cat3').remove()
       }
     }
   });
+
+  // 配送について用トリガー
+  $(document).on("change", "", function(){
+
 })
 
 
