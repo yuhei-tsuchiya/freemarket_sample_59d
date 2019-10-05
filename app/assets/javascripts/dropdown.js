@@ -1,18 +1,24 @@
 $(function() {
 
-  var count = 0
+  var count = 1
 
-  function ajaxSelectbox(cat){
+  function ajaxSelectbox(cat, flag){
     $.ajax({
       type: 'GET',
       url: '/api/select_child',
-      data: { cat: cat },
+      data: { cat: cat, count: count, flag: flag },
       dataType: 'html',
     })
     .done(function(html) {
       console.log('done')
       console.log(html)
+      // return html
+      if (flag == 1){
       $('#select-category-box').append(html)
+    } else {
+      console.log("oge")
+      // $('').append(html)
+    }
     })
     .fail(function() {
       console.log('fail')
@@ -21,29 +27,34 @@ $(function() {
   }
 
   $('#select-cat1').change(function() {
-    
+    count += 1
     var cat = $('option:selected').val();
     console.log(`cat1: ${cat}`);
     
-    ajaxSelectbox(cat)
-    count += 1
+    
+      ajaxSelectbox(cat, 1)
+    // console.log("無名関数")
+    // console.log(html)
+    
   })
 
   $(document).on("change", "#select-cat2", function(){
     console.log("2つ目のcatクリック")
     var cat = $('#select-cat2 option:selected').val();
     if (cat != '') {
-      console.log(`cat2: ${cat}`)
-      ajaxSelectbox(cat)
+      if ($('#select-cat3 option:selected')){
+        $('#select-cat3 option:selected').remove()
+      }
       count += 1
+      console.log(`cat2: ${cat}`)
+      html = ajaxSelectbox(cat, 1)
+      $('#select-category-box').append(html)
     } else {
       if ($('#select-cat3 option:selected'))
       $('#select-cat3 option:selected').remove()
     }
   });
  
-
-
 })
 
 
