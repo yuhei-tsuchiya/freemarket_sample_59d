@@ -51,10 +51,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
   
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'rails-controller-testing'
 end
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -103,4 +104,9 @@ gem 'font-awesome-rails'
 gem 'active_hash'
 
 # jQeury
+
 gem 'jquery-rails'
+
+#多階層構造
+gem 'ancestry'
+

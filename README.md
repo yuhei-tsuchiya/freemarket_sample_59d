@@ -32,7 +32,7 @@
 - belongs_to :user
 - belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
 
-## credit_cardsテーブル(Gem PAYJPの仕様に準拠)
+## create_credit_cardsテーブル(Gem PAYJPの仕様に準拠)
 |Column|Type|Options|
 |------|----|-------|
 |customer_id|string|null: false|

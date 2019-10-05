@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :address
+  has_many :items
   accepts_nested_attributes_for :address
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -21,5 +22,4 @@ class User < ApplicationRecord
   
   # step2入力項目
   validates :cellphone_number,        presence: true, on: :validates_step2
-
 end
