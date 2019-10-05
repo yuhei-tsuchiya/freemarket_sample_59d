@@ -43,12 +43,12 @@
       %h3.contents-item__container__sell-contents--greyout 商品の詳細
       .contents-item__container__sell-contents__form-box
         %div#select-category-box
-          = f.label :category_id, class: "label--small", value: "カテゴリー"
+          = f.label :category, class: "label--small", value: "カテゴリー"
           %span.hissu 必須
           %div
             .contents-item__container__sell-contents__form-box__select-wrap
               %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-              = f.select :category_id, @category.children.map{|category| [category.name, category.id]}, {include_blank: "---"}, {id: "select-cat1", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+              = f.select :category, @category.children.map{|category| [category.name, category.id]}, {include_blank: "---"}, {id: "select-cat1", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
 
       .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
         %div
