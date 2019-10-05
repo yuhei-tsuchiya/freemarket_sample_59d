@@ -102,3 +102,6 @@ gem 'jquery-rails'
 #多階層構造
 gem 'ancestry'
 
+#ダミーデータ
+gem 'faker'
+
