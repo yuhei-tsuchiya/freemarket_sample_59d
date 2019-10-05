@@ -23,7 +23,7 @@
           .progress-status
 
   -# 電話番号の確認
-  = form_with model: @user, local: true, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
+  = form_with model: @user, local: true, url: address_input_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
     .user-input
       .user-input__message
         電話番号の確認

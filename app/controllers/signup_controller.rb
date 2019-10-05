@@ -1,14 +1,14 @@
 class SignupController < ApplicationController
-  before_action :validates_step1, only: :step2 # step1のバリデーション
-  before_action :validates_step2, only: :step3 # step2のバリデーション
-  before_action :validates_step3, only: :step4 # step3のバリデーション
+  before_action :validates_user_info_input, only: :phone_number_authentication # user_info_inputのバリデーション
+  before_action :validates_phone_number_authentication, only: :address_input # phone_number_authenticationのバリデーション
+  before_action :validates_address_input, only: :payment # address_inputのバリデーション
 
-  def step1
+  def user_info_input
     @user = User.new # 新規インスタンス作成
   end
 
-  def step2
-    # step1で入力された値をsessionに保存
+  def phone_number_authentication
+    # user_info_inputで入力された値をsessionに保存
     session[:nickname]              = user_params[:nickname]
     session[:email]                 = user_params[:email]
     session[:password]              = user_params[:password]
@@ -21,16 +21,16 @@ class SignupController < ApplicationController
     @user = User.new # 新規インスタンス作成
   end
 
-  def step3
-    # step2で入力された値をsessionに保存
+  def address_input
+    # phone_number_authenticationで入力された値をsessionに保存
     session[:cellphone_number]      = user_params[:cellphone_number]
     @prefectures = Prefecture.all
     @user = User.new # 新規インスタンス作成
     @user.build_address
   end
 
-  def step4
-    # step3で入力された値をsessionに保存
+  def payment
+    # address_inputで入力された値をsessionに保存
     session[:address_attributes]    = user_params[:address_attributes]
     @user = User.new # 新規インスタンス作成
   end
@@ -57,14 +57,14 @@ class SignupController < ApplicationController
     if @user.save
       # ログインするための情報を保管
       session[:id] = @user.id
-      render done_signup_index_path
+      redirect_to done_signup_index_path
     else
-      render step1_signup_index_path
+      render user_info_input_signup_index_path
     end
   end
 
-  def validates_step1
-    # step1で入力された値をsessionに保存
+  def validates_user_info_input
+    # user_info_inputで入力された値をsessionに保存
     session[:nickname]              = user_params[:nickname]
     session[:email]                 = user_params[:email]
     session[:password]              = user_params[:password]
@@ -88,11 +88,11 @@ class SignupController < ApplicationController
       birthday:                       session[:birthday],
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-    render step1_signup_index_path unless @user.valid?(:validates_step1)
+    render user_info_input_signup_index_path unless @user.valid?(:validates_user_info_input)
   end
 
-  def validates_step2
-    # step2で入力された値をsessionに保存
+  def validates_phone_number_authentication
+    # phone_number_authenticationで入力された値をsessionに保存
     session[:cellphone_number]      = user_params[:cellphone_number]
     @user = User.new(
       nickname:                       session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -107,12 +107,12 @@ class SignupController < ApplicationController
       cellphone_number:               session[:cellphone_number] # session2
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-    render step2_signup_index_path unless @user.valid?(:validates_step2)
+    render phone_number_authentication_signup_index_path unless @user.valid?(:validates_phone_number_authentication)
   end 
 
-  def validates_step3
+  def validates_address_input
     @prefectures = Prefecture.all
-    # step3で入力された値をsessionに保存
+    # address_inputで入力された値をsessionに保存
     session[:address_attributes]    = user_params[:address_attributes]
     @user = User.new(
       nickname:                       session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -128,7 +128,7 @@ class SignupController < ApplicationController
       address_attributes:             session[:address_attributes], # session3
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-    render step3_signup_index_path unless @user.valid?(:validates_step3)
+    render address_input_signup_index_path unless @user.valid?(:validates_address_input)
   end 
 
   private

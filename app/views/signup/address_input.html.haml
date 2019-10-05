@@ -23,8 +23,8 @@
           .progress-status
 
   -# 住所入力フォーム
-  = form_with model: @user, local: true, url: step4_signup_index_path, method: :get, html: {class: 'third-wrapper__box'} do |f|
-    = hidden_field_tag :current_step, 'step3'
+  = form_with model: @user, local: true, url: payment_signup_index_path, method: :get, html: {class: 'third-wrapper__box'} do |f|
+    = hidden_field_tag :current_step, 'address_input'
     .user-input
       .user-input__message
         住所入力

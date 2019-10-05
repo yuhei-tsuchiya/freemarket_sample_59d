@@ -23,7 +23,7 @@
           .progress-status
 
   -# 支払い方法フォーム
-  = form_with model: @user, local: true, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
+  = form_with model: @user, local: true, url: '/signup', method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
     .user-input
       .user-input__message
         支払い方法

@@ -24,7 +24,7 @@
           .progress-status
 
   -# 会員情報入力フォーム
-  = form_with model: @user, local: true, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+  = form_with model: @user, local: true, url: phone_number_authentication_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
     .user-input
       .user-input__message
         会員情報入力
@@ -107,7 +107,8 @@
         
 
         .user-input__about-user-info
-          = link_to '本人情報の登録について', step2_signup_index_path, class: 'kiyaku--blue'
+          = link_to '本人情報の登録について', '#', class: 'kiyaku--blue'
           = fa_icon 'chevron-right', class: 'kiyaku--blue'
+
   = render 'devise/shared/devise-footer'
 
