@@ -40,13 +40,14 @@
                 = link_to root_path, class: 'index-item__link' do
                   .index-item__link__small-box
                     .index-item__link__small-box__top
-                      = image_tag "yuhei.jpg", alt: 'next', class:'jojo'
-                      .item-valu-box
-                        ￥
+                      %p
+                        ￥1233
+                      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQHhzNxu-viaLTdCfuehlHt408PgnLKLKPeEQlzYwEFrSpvpw3p", alt: 'next', class:'jojo'
+
 
                     .item-small-box__bottom
-                      .item-name111
-                        お肉
+                      %span.item-name111
+                        スウェット トレーナー
 
 
   = render 'toppage/toppage-footer'
