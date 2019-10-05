@@ -1,62 +1,107 @@
 $(function() {
 
-  var count = 1
+  var count = 0
 
-  function ajaxSelectbox(cat, flag){
+  function ajaxSelectbox(cat, flag, cat_id){
     $.ajax({
       type: 'GET',
       url: '/api/select_child',
-      data: { cat: cat, count: count, flag: flag },
+      data: { cat: cat, flag: flag, cat_id: cat_id },
       dataType: 'html',
     })
     .done(function(html) {
       console.log('done')
       console.log(html)
       // return html
-      if (flag == 1){
-      $('#select-category-box').append(html)
-    } else {
-      console.log("oge")
-      // $('').append(html)
-    }
+      if (flag == 0){  // 0:option属性一覧を追加
+        console.log(html)
+        var select_cat = `#select-cat${cat_id}`
+        console.log($(select_cat))
+        $(select_cat).append(html)
+      } else if (flag == 1){  // 1:divにselect・optionを追加
+        $('#select-category-box').append(html)
+      } else if (flag == 2){  // 2:サイズを追加
+        console.log("hoge")
+      } else {
+        return
+      }
     })
     .fail(function() {
       console.log('fail')
-
     })
   }
-
-  $('#select-cat1').change(function() {
-    count += 1
-    var cat = $('option:selected').val();
-    console.log(`cat1: ${cat}`);
-    
-    
-      ajaxSelectbox(cat, 1)
-    // console.log("無名関数")
-    // console.log(html)
-    
+ 
+  $(document).on("change", "#select-cat1", function(){
+    if (count == 0){
+      var cat = $('#select-cat1 option:selected').val();
+      console.log(`cat1: ${cat}`);
+      
+      count += 1
+      ajaxSelectbox(cat, 1, 2)
+      return
+    }
+    if ($('#select-cat3')) { // カテゴリー3を消す
+      $('#select-cat3').prev().remove()
+      $('#select-cat3').remove()
+    }
+    var cat = $('#select-cat1 option:selected').val();
+    if (cat == '---' || cat == '') {  // カテゴリー1が空の時
+      $('#select-cat2').prev().remove()  // カテゴリー2を消す
+      $('#select-cat2').remove()
+      count -= 1
+    } else {  // カテゴリー1が空ではない時
+      $('#select-cat2 option').remove()  // カテゴリー2の中身を削除
+      ajaxSelectbox(cat, 0, 2)
+    }
   })
 
   $(document).on("change", "#select-cat2", function(){
     console.log("2つ目のcatクリック")
     var cat = $('#select-cat2 option:selected').val();
-    if (cat != '') {
-      if ($('#select-cat3 option:selected')){
-        $('#select-cat3 option:selected').remove()
+    if (cat != '---') {  // カテゴリー2が空でない場合
+      if ($('#select-cat3').length){
+        console.log("hoge")
+        $('#select-cat3 option').remove()  // カテゴリー3の中身を削除
+        ajaxSelectbox(cat, 0, 3)
+      } else {
+        console.log(`cat2: ${cat}`)
+        ajaxSelectbox(cat, 1, 3)
       }
-      count += 1
-      console.log(`cat2: ${cat}`)
-      html = ajaxSelectbox(cat, 1)
-      $('#select-category-box').append(html)
     } else {
-      if ($('#select-cat3 option:selected'))
-      $('#select-cat3 option:selected').remove()
+      if ($('#select-cat3')) {
+        $('#select-cat3').prev().remove()
+        $('#select-cat3').remove()
+      }
     }
   });
- 
 })
 
+
+// $(document).ready(function() { // documentのロード完了後に
+      //   var cat = $('#select-cat2 option:selected').val();
+      //   if ($('#select-cat3')){  // カテゴリー3がある場合
+      //     $('#select-cat3 option').remove()  // カテゴリー3の中身を削除
+      //     count -= 1
+      //     console.log(count)
+      //   ajaxSelectbox(cat, 0, 2)
+      // } else {  // カテゴリー3がない、つまり初回またはカテゴリー1が空の時
+
+    // if (cat != '') {  // カテゴリー1がからではない時
+    //   if (count == 1) {  // countが1、つまり初回の時
+        // count += 1
+        // ajaxSelectbox(cat, 1, 2)
+      // } else {  // countが1以外の時、つまりカテゴリ-2または3が表示されている時
+        // カテゴリー3を消す
+        
+        // カテゴリー2を
+
+    //   }
+    // } else {  // カテゴリー1が空を選択された時
+    //   // カテゴリー2・3を消す
+      
+    // }
+    
+  // })
 
 // $("#user-search-field").on("keyup", function(e) {
 //   var input = $("#user-search-field").val();
