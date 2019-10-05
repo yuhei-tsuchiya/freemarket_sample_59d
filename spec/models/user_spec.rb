@@ -38,6 +38,7 @@ describe User do
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
 
+    # /// 名前の文字数チェックが必要になれば6,7を使うこと ///
     # # 6. nicknameが7文字以上であれば登録できないこと
     # it "is invalid with a nickname that has more than 7 characters " do
     #   user = build(:user, nickname: "aaaaaaaa")
@@ -73,35 +74,35 @@ describe User do
       expect(user.errors[:password][0]).to include("is too short")
     end
 
-    # お名前(全角)・姓が空では登録できないこと
+    # 11.お名前(全角)・姓が空では登録できないこと
     it "is invalid without お名前(全角)・姓" do
       user = build(:user, lastname_kanji: nil)
       user.valid?(:validates_step1)
       expect(user.errors[:lastname_kanji]).to include("can't be blank")
     end
         
-    # お名前(全角)・名が空では登録できないこと
+    # 12.お名前(全角)・名が空では登録できないこと
     it "is invalid without お名前(全角)・名" do
       user = build(:user, firstname_kanji: nil)
       user.valid?(:validates_step1)
       expect(user.errors[:firstname_kanji]).to include("can't be blank")
     end
 
-    # お名前カナ(全角) 姓が空では登録できないこと
+    # 13.お名前カナ(全角) 姓が空では登録できないこと
     it "is invalid without お名前カナ(全角) 姓" do
       user = build(:user, lastname_kana: nil)
       user.valid?(:validates_step1)
       expect(user.errors[:lastname_kana]).to include("can't be blank")
     end
 
-    # お名前カナ(全角) 名が空では登録できないこと
+    # 14.お名前カナ(全角) 名が空では登録できないこと
     it "is invalid without お名前カナ(全角) 名" do
       user = build(:user, firstname_kana: nil)
       user.valid?(:validates_step1)
       expect(user.errors[:firstname_kana]).to include("can't be blank")
     end
 
-    # birthdayが空では登録できないこと
+    # 15.birthdayが空では登録できないこと
     it "is invalid without birthday" do
       user = build(:user, birthday: nil)
       user.valid?(:validates_step1)
@@ -109,7 +110,7 @@ describe User do
     end
 
     # step2
-    # 電話番号が空では登録できないこと
+    # 16.電話番号が空では登録できないこと
     it "is invalid without cellphone_number" do
       user = build(:user, cellphone_number: nil)
       user.valid?(:validates_step2)

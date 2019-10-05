@@ -1,7 +1,7 @@
 class SignupController < ApplicationController
   before_action :validates_step1, only: :step2 # step1のバリデーション
   before_action :validates_step2, only: :step3 # step2のバリデーション
-  before_action :validates_step3, only: :step4 # step2のバリデーション
+  before_action :validates_step3, only: :step4 # step3のバリデーション
 
   def step1
     @user = User.new # 新規インスタンス作成
@@ -17,12 +17,6 @@ class SignupController < ApplicationController
     session[:firstname_kanji]       = user_params[:firstname_kanji]
     session[:lastname_kana]         = user_params[:lastname_kana]
     session[:firstname_kana]        = user_params[:firstname_kana]
-    # session["birthday(1i)"]         = birthday_params["birthday(1i)"]
-    # session["birthday(2i)"]         = birthday_params["birthday(2i)"]
-    # session["birthday(3i)"]         = birthday_params["birthday(3i)"]
-    # session["birthday(1i)"]         = user_params["birthday(1i)"]
-    # session["birthday(2i)"]         = user_params["birthday(2i)"]
-    # session["birthday(3i)"]         = user_params["birthday(3i)"]
     session[:birthday]              = birthday_params
     @user = User.new # 新規インスタンス作成
   end
@@ -57,14 +51,9 @@ class SignupController < ApplicationController
       firstname_kana:                 session[:firstname_kana], 
       birthday:                       session[:birthday],
       cellphone_number:               session[:cellphone_number],
-      # "birthday(1i)": session["birthday(1i)"],
-      # "birthday(2i)": session["birthday(2i)"],
-      # "birthday(3i)": session["birthday(3i)"]
     )
     @user.build_address(session[:address_attributes])
 
-    # session[:id] = @user.id
-    # @user.save
     if @user.save
       # ログインするための情報を保管
       session[:id] = @user.id
@@ -84,9 +73,6 @@ class SignupController < ApplicationController
     session[:firstname_kanji]       = user_params[:firstname_kanji]
     session[:lastname_kana]         = user_params[:lastname_kana]
     session[:firstname_kana]        = user_params[:firstname_kana]
-    # session["birthday(1i)"]         = user_params["birthday(1i)"]
-    # session["birthday(2i)"]         = user_params["birthday(2i)"]
-    # session["birthday(3i)"]         = user_params["birthday(3i)"]
     session[:birthday]              = birthday_params
 
     # バリデーション用に、仮でインスタンスを作成する
@@ -100,9 +86,6 @@ class SignupController < ApplicationController
       lastname_kana:                  session[:lastname_kana], 
       firstname_kana:                 session[:firstname_kana], 
       birthday:                       session[:birthday],
-      # "birthday(1i)": session["birthday(1i)"],
-      # "birthday(2i)": session["birthday(2i)"],
-      # "birthday(3i)": session["birthday(3i)"]
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
     render step1_signup_index_path unless @user.valid?(:validates_step1)
@@ -151,7 +134,6 @@ class SignupController < ApplicationController
   private
     def user_params
       params.require(:user).permit(
-        # params.permit(
         :nickname, 
         :email, 
         :password, 
@@ -160,7 +142,6 @@ class SignupController < ApplicationController
         :firstname_kanji, 
         :lastname_kana, 
         :firstname_kana, 
-        # :birthday,
         :cellphone_number,
 
         address_attributes: [:id, :zip_code, :prefecture_id, :jusho_shikuchoson, :jusho_banchi, :jusho_tatemono, :phone_number]
@@ -169,12 +150,7 @@ class SignupController < ApplicationController
 
     def birthday_params
       # パラメータ取得
-      # date = params[:user][:birthday]
       date = params[:birthday]
-      # params[:birthday]
-      # session["birthday(1i)"]         = user_params["birthday(1i)"]
-      # session["birthday(2i)"]         = user_params["birthday(2i)"]
-      # session["birthday(3i)"]         = user_params["birthday(3i)"]
   
       # ブランク時のエラー回避のため、ブランクだったら何もしない
       if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
