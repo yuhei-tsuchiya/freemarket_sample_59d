@@ -1,0 +1,216 @@
+
+
+.item-deteal{
+  position: relative;
+
+  background: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+
+  color: #333;
+  line-height: 1;
+
+  &__box{
+    margin: 40px 370px 370px;
+    padding: 24px 40px 40px;
+    background: #fff;
+    width: 700px;
+    height: 100%;
+    &__title{
+      font-size: 24px;
+      text-align: center;
+      word-wrap: break-word;
+      line-height: 1.4;
+      margin: 0;
+    }
+    &__item{
+      margin: 16px 0 0;
+      width: 620px;
+      height: 420px;
+      &__left{
+        float: left;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 375px;
+
+        .left__top{
+          min-width: 300px;
+          max-width: 300px;
+          img{
+            height:300px;
+            width:300px;
+          }
+        }
+        .left__down{
+          line-height: 0;
+
+          &__iir{
+            width: 300px;
+            height: 100%;
+            max-height: none;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+
+            max-height: 90px;
+            opacity: .4;
+            cursor: pointer;
+            display: flex;
+
+            &__gffk{
+              width: 60px;
+              height: 60px;
+              padding: 0;
+              display:flex;
+
+              &__image{
+
+                top: 0;
+                left: 50%;
+                width: auto;
+                height: 100%;
+                width: 100%;
+                vertical-align: bottom;
+              }
+            }
+          }
+        }
+      }
+
+      .item-detail-table{
+        float: right;
+        max-width: 300px;
+        height: 420px;
+        margin: 0 auto;
+        width: 100%;
+        border: 1px solid #f5f5f5;
+        font-size: 14px;
+
+        tbody{
+          display: table-row-group;
+          vertical-align: middle;
+          border-color: inherit;
+
+          th{
+            width: 39%;
+            text-align: left;
+            font-weight: 400;
+            background: #fafafa;
+            padding: 8px;
+            border-collapse: collapse;
+            border: 1px solid #f5f5f5;
+          }
+          td{
+            width: 61%;
+            background: #fff;
+            border-collapse: collapse;
+            border: 1px solid #f5f5f5;
+            .yyy{
+              display:flex;
+            }
+          }
+        }
+      }
+    }
+    &__price{
+      margin: 24px 0 0;
+      text-align: center;
+
+      .oooo{
+        margin: 0 16px 0 0;
+        font-size: 50px;
+        font-weight: 600;
+      }
+
+      .rrrr{
+        font-size: 10px;
+      }
+
+      .wwww{
+        display: inline-block;
+        font-size: 16px;
+      }
+
+    }
+    .kkooko{
+      display: block;
+      margin-top: 16px;
+      background: #ea352d;
+      font-size: 14px;
+      color: #fff;
+      line-height: 56px;
+      text-align: center;
+      font-weight: 600;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      font-size: 24px;
+      line-height: 60px;
+    }
+
+    &__description{
+      padding: 32px 0 0;
+      font-size: 18px;
+
+      p{
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        line-height: 1.5;
+        margin: 0;
+      }
+      &__idjs{
+        white-space: pre-wrap;
+      }
+    }
+    .item-button-container{
+      margin: 16px 0 0;
+      font-size: 0;
+
+      a{
+        display: inline-block;
+      }
+      .item-button-left{
+        float: left;
+
+        .item-button-like{
+          color: #333;
+          border: 1px solid #f5f5f5;
+          background: #f5f5f5;
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 40px;
+        }
+        .item-button-report{
+          color: #333;
+    background: #f5f5f5;
+    margin: 0 0 0 16px;
+    padding: 8px 16px;
+    border-radius: 40px;
+    display:inline-block;
+    font-size: 14px;
+        }
+      }
+
+      .item-button-right{
+        margin: 8px 0 0;
+        float: right;
+        font-size: 14px;
+        a{
+          color: #0099e8;
+
+    text-decoration: none;
+    i{
+      font-size: 14px;
+    vertical-align: middle;
+    span{
+      font-size: 14px;
+      display: inline-block;
+      margin: 1px 0 0 8px;
+    }
+    }
+        }
+      }
+    }
+  }
+}

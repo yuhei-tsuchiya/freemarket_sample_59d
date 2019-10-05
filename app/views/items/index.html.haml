@@ -1,0 +1,52 @@
+.mercari
+  = render 'toppage/header'
+
+  .body
+    .slide
+      .slide__box
+        = image_tag "yuhei.jpg", alt: '', class: 'slide__box__image1'
+        = image_tag "yuhei.jpg", alt: '', class: 'slide__box__image3'
+      %button.prevbtn
+        = image_tag "prev.png", alt: 'prev'
+      %button.nextbtn
+        = image_tag "next.png", alt: 'next'
+
+
+    .popular-category
+      %h2.popular-category__top
+        人気のカテゴリー
+      .popular-category__bottom
+        %ul.popular-category__bottom__box
+          %li.popular-category__bottom__box__ladys
+            レディース
+          %li.popular-category__bottom__box__mens
+            メンズ
+          %li.popular-category__bottom__box__electronics
+            家電・スマホ・カメラ
+          %li.popular-category__bottom__box__toy
+            おもちゃ・ホビー・グッズ
+
+    .product
+      .ladys-new-items
+        .ladys-new-items__top
+          %h3.ladys-new-items__top__title
+            レディース新着アイテム
+          = link_to root_path, class: 'ladys-new-items__top__more' do
+            もっと見る ＞
+        .ladys-new-items__bottom
+          .ladys-new-items__bottom__grid
+            - for num in 1..10 do
+              .index-item
+                = link_to root_path, class: 'index-item__link' do
+                  .index-item__link__small-box
+                    .index-item__link__small-box__top
+                      = image_tag "yuhei.jpg", alt: 'next', class:'jojo'
+                      .item-valu-box
+                        ￥
+
+                    .item-small-box__bottom
+                      .item-name111
+                        お肉
+
+
+  = render 'toppage/toppage-footer'

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_100116) do
+
+ActiveRecord::Schema.define(version: 2019_09_29_125640) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "prefecture_id", null: false
@@ -23,6 +24,66 @@ ActiveRecord::Schema.define(version: 2019_10_03_100116) do
     t.string "zip_code", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+        
+  create_table "burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_burdens_on_ancestry"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "size_id"
+    t.string "ancestry"
+    t.index ["size_id"], name: "index_categories_on_size_id"
+  end
+
+  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image", null: false
+    t.integer "user_id", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "good", null: false
+    t.integer "torihiki_info", null: false
+    t.integer "product_state", null: false
+    t.text "description", null: false
+    t.integer "shipping_days", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "prefecture_id", null: false
+    t.bigint "category_id"
+    t.bigint "size_id"
+    t.bigint "burden_id"
+    t.index ["burden_id"], name: "index_items_on_burden_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
+  end
+
+  create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
   end
 
   create_table "testimages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,5 +113,9 @@ ActiveRecord::Schema.define(version: 2019_10_03_100116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "sizes"
+  add_foreign_key "items", "burdens"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "sizes"
   add_foreign_key "addresses", "users"
 end
