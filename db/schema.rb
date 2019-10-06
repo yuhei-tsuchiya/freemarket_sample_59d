@@ -10,6 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+ActiveRecord::Schema.define(version: 2019_10_03_072820) do
+
 ActiveRecord::Schema.define(version: 2019_10_03_100116) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -24,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_100116) do
     t.bigint "user_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
+
 
   create_table "burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -91,6 +95,17 @@ ActiveRecord::Schema.define(version: 2019_10_03_100116) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "buyer_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_transacts_on_buyer_id"
+    t.index ["item_id"], name: "index_transacts_on_item_id"
+    t.index ["seller_id"], name: "index_transacts_on_seller_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -117,4 +132,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_100116) do
   add_foreign_key "items", "burdens"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizes"
+  add_foreign_key "transacts", "items"
+  add_foreign_key "transacts", "users", column: "buyer_id"
+  add_foreign_key "transacts", "users", column: "seller_id"
 end
