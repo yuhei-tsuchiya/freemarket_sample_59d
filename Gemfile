@@ -105,3 +105,5 @@ gem 'ancestry'
 #ダミーデータ
 gem 'faker'
 
+#パンくず
+gem "gretel"
