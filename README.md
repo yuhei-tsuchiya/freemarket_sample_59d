@@ -54,6 +54,7 @@
 |user_id|integer|null: false, foreign_key: true|
 |category_id|int|null: false, foreign_key: true|  ※ 多階層カテゴリ(Gem ancestry)を使用
 |size_id|int|null: false, foreign_key: true|  ※ 多階層カテゴリ(Gem ancestry)を使用
+|brand_id|int|null: false, foreign_key: true|
 |burden_id|integer|null: false, foreign_key: true|    ※ 多階層カテゴリ(Gem ancestry)を使用
 |prefecture_id|integer|null: false, foreign_key: true|  ※ 発送元
 ### Association

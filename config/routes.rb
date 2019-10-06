@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   namespace :api do
     get "select_child", to: "categorys#select_child"
     get "display_size", to: "categorys#display_size"
+    get "select_burden", to: "categorys#select_burden"
+    get "search_brand", to: "categorys#search_brand"
   end
 
 end

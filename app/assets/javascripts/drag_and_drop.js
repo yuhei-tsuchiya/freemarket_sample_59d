@@ -28,6 +28,7 @@ $(function() {
           return false;
         }
         list.items.add(file);
+        console.log(list.items)
         var reader = new FileReader();
         var target_ul = $("#item-append-target");
         reader.onload = function (e) {
@@ -55,11 +56,10 @@ $(function() {
   }
 
   // inputタグに変化があれば発火
-  $("#item-drop-zone").change(function(){
-
-    readURL(this, list);
+  $("#item-drop-zone").change(function(e){
     
-    appendFile(list)
+    readURL(this, list);
+    appendFile(list);
 
   });
 
@@ -69,13 +69,19 @@ $(function() {
     var target = $(e.target);
     var pict_name = target.data('pict');
     target.parent().parent().remove();
-    $.each(list.files, function(index, file) {
-      if (file.name == pict_name) {
-        list.items.remove(index);
-      }
-    })
-
-    appendFile(list)
+    if (document.querySelector('input[type=file]').files.length == 1){
+      $('input[type="file"]').val(null);
+      list.clearData();
+    } else {
+      $.each(list.files, function(index, file) {
+        if (file.name == pict_name) {
+          list.items.remove(index);
+          return false
+        }
+      })
+      appendFile(list)
+    }
+    
 
     count -= 1
     if (count == 4){

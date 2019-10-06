@@ -33,8 +33,8 @@ $(function() {
     })
   }
 
-  // カテゴリー用関数-サイズ選択表示
-  function ajaxSize(cat){
+  // カテゴリー用関数-サイズ・ブランド選択表示
+  function ajaxSizeBrand(cat){
     $.ajax({
       type: 'GET',
       url: '/api/display_size',
@@ -52,8 +52,59 @@ $(function() {
     })
   }
 
+  // 配達について用関数-配送の方法選択表示
+  function ajaxBurdenbox(burden){
+    $.ajax({
+      type: 'GET',
+      url: '/api/select_burden',
+      data: { burden: burden },
+      dataType: 'html',
+    })
+    .done(function(html) {
+      console.log("burden hoge")
+      $('#burden-select-box').after(html)
+    })
+    .fail(function() {
+      console.log("size fail")
+    })
+  }
 
+  // ブランドのインクリメンタルサーチ用関数
+  function ajaxSearch(target){
+    $.ajax({
+      type: 'GET',
+      url: '/api/search_brand',
+      data: {keyword: target},
+      dataType: 'json'
+    })
+    .done(function(json) {
+      console.log("search hoge")
+      $('.brand-ul').empty();
+      if (json.length !== 0) {
+        json.forEach(function(brand, index) { //dataは配列型に格納されているのでEach文で回す
+          builtHTML(brand, index)
+        });
+      } else {
+        $('.brand-ul').append(`<li class="brand-list">該当するブランドはありません</li>`)
+        // NoResult('該当する商品はありません')
+      }
 
+    })
+    .fail(function() {
+      console.log("search fail")
+    })
+  }
+
+  // ブランドのインクリメンタルサーチ用関数-HTMLをappend
+  function builtHTML(brand, index){
+    if (index == 1){
+      $('.brand-ul').show();
+    }
+    html = `<li class="brand-list" data-brand=${brand.id}>${brand.name}</li>`
+    $('.brand-ul').append(html)
+  }
+  
+  
  
   // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
@@ -100,7 +151,7 @@ $(function() {
         ajaxSelectbox(cat, 1, 3)
       }
       // サイズを表示するか判別
-      ajaxSize(cat)
+      ajaxSizeBrand(cat)
 
     } else {
       if ($('#select-cat3')) {  // カテゴリー2が空の時、カテゴリー3を消す
@@ -111,7 +162,49 @@ $(function() {
   });
 
   // 配送について用トリガー
-  $(document).on("change", "", function(){
+  $(document).on("change", "#select-burden", function(){
+    if ($('#burden-ways').length) {
+      $('#burden-ways').remove()
+    }
+    var burden = $('#select-burden option:selected').val();
+    ajaxBurdenbox(burden)
+  })
+
+  // 値段計算
+  $(document).on("change", "#item_price", function(){
+    if ($.isNumeric($('#item_price').val())){
+      var price = $('#item_price').val()
+      price = Number(price)
+      var price_fee = Math.round(price * 0.1)
+      $('#price-fee').text(`¥${price_fee}`)
+      $('#price-benefit').text(`¥${price - price_fee}`)
+    } else {
+      alert("数値を入力してください")
+    }
+  })
+
+  // ブランドのインクリメンタルサーチ
+  $(document).on("keyup", "#brand-text", function(){
+    if ($("#brand-text").val() == ''){
+      $('.brand-ul').empty();
+    } else {
+      var target = $(this).val();
+      console.log("target")
+      console.log(target)
+      ajaxSearch(target);
+    }
+  })
+
+  $(document).on("click", ".brand-list", function(e){
+    if ($('#brand-decided').length){
+      $('#brand-decided').remove()
+    }
+    var target = $(e.target);
+    $("#brand-text").val(target.text());
+    html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
+    $("#brand-text").append(html)
+    $('.brand-ul').empty();
+  })
 
 })
 

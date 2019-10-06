@@ -1,12 +1,42 @@
 class Item < ApplicationRecord
   has_many :images
   accepts_nested_attributes_for :images
-  has_many :comments
   belongs_to :user
   belongs_to :category
   belongs_to :size, optional: true
+  belongs_to :brand, optional: true
   belongs_to :burden
   has_one :transact
+  # has_many :comments  # コメント機能が実装できた際に有効化すること
+
+  # null falseのバリデーション
+  with_options presence: true do
+    validates :name
+    validates :price
+    validates :torihiki_info
+    validates :product_state
+    validates :description
+    validates :shipping_days
+    validates :user_id
+    validates :prefecture_id
+    validates :category_id
+    validates :burden_id
+  end
+  # 入力値範囲のバリデーション
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+  validates :prefecture_id, numericality: { less_than_or_equal_to: 48 }
+  validates :torihiki_info, numericality: { less_than_or_equal_to: 3 }
+  validates :product_state, numericality: { less_than_or_equal_to: 7 }
+  validates :shipping_days, numericality: { less_than_or_equal_to: 3 }
+  validates :category_id, numericality: { less_than_or_equal_to: 1326 }
+  validates :size_id, numericality: { less_than_or_equal_to: 66 }, allow_blank: true
+  validates :brand_id, numericality: { less_than_or_equal_to: 10102 }, allow_blank: true
+  validates :burden_id, numericality: { less_than_or_equal_to: 14 }
+  
+  # アソシエーションのバリデーション
+  validates :images, associated: true
+  validates :transact, associated: true
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   

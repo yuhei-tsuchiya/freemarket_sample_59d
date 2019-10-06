@@ -47,6 +47,15 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+
+  # binding.pry
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
