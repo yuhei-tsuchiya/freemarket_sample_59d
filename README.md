@@ -21,8 +21,9 @@
 - has_one :address
 
 ## addressesテーブル
-|zip_code|string|null: false|
+|Column|Type|Options|
 |------|----|-------|
+|zip_code|string|null: false|
 |prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
 |jusho_shikuchoson|string|null: false|
 |jusho_banchi|string|null: false|
@@ -112,3 +113,12 @@
 ### Association
 - has_many :items
 - has_ancestry
+
+## SNS_Credentialテーブル ※SNS認証関係
+|Column|Type|Options|
+|------|----|-------|
+|provider|string|null: false|
+|uid|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
