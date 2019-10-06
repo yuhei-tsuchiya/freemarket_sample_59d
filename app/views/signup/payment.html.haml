@@ -1,0 +1,76 @@
+#wrapper
+
+  .header-email-registration
+    .header-email-registration__logo
+      = link_to '' do 
+        = image_tag 'logo.svg', class: 'registration-header-logo'
+    .progress-bar
+      %ul
+        %li
+          会員情報
+          .progress-status__done.red
+        %li
+          電話番号認証
+          .progress-status.red
+        %li
+          お届け先住所入力
+          .progress-status.red
+        %li.active
+          支払い方法
+          .progress-status.red
+        %li
+          完了
+          .progress-status
+
+  -# 支払い方法フォーム
+  = form_with model: @user, local: true, url: '/signup', method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
+    .user-input
+      .user-input__message
+        支払い方法
+      .user-input__container
+
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              カード番号
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " 半角数字のみ"}
+              = image_tag 'PEPSized_Visa.png', class: 'credit-card-icon'
+              = image_tag 'PEPSized_Mastercard.png', class: 'credit-card-icon'
+              = image_tag 'PEPSized_JCB.png', class: 'credit-card-icon'
+              = image_tag 'PEPSized_AmericanExpress02.png', class: 'credit-card-icon'
+              = image_tag 'PEPSized_DinersClub02.png', class: 'credit-card-icon'
+              = image_tag 'PEPSized_Discover.png', class: 'credit-card-icon'
+
+        .user-input__birthday.steppagefixstep4padding
+          %label.label--small
+            有効期限
+            %span.hissu 必須
+          .birthday-box
+            %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " 01"}
+            %p
+              月
+          .birthday-box
+            %input.birthday-box__ymd--input{name: "name", type: "text", placeholder: " 19"}
+            %p
+              年
+
+        .user-input__container__sell-contents
+          .user-input__container__sell-contents__form-group
+            %label.label--small
+              セキュリティコード
+              %span.hissu 必須
+            .user-input__container__sell-contents__form-group__inputname
+              %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " カード背面4桁もしくは3桁の番号"}
+
+        .user-input__about-user-info.steppagefixstep4padding2
+          = fa_icon 'question-circle', class: 'kiyaku--blue'
+          = link_to 'カード裏面の番号とは？', '#', class: 'kiyaku--blue'
+
+        .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
+          -# %button.user-input__container__sell-btn--btn-red 次へ進む
+          = f.submit '次へ進む', class: 'nextbotton'
+
+  = render 'devise/shared/devise-footer'
+
