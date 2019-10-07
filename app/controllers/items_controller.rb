@@ -10,10 +10,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
     # ユーザー登録機能とマージ次第、current_userを含むコードを使用すること
-    # Transact.create(item_id: @item.id, seller_id: current_user.id)
-    Transact.create(item_id: @item.id, seller_id: 1)
+    # @item.build_transact(seller_id: current_user.id)
+    @item.build_transact(seller_id: 1)
+    @item.save
     redirect_to root_path
   end
 

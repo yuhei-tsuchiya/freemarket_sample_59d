@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :item do
+    id                    {1}
     name                  {"test"}
     price                 {1000}
     good                  {2}
@@ -13,5 +14,11 @@ FactoryBot.define do
     category
     size
     burden
+    images {[
+      FactoryBot.build(:image, item: nil)
+    ]}
+    after(:build) do |item|
+      item.build_transact(item_id: item.id, seller_id: 1, buyer_id: nil)
+    end
   end
 end

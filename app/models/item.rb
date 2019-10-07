@@ -25,17 +25,17 @@ class Item < ApplicationRecord
   # 入力値範囲のバリデーション
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :prefecture_id, numericality: { less_than_or_equal_to: 48 }
-  validates :torihiki_info, numericality: { less_than_or_equal_to: 3 }
-  validates :product_state, numericality: { less_than_or_equal_to: 7 }
-  validates :shipping_days, numericality: { less_than_or_equal_to: 3 }
+  validates :torihiki_info, numericality: { less_than_or_equal_to: 2 }
+  validates :product_state, numericality: { less_than_or_equal_to: 6 }
+  validates :shipping_days, numericality: { less_than_or_equal_to: 2 }
   validates :category_id, numericality: { less_than_or_equal_to: 1326 }
   validates :size_id, numericality: { less_than_or_equal_to: 66 }, allow_blank: true
   validates :brand_id, numericality: { less_than_or_equal_to: 10102 }, allow_blank: true
   validates :burden_id, numericality: { less_than_or_equal_to: 14 }
   
   # アソシエーションのバリデーション
-  validates :images, associated: true
-  validates :transact, associated: true
+  validates :images, associated: true, presence: true
+  validates :transact, associated: true  # presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
