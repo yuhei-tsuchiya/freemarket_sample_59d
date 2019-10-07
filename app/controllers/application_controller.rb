@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Basic認証(basic_auth, production?)
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
 
   private
 

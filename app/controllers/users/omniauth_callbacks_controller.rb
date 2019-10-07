@@ -1,6 +1,3 @@
-# class OmniauthCallbacksController < ApplicationController
-# end
-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
@@ -23,7 +20,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @sns = info[:sns]
       session[:provider] = @sns[:provider]
       session[:uid] = @sns[:uid]
-      render template: "devise/registrations/step1" 
+      render template: "/signup/user_info_input"
     end
   end
 

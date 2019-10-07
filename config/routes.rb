@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  devise_scope :user do
+    get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
+    get "/sign_up" => "devise/registrations#new"
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :signup, only:[:new, :create] do
     collection do

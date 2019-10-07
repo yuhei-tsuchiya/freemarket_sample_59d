@@ -12,11 +12,11 @@
           新規会員登録
     .login-contents__container
       .registration
-      =link_to "", class: "registration__btn registration__btn--facebook" do
+      = link_to user_facebook_omniauth_authorize_path, class: "registration__btn registration__btn--facebook" do
         = fa_icon 'facebook-square', class: "registration__btn--icon"
         %span<>
           Facebookでログイン
-      =link_to "", class: "registration__btn registration__btn--google" do
+      =link_to user_google_oauth2_omniauth_authorize_path, class: "registration__btn registration__btn--google" do
         = fa_icon 'google', class: "registration__btn--icon"
         %span<>
           Googleでログイン
