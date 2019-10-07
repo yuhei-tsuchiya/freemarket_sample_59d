@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # root to: 'toppage#index'
-  root to: 'users#mypage'
+  root to: 'users#person_info'
   devise_for :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :sell   # 商品出品ページ
       get :deteal # 商品詳細ページ
       get :buy    # 商品購入ページ
+      get :person_info
     end
   end
 end
