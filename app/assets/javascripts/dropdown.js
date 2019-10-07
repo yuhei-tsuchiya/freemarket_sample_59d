@@ -12,7 +12,6 @@ $(function() {
       dataType: 'html',
     })
     .done(function(html) {
-      // return html
       if (flag == 0){  // 0:option属性一覧を追加
         var select_cat = `#select-cat${cat_id}`
         $(select_cat).append(html)
