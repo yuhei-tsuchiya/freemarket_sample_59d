@@ -13,8 +13,11 @@ class ItemsController < ApplicationController
     # ユーザー登録機能とマージ次第、current_userを含むコードを使用すること
     # @item.build_transact(seller_id: current_user.id)
     @item.build_transact(seller_id: 1)
-    @item.save
-    redirect_to root_path
+    if @item.save
+      redirect_to root_path
+    else
+      render :sell
+    end
   end
 
   def deteal
