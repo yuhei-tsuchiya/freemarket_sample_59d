@@ -33,13 +33,11 @@
         %span.hissu 必須
         .contents-item__container__sell-contents__form-group__inputname
           = f.text_field :name, class: "contents-item__container__sell-contents__form-group__inputname--input", placeholder: "商品名（必須40文字まで）"
-          -# = render 'layouts/error_messages', model: f.name
       .contents-item__container__sell-contents__form-group{style: "margin-top: 40px;"}
         = f.label :description, class: "label--small", value: "商品の説明"
         %span.hissu 必須
         .contents-item__container__sell-contents__form-group__inputname
           = f.text_area :description, class: "contents-item__container__sell-contents__form-group__inputname--input-description", rows: "5", placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-          -# = render 'layouts/error_messages', model: f.description
     
     .contents-item__container__sell-contents.clearfix
       %h3.contents-item__container__sell-contents--greyout 商品の詳細

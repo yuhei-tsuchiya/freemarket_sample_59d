@@ -76,7 +76,6 @@ $(function() {
         });
       } else {
         $('.brand-ul').append(`<li class="brand-list">該当するブランドはありません</li>`)
-        // NoResult('該当する商品はありません')
       }
 
     })
@@ -101,7 +100,12 @@ $(function() {
     if (count == 0){
       var cat = $('#select-cat1 option:selected').val();
       
-      count += 1
+      count = 1
+      console.log(cat)
+      if (cat == '---') {
+        cat = 0
+      }
+      console.log(cat)
       ajaxSelectbox(cat, 1, 2)
       return
     }
@@ -121,7 +125,7 @@ $(function() {
     if (cat == '---' || cat == '') {  // カテゴリー1が空の時
       $('#select-cat2').prev().remove()  // カテゴリー2を消す
       $('#select-cat2').remove()
-      count -= 1
+      count = 0
     } else {  // カテゴリー1が空ではない時
       $('#select-cat2 option').remove()  // カテゴリー2の中身を削除
       ajaxSelectbox(cat, 0, 2)

@@ -19,20 +19,24 @@
         .contents-item__container__uploadbox__zone-item
           .contents-item__container__uploadbox__zone-item__have-item.clearfix
             %ul{id: "item-append-target"}
-            - @images_now.each do |image|
-              %li.contents-item__container__uploadbox__zone-item__have-item--upload-item
-                %figure.contents-item__container__uploadbox__zone-item__have-item--upload-figure
-                  = image_tag image.image.url, alt: '', class: 'contents-item__container__uploadbox__zone-item__have-item--upload-image'
-                .contents-item__container__uploadbox__zone-item__have-item__upload-btnbox
-                  %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn{href: "#"} 　
-                  %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn.btn-left{href: "#"} 削除
-            = f.fields_for :images do |f_image|
-              = f_image.label :image, for: nil , class: "contents-item__container__uploadbox__zone-item__dropbox clearfix" do
-                %br
-                ドラッグアンドドロップ
-                %br
-                またはクリックしてファイルをアップロード
-                = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
+              - files = 0
+              - @item.images.each do |image|
+                - files += 1
+                %li.contents-item__container__uploadbox__zone-item__have-item--upload-item{style: "margin-right: 0px, width: 100px !important"}
+                  %figure.contents-item__container__uploadbox__zone-item__have-item--upload-figure
+                    = image_tag image.image.url, alt: '', class: 'contents-item__container__uploadbox__zone-item__have-item--upload-image'
+                  .contents-item__container__uploadbox__zone-item__have-item__upload-btnbox
+                    %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn{href: "#"} 　
+                    %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn.btn-left{data: {delete: "#{image.id}"}, href: '#', id: 'pict-delete-edit'} 削除
+            = f.fields_for :image do |f_image|
+              - if files <= 4
+                = f_image.label :image, for: nil , class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", style: "width: #{615 - files * 120}px;" do
+                  %br
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+                  = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
+
 
     .contents-item__container__sell-contents
       .contents-item__container__sell-contents__form-group
@@ -40,13 +44,11 @@
         %span.hissu 必須
         .contents-item__container__sell-contents__form-group__inputname
           = f.text_field :name, class: "contents-item__container__sell-contents__form-group__inputname--input", placeholder: "商品名（必須40文字まで）"
-          -# = render 'layouts/error_messages', model: f.name
       .contents-item__container__sell-contents__form-group{style: "margin-top: 40px;"}
         = f.label :description, class: "label--small", value: "商品の説明"
         %span.hissu 必須
         .contents-item__container__sell-contents__form-group__inputname
           = f.text_area :description, class: "contents-item__container__sell-contents__form-group__inputname--input-description", rows: "5", placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-          -# = render 'layouts/error_messages', model: f.description
     
     .contents-item__container__sell-contents.clearfix
       %h3.contents-item__container__sell-contents--greyout 商品の詳細
@@ -57,7 +59,66 @@
           %div
             .contents-item__container__sell-contents__form-box__select-wrap
               %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-              = f.select :category, @category.children.map{|category| [category.name, category.id]}, {include_blank: "---"}, {id: "select-cat1", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+              %select{name: "category", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat1"}
+                %option{value: nil} ---
+                - @category.children.each do |cat|
+                  - if cat == @item.category.parent.parent
+                    %option{value: cat.id, selected: true}
+                      = cat.name
+                  - else
+                    %option{value: cat.id}
+                      = cat.name
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "category", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat2"}
+                %option{value: nil} ---
+                - @item.category.parent.parent.children.each do |cat2|
+                  - if cat2 == @item.category.parent
+                    %option{value: cat2.id, selected: true}
+                      = cat2.name
+                  - else
+                    %option{value: cat2.id}
+                      = cat2.name
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "item[category_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat3"}
+                %option{value: nil} ---
+                - @item.category.parent.children.each do |cat3|
+                  - if cat3 == @item.category
+                    %option{value: cat3.id, selected: true}
+                      = cat3.name
+                  - else
+                    %option{value: cat3.id}
+                      = cat3.name
+      - if @item.size
+        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px", id: "size-select-box"}
+          %div
+            %label{name: "size_id", class: "label--small"} サイズ
+            %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select{name: "item[size_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+                  %option{value: nil} ---
+                  - @item.size.parent.children.each do |size|
+                    - if size == @item.size
+                      %option{value: size.id, selected: true}
+                        = size.name
+                    - else
+                      %option{value: size.id}
+                        = size.name
+      - if @item.brand
+        .contents-item__container__sell-contents__form-box{style: "margin-top: 40px", id: "brand-select-box"}
+          %div
+            %label{name: "size_id", class: "label--small"} ブランド
+            %span.nini 任意
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap{id: "brand-append-target"}
+                %input{type: "text", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "brand-text", value: "#{@item.brand.name}"}
+                .div
+                  .ul{class: "brand-ul", style: "display: none;"}
 
       .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
         %div
@@ -73,12 +134,37 @@
       %a.contents-item__container__sell-contents--help{href: "#", } ?
       .contents-item__container__sell-contents__form-box{id: "burden-select-box"}
         %div
-          = f.label :burden, {class: "label--small", value: "配送料の負担"}
+          %label{name: "burden", class: "label--small"} 配送料の負担
           %span.hissu 必須
           %div
             .contents-item__container__sell-contents__form-box__select-wrap
               %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-              = f.select :burden, @burden.map { |burden| [burden.name, burden.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-burden"}
+              %select{name: "burden", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-burden"}
+                %option{value: nil} ---
+                - @burden.roots.each do |burden|
+                  - if burden == @item.burden.parent
+                    %option{value: burden.id, selected: true}
+                      = burden.name
+                  - else
+                    %option{value: burden.id}
+                      = burden.name
+      .contents-item__container__sell-contents__form-box{style: "margin-top: 40px", id: "burden-ways"}
+        %div
+          %label{name: "burden_id", class: "label--small"} 配送の方法
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "item[burden_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+                %option{value: nil} ---
+                - @item.burden.parent.children.each do |burden|
+                  - if burden == @item.burden
+                    %option{value: burden.id, selected: true}
+                      = burden.name
+                  - else
+                    %option{value: burden.id}
+                      = burden.name
+
 
       .contents-item__container__sell-contents__form-box{style: "margin-top: 40px"}
         %div
@@ -113,12 +199,13 @@
           .contents-item__container__sell-contents__form-box__form-fee__fee-left.info
             販売手数料 (10%)
           .contents-item__container__sell-contents__form-box__form-fee__fee-right.info{id: "price-fee"}
-            \-
+            - fee = (@item.price * 0.1).round
+            = fee
         .contents-item__container__sell-contents__form-box__form-fee.clearfix
           .contents-item__container__sell-contents__form-box__form-fee__fee-left.label
             販売利益
           .contents-item__container__sell-contents__form-box__form-fee__fee-right.lable{id: "price-benefit"}
-            \-
+            = @item.price - fee
 
     .contents-item__container__sell-btn
       %div

@@ -55,14 +55,15 @@ $(function() {
   }
 
   // inputタグに変化があれば発火
-  $("#item-drop-zone").change(function(e){
+  $(document).on("change", "#item-drop-zone", function (e) {
+  // $("#item-drop-zone").change(function(e){
     
     readURL(this, list);
     appendFile(list);
 
   });
 
-  // 削除ボタンがクリックされたら発火
+  // 出品-削除ボタンがクリックされたら発火
   $(document).on("click", "#pict-delete", function (e) {
     e.preventDefault();
     var target = $(e.target);
@@ -90,5 +91,36 @@ $(function() {
       deleteWidth(count)
     }
   })
+
+  // 編集-削除ボタンがクリックされたら発火
+  $(document).on("click", "#pict-delete-edit", function (e) {
+    e.preventDefault();
+    var target = $(e.target);
+    var pict_id = target.data('delete');
+    console.log(pict_id)
+    console.log($('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length)
+    count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
+    target.parent().parent().remove();
+    
+    if (count == 5){
+    
+      form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
+                ドラッグアンドドロップ
+                <br>
+                またはクリックしてファイルをアップロード
+                <input multiple="multiple" type="file" name="item[images_attributes][][image]" class="contents-item__container__uploadbox__zone-item__dropbox--fileform" id="item-drop-zone">
+              </label>`
+      $('.contents-item__container__uploadbox__zone-item__have-item').append(form)
+    } else {
+      deleteWidth(count - 1)
+    }
+    count -= 1
+
+    hidden_form = `<input type="hidden", name="[delete_ids][]", value="${pict_id}">`    
+    $('.contents-item__container__uploadbox__zone-item').append(hidden_form)
+
+  })
+
+
 });
 

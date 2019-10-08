@@ -36,11 +36,42 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @images_now = @item.images
+    @image = Image.new
     # @item.images.build
+    # cat = @item.category
+    # @category_now = [cat.parent.parent, cat.parent, cat]
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
+  end
+
+  def update
+    binding.pry
+    @item = Item.find(params[:id])
+    image_del_list = delete_images if delete_images
+    image_update_list = item_params[:images_attributes] if item_params[:images_attributes]
+    update_params = item_params
+    update_params.delete(:images_attributes)
+    if @item.update(update_params)
+        if image_update_list
+          image_update_list.each do |img|
+            Image.create(img.merge(item_id: @item.id))
+            # Image.create(img.merge(user_id: current_user.id))
+          end
+        end
+        if image_del_list
+          image_del_list.each do |image_id|
+          Image.find(image_id).destroy
+        end
+      end
+      redirect_to item_path(params[:id])
+    else
+      # redirect_to edit_item_path(params[:id])
+      @category = Category.find(1)
+      @burden = Burden.roots
+      @prefectures = Prefecture.all
+      render :edit
+    end
   end
 
   def buy
@@ -58,5 +89,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: 2, torihiki_info: 0)
   end
 
+  def delete_images
+    if params.has_key?(:delete_ids)
+      return params.require(:delete_ids)
+    else
+      return nil
+    end
+  end
 
 end
