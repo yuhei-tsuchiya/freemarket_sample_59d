@@ -232,8 +232,8 @@
           margin-bottom: 25px;
           &--input{
             box-sizing: border-box;
-            width: calc(100% - 15px);
-            height: 48px;
+            width: calc(100% - 15px) !important;
+            height: 48px !important;
             float: right;
             padding: 10px 16px 8px;
             border-radius: 4px;
@@ -300,7 +300,6 @@
 
 .price{
   font-size: 11px;
-  // width: 32px;
   height: 15px;
   position: absolute;
   top: 10px;
