@@ -6,7 +6,6 @@ class Api::CategorysController < ApplicationController
     @category = Category.find(params[:cat]).children
     @cat_id = params[:cat_id]
     @flag = params[:flag].to_i
-    # binding.pry
   end
 
   def display_size
