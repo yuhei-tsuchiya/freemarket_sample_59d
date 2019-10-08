@@ -28,7 +28,6 @@ $(function() {
           return false;
         }
         list.items.add(file);
-        console.log(list.items)
         var reader = new FileReader();
         var target_ul = $("#item-append-target");
         reader.onload = function (e) {
@@ -81,7 +80,7 @@ $(function() {
       })
       appendFile(list)
     }
-    
+
     count -= 1
     if (count == 4){
       var width = 615 - 115 * 4

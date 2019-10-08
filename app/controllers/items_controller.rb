@@ -16,6 +16,12 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      # @item = Item.new(item_params)
+      @item.images = []
+      @item.images.build
+      @category = Category.find(1)
+      @burden = Burden.roots
+      @prefectures = Prefecture.all
       render :sell
     end
   end

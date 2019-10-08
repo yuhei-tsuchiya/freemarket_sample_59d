@@ -104,3 +104,6 @@ gem 'jquery-rails'
 #多階層構造
 gem 'ancestry'
 
+# メッセージの日本語化
+gem 'rails-i18n'
+

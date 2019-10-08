@@ -317,9 +317,13 @@
   }
 }
 
-// .textfield{
-//   cursor: none;
-// }
+.alert{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #fff8e8;
+  border-left: solid 10px #FF6633;
+}
 
 .info{
   margin: 6px 0 0;
