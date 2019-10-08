@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
       @prefectures = Prefecture.all
       render :sell
     end
+  end
 
   def show
     @items = Item.find(params[:id])
