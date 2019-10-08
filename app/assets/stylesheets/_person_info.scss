@@ -1,0 +1,102 @@
+
+
+.person_info-main{
+  margin: 40px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+
+  margin:40px 210px 0px;
+
+  &__right{
+
+    width:  700px;
+    background: #fff;
+    float: right;
+    .l-single-inner p {
+      margin: 8px 0 0;
+      line-height: 1.5;
+  }
+    &__title{
+      font-size: 24px;
+      padding: 8px 24px;
+      border-bottom: 1px solid #f5f5f5;
+      text-align: center;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+    .l-single-inner {
+      height: 1158px;
+      box-sizing: border-box;
+      padding: 64px;
+      border-top: 1px solid #f5f5f5;
+      font-size: 14px;
+      font-family: 'Source Sans Pro', Helvetica , Arial, 'æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“', 'YuGothic', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Meiryo', sans-serif;
+
+      a {
+        text-decoration: none;
+        color: #0099e8;
+
+      }
+      .text-right{
+        text-align: right;
+      }
+      .form-group{
+        margin: 40px 0 0;
+        label{
+          font-weight: 600;
+          display: inline-block;
+        }
+        .form-arbitrary{
+          background: #ccc;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+        }
+        select{
+          width: 100%;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          cursor: pointer;
+
+          margin: 8px 0 0;
+        }
+        .input-default {
+          height:48px;
+          box-sizing: border-box;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          width: 100%;
+          margin: 8px 0 0;
+        }
+        .btn-red{
+          margin: 40px 0 0 0;
+          background: #ea352d;
+          border: 1px solid #ea352d;
+          color: #fff;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          border: 1px solid transparent;
+          transition: all ease-out .3s;
+          cursor: pointer;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
