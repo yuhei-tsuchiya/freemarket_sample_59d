@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     # ユーザー登録機能とマージ次第、current_userを含むコードを使用すること
     # @item.build_transact(seller_id: current_user.id)
-    @item.build_transact(seller_id: 1)
+    @item.build_transact(seller_id: 2)
     if @item.save
       redirect_to root_path
     else
@@ -31,8 +31,17 @@ class ItemsController < ApplicationController
 
   def show
     @items = Item.find(params[:id])
+    @images = @items.images
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    @images_now = @item.images
+    # @item.images.build
+    @category = Category.find(1)
+    @burden = Burden.roots
+    @prefectures = Prefecture.all
+  end
 
   def buy
 
@@ -46,7 +55,7 @@ class ItemsController < ApplicationController
   def item_params
     # ユーザー登録機能とマージ次第、current_userを含むコードを使用すること
     # params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: current_user.id, torihiki_info: 0)
-    params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: 1, torihiki_info: 0)
+    params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: 2, torihiki_info: 0)
   end
 
 
