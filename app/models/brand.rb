@@ -1,7 +1,5 @@
-class Burden < ApplicationRecord
+class Brand < ApplicationRecord
   has_many :items
-  has_ancestry
 
   validates :name, presence: true
-
 end

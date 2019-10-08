@@ -1,0 +1,23 @@
+ja:
+ activerecord:
+  models:
+   item: "商品"
+  attributes:
+   item:
+    name: 名前
+    price: 値段
+    good: いいね数
+    torihiki_info: 取引状況
+    product_state: 商品状態
+    description: 説明
+    shipping_days: 配送までにかかる日数
+    prefecture_id: 都道府県
+    category_id: カテゴリー
+    category: カテゴリー
+    size_id: サイズ
+    burden_id: 送料負担
+    burden: 送料負担
+    brand_id: ブランド
+    images: 商品画像 
+ 
+ 

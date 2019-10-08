@@ -1,0 +1,24 @@
+.contents-item__container__sell-contents__form-box{style: "margin-top: 40px", id: "size-select-box"}
+  %div
+    %label{name: "size_id", class: "label--small"} サイズ
+    %span.hissu 必須
+    %div
+      .contents-item__container__sell-contents__form-box__select-wrap
+        %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+        %select{name: "item[size_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+          %option{value: nil} ---
+          - @sizes.each do |size|
+            %option{value: size.id}
+              = size.name
+- if @have_brand
+  .contents-item__container__sell-contents__form-box{style: "margin-top: 40px", id: "brand-select-box"}
+    %div
+      %label{name: "size_id", class: "label--small"} ブランド
+      %span.nini 任意
+      %div
+        .contents-item__container__sell-contents__form-box__select-wrap{id: "brand-append-target"}
+          %input{type: "text", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "brand-text"}
+          .div
+            .ul{class: "brand-ul", style: "display: none;"}
+
+
