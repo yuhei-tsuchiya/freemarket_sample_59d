@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
 
+  def index
+    @items = Item.all.limit(10)
+  end
+
   def sell
     @item = Item.new
     @item.images.build
@@ -16,7 +20,6 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      # @item = Item.new(item_params)
       @item.images = []
       @item.images.build
       @category = Category.find(1)
@@ -24,6 +27,14 @@ class ItemsController < ApplicationController
       @prefectures = Prefecture.all
       render :sell
     end
+
+  def show
+    @items = Item.find(params[:id])
+  end
+
+
+  def buy
+
   end
 
   def deteal
@@ -36,5 +47,6 @@ class ItemsController < ApplicationController
     # params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: current_user.id, torihiki_info: 0)
     params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: 1, torihiki_info: 0)
   end
+
 
 end

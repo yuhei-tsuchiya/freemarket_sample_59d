@@ -81,12 +81,13 @@
 // 会員情報入力フォーム
 
 .user-input {
+  padding: 32px 0;
   flex: 1;
   width:700px;
   margin: 0 auto;
   background-color: white;
   &__message{
-    padding: 32px;
+    padding-bottom: 32px;
     font-size:22px;
     font-weight: 600; 
     text-align: center;
@@ -327,9 +328,10 @@
   }
     // 生年月日
   &__birthday {
-    padding-top: 10px;
+    padding: 10px 0;
     .birthday-box {
       display: flex;
+      align-items: center;  /* 子要素をflexboxにより中央に配置する */
       &__ymd {
         &--input{
           box-sizing: border-box;
@@ -377,6 +379,7 @@
   text-align: right;
 }
 
+// 追記用のクラス
 .steppagefix {
   padding: 0;
   border-top: none;
@@ -399,6 +402,10 @@
 .steppagefixstep3 {
   color: white;
   background: gray;
+  margin-left: 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 12px;
 }
 
 .steppagefixstep3padding {
@@ -432,4 +439,50 @@
   height: 260px;
   margin: 0 auto;
   border: solid 1px;
+}
+
+.year,.month,.day{
+  // 指定したいCSSを記述する
+  width: 76px;
+  height: 48px;
+  margin: 5px;
+}
+
+// フォームのサイズを変更する記述
+input[type="text"] {
+  width: 343px;
+  height: 40px;
+  margin-top: 4px;
+}
+
+input[type="email"] {
+  width: 343px;
+  height: 40px;
+  margin-top: 4px;
+}
+
+input[type="password"] {
+  width: 343px;
+  height: 40px;
+  margin-top: 4px;
+}
+
+.field-namebox {
+  width: 165px !important;
+  height: 40px !important;
+  margin: 8px 8px 0 0;
+}
+
+.nextbotton {
+  margin: 40px 0 0;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
 }

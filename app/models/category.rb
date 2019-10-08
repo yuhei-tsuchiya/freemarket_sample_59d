@@ -4,4 +4,5 @@ class Category < ApplicationRecord
   belongs_to :size, optional: true
 
   validates :name, presence: true
+
 end

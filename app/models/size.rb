@@ -3,4 +3,5 @@ class Size < ApplicationRecord
   has_ancestry
 
   validates :name, presence: true
+
 end

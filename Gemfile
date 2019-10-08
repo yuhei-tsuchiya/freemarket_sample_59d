@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -42,7 +42,7 @@ group :development, :test do
   # デバッグ用
   gem 'pry-rails'
   # 自動デプロイ用Capistrano関連のGemをインストール
-  gem 'capistrano'
+  gem 'capistrano', '= 3.11.1'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -56,7 +56,9 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+
 end
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -99,6 +101,7 @@ gem 'font-awesome-rails'
 gem 'active_hash'
 
 # jQeury
+
 gem 'jquery-rails'
 
 #多階層構造
@@ -107,3 +110,8 @@ gem 'ancestry'
 # メッセージの日本語化
 gem 'rails-i18n'
 
+#ダミーデータ
+gem 'faker'
+
+#パンくず
+gem "gretel"

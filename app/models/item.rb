@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :size, optional: true
   belongs_to :brand, optional: true
   belongs_to :burden
+
   has_one :transact
   # has_many :comments  # コメント機能が実装できた際に有効化すること
 
@@ -35,11 +36,11 @@ class Item < ApplicationRecord
   
   # アソシエーションのバリデーション
   validates :images, associated: true, presence: true
-  validates :transact, associated: true  # presence: true
+  validates :transact, associated: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-  
+
   @@torihiki_info_list = ["出品中", "取引中", "売却済"]
   @@product_state_list = ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
   @@shipping_days_list = ["1~2日", "2~3日", "4~7日"]
@@ -48,7 +49,7 @@ class Item < ApplicationRecord
   def torihiki_info_list
     @@torihiki_info_list
   end
-  
+
   def product_state_list
     @@product_state_list
   end
