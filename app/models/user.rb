@@ -24,13 +24,13 @@ devise :database_authenticatable, :registerable,
   validates :lastname_kana,           presence: true, on: :validates_user_info_input
   validates :firstname_kana,          presence: true, on: :validates_user_info_input
   validates :birthday,                presence: true, on: :validates_user_info_input
-  
   # phone_number_authentication入力項目
   validates :cellphone_number,        presence: true, on: :validates_phone_number_authentication
 
+
+  # SNS認証関係
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
-
     if user.present?
       sns = SnsCredential.create(
         uid: auth.uid,
@@ -42,11 +42,11 @@ devise :database_authenticatable, :registerable,
         nickname: auth.info.name,
         email: auth.info.email,
       )
-      sns = SnsCredential.create(
+      sns = SnsCredential.new(
+      # sns = SnsCredential.create(
         uid: auth.uid,
         provider: auth.provider
       )
-      binding.pry
     end
     return { user: user ,sns: sns}
   end
@@ -56,7 +56,7 @@ devise :database_authenticatable, :registerable,
     unless user.present?
       user = User.new(
         nickname: auth.info.name,
-        email: auth.info.email,
+        email: auth.info.email
       )
     end
     return {user: user}

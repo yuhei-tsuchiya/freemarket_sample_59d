@@ -11,7 +11,15 @@
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-default btn-red'
 
 
-
+    - if user_signed_in?
+      【ログイン中】
+      = current_user.nickname
+      <br>
+      = link_to "ログアウトする", destroy_user_session_path, method: :delete
+    - else
+      【ログアウト中】<br>
+      = link_to "ログインページへ", sign_in_path, class: 'post'
+      = link_to "新規登録ページへ", sign_up_path, class: 'post'
 
 
 

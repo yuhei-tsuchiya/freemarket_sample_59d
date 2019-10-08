@@ -31,7 +31,8 @@
         登録が完了しました。
 
       .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
-        %button.user-input__container__sell-btn--btn-red メルカリをはじめる
+        -# %button.user-input__container__sell-btn--btn-red メルカリをはじめる
+        = link_to "メルカリをはじめる", root_path, class: 'user-input__container__sell-btn--btn-red'
 
   = render 'toppage/toppage-footer'
 

@@ -21,27 +21,29 @@
         %span<>
           Googleでログイン
 
-      .user-input__container__sell-contents.loginwidthfix 
-        .user-input__container__sell-contents__form-group
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-              type: "text", placeholder: " メールアドレス"}
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .user-input__container__sell-contents.loginwidthfix 
+          .user-input__container__sell-contents__form-group
+            .user-input__container__sell-contents__form-group__inputname
+              -# %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " メールアドレス"}
+              = f.email_field :email, autofocus: true, placeholder: " メールアドレス"
 
-      .user-input__container__sell-contents.loginwidthfix 
-        .user-input__container__sell-contents__form-group
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-              type: "text", placeholder: " パスワード"}
+        .user-input__container__sell-contents.loginwidthfix 
+          .user-input__container__sell-contents__form-group
+            .user-input__container__sell-contents__form-group__inputname
+              -# %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " パスワード"}
+              = f.password_field :password, autocomplete: "off", placeholder: " パスワード"
 
-      .centeringfix
-        .recaptcha.loginwidthfix2
-          = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
+        .centeringfix
+          .recaptcha.loginwidthfix2
+            = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
 
-        .user-input__container__sell-btn.steppagefix.loginwidthfix
-          %div
-          %button.user-input__container__sell-btn--btn-red ログイン
+          .user-input__container__sell-btn.steppagefix.loginwidthfix
+            %div
+            -# %button.user-input__container__sell-btn--btn-red ログイン
+            = f.submit "ログイン", class: "user-input__container__sell-btn--btn-red"
 
         .user-input__about-user-info
           = link_to 'パスワードをお忘れの方', '#', class: 'kiyaku--blue'
-        
+
   = render 'devise/shared/devise-footer'

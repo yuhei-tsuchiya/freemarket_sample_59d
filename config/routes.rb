@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get "/sign_in" => "devise/sessions#new" # login/sign_inへのカスタムパス
+    get "/sign_in" => "devise/sessions#new"
     get "/sign_up" => "devise/registrations#new"
   end
 
