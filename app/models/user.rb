@@ -48,7 +48,6 @@ devise :database_authenticatable, :registerable,
         user_id: user.id
       )
     else
-      # binding.pry
       user = User.new(
         nickname: auth.info.name,
         email: auth.info.email,
@@ -64,7 +63,8 @@ devise :database_authenticatable, :registerable,
   end
 
   def self.with_sns_data(auth, snscredential)
-    user = User.where(id: snscredential.user_id).first
+    # user = User.where(id: snscredential.user_id).first
+    user = User.find_by(snscredential.user_id)
     unless user.present?
       user = User.new(
         nickname: auth.info.name,
@@ -73,7 +73,6 @@ devise :database_authenticatable, :registerable,
         password_confirmation: @pass,
       )
     end
-    # binding.pry
     return {user: user}
   end
 

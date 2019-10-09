@@ -7,7 +7,7 @@
       %p
         アカウントをお持ちでない方はこちら
       .registration
-      =link_to "/signup/user_info_input", class: "registration__btn registration__btn--new" do
+      =link_to user_info_input_signup_index_path, class: "registration__btn registration__btn--new" do
         %span<>
           新規会員登録
     .login-contents__container
@@ -25,13 +25,11 @@
         .user-input__container__sell-contents.loginwidthfix 
           .user-input__container__sell-contents__form-group
             .user-input__container__sell-contents__form-group__inputname
-              -# %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " メールアドレス"}
               = f.email_field :email, autofocus: true, placeholder: " メールアドレス"
 
         .user-input__container__sell-contents.loginwidthfix 
           .user-input__container__sell-contents__form-group
             .user-input__container__sell-contents__form-group__inputname
-              -# %input.user-input__container__sell-contents__form-group__inputname--input{name: "name", type: "text", placeholder: " パスワード"}
               = f.password_field :password, autocomplete: "off", placeholder: " パスワード"
 
         .centeringfix
@@ -40,7 +38,6 @@
 
           .user-input__container__sell-btn.steppagefix.loginwidthfix
             %div
-            -# %button.user-input__container__sell-btn--btn-red ログイン
             = f.submit "ログイン", class: "user-input__container__sell-btn--btn-red"
 
         .user-input__about-user-info
