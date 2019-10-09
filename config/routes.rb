@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
-  # root to: 'toppage#index'
-  root to: 'users#person_info'
-  devise_for :users
+  root to: 'items#index'
+  devise_for :users,
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: "users/registrations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
+
+  devise_scope :user do
+    get "/sign_in" => "devise/sessions#new"
+    get "/sign_up" => "devise/registrations#new"
+    get "/log_out" => "users#destroy"
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :signup, only:[:new, :create] do
