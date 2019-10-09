@@ -1,0 +1,96 @@
+= render 'toppage/header'
+
+
+.person_info-main
+  = render 'users/mypage-side-menu'
+
+  .person_info-main__right
+    %h2.person_info-main__right__title
+      本人情報の登録
+    = form_with class: 'l-single-inner', action: :'https://www.mercari.com/jp/mypage/identification/save/', method: :POST, local: true do |f|
+      %div
+        %p
+          お客さまの本人情報をご登録ください。
+          %br
+            登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        %p.text-right
+          = link_to "/jp/help_center/article/495/" do
+            本人確認書類のアップロードについて
+      .form-group
+        %label
+          お名前
+        %p
+          土屋悠平
+      .form-group
+        %label
+          お名前カナ
+        %p
+          ツチヤ ユウヘイ
+      .form-group
+        %label
+          生年月日
+        %p
+          1999/04/06
+      .form-group
+        %label
+          郵便番号
+        %span.form-arbitrary
+          任意
+        = f.text_field :zip_code, placeholder: '例）1234567', type: 'text', class: 'input-default'
+      .form-group
+        %label
+          都道府県
+        %span.form-arbitrary
+          任意
+        .select-wrap
+          = f.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] },{include_blank: "---"}, class: 'select-default'
+
+      .form-group
+        %label
+          市町村
+        %span.form-arbitrary
+          任意
+        = f.text_field :jusho_shikuchoson, placeholder: "例) 横浜市緑区", type: "text", class: 'input-default'
+
+      .form-group
+        %label
+          番地
+        %span.form-arbitrary
+          任意
+        = f.text_field :jusho_banchi, placeholder: "例) 青山1−1−1", type: "text", class: 'input-default'
+
+      .form-group
+        %label
+          建物名
+        %span.form-arbitrary
+          任意
+        = f.text_field :jusho_tatemono,placeholder: "例) 柳ビル103", type: "text", class: 'input-default'
+
+        %button.btn-default.btn-red{type: "submit"}
+          登録する
+
+      .form-group.text-right
+        %p
+          = link_to "/jp/help_center/article/423/", target: "_blank" do
+            本人情報の登録について
+            %i.icon-arrow-right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+= render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'
