@@ -53,7 +53,9 @@ $(function() {
       dataType: 'html',
     })
     .done(function(html) {
-      $('#burden-select-box').after(html)
+      if (html != 0){
+        $('#burden-select-box').after(html)
+      }
     })
     .fail(function() {
       alert('ajax通信に失敗しました')
@@ -97,15 +99,13 @@ $(function() {
  
   // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
-    if (count == 0){
+    if ($('#select-cat2 option').length == 0){
       var cat = $('#select-cat1 option:selected').val();
       
       count = 1
-      console.log(cat)
       if (cat == '---') {
         cat = 0
       }
-      console.log(cat)
       ajaxSelectbox(cat, 1, 2)
       return
     }
@@ -165,7 +165,9 @@ $(function() {
       $('#burden-ways').remove()
     }
     var burden = $('#select-burden option:selected').val();
-    ajaxBurdenbox(burden)
+    if ((burden != "") && (burden != '---')){
+      ajaxBurdenbox(burden)
+    }
   })
 
   // 値段計算

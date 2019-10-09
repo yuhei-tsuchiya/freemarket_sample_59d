@@ -24,7 +24,7 @@
                 - files += 1
                 %li.contents-item__container__uploadbox__zone-item__have-item--upload-item{style: "margin-right: 0px, width: 100px !important"}
                   %figure.contents-item__container__uploadbox__zone-item__have-item--upload-figure
-                    = image_tag image.image.url, alt: '', class: 'contents-item__container__uploadbox__zone-item__have-item--upload-image'
+                    = image_tag image.image.url, alt: '', class: 'contents-item__container__uploadbox__zone-item__have-item--upload-image pict-delete-edit'
                   .contents-item__container__uploadbox__zone-item__have-item__upload-btnbox
                     %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn{href: "#"} 　
                     %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn.btn-left{data: {delete: "#{image.id}"}, href: '#', id: 'pict-delete-edit'} 削除
@@ -210,6 +210,6 @@
     .contents-item__container__sell-btn
       %div
       = f.submit '変更する', class: "contents-item__container__sell-btn--btn-red"
-      %a.contents-item__container__sell-btn--btn-red.grey{href: "javascript:history.back()"}もどる
+      %a.contents-item__container__sell-btn--btn-red.grey{href: "javascript:history.back()"}キャンセル
 
 = render 'devise/shared/devise-footer'

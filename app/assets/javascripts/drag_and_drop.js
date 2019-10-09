@@ -19,7 +19,7 @@ $(function() {
   }
 
   // プレビューを表示する関数
-  function readURL(input, list) {
+  function readURL(input, list, edit_num) {
     if (input.files && input.files[0]) {
       $.each(input.files, function(index, file) {
         count += 1;
@@ -41,9 +41,11 @@ $(function() {
             <a class="contents-item__container__uploadbox__zone-item__have-item--upload-btn btn-left" href="#" data-pict="${file.name}" id="pict-delete">削除</a>
             </div>
             </li>`;
-
+          
           if (count < 5) {
-            deleteWidth(input.files.length)
+            var num = input.files.length
+            num += edit_num
+            deleteWidth(num)
           } else {
             $(".contents-item__container__uploadbox__zone-item__dropbox").hide()
           }
@@ -56,9 +58,12 @@ $(function() {
 
   // inputタグに変化があれば発火
   $(document).on("change", "#item-drop-zone", function (e) {
-  // $("#item-drop-zone").change(function(e){
-    
-    readURL(this, list);
+    count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
+    var edit_num = 0
+    if ($('.pict-delete-edit').length){
+      edit_num = $('.pict-delete-edit').length
+    }
+    readURL(this, list, edit_num);
     appendFile(list);
 
   });

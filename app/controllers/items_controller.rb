@@ -48,22 +48,24 @@ class ItemsController < ApplicationController
   def update
     binding.pry
     @item = Item.find(params[:id])
-    image_del_list = delete_images if delete_images
-    image_update_list = item_params[:images_attributes] if item_params[:images_attributes]
     update_params = item_params
+    image_del_list = delete_images if delete_images
+    image_update_list = update_params[:images_attributes] if update_params[:images_attributes]
     update_params.delete(:images_attributes)
-    if @item.update(update_params)
-        if image_update_list
-          image_update_list.each do |img|
-            Image.create(img.merge(item_id: @item.id))
-            # Image.create(img.merge(user_id: current_user.id))
-          end
-        end
-        if image_del_list
-          image_del_list.each do |image_id|
-          Image.find(image_id).destroy
-        end
+    update_params = update_params.merge(size_id: nil) unless update_params.has_key?(:size_id)
+    update_params = update_params.merge(brand_id: nil) unless update_params.has_key?(:brand_id)
+    if image_update_list
+      image_update_list.each do |img|
+        Image.create(img.merge(item_id: @item.id))
+        # Image.create(img.merge(user_id: current_user.id))
       end
+    end
+    if image_del_list
+        image_del_list.each do |image_id|
+        Image.find(image_id).destroy
+      end
+    end
+    if @item.update(update_params)    
       redirect_to item_path(params[:id])
     else
       # redirect_to edit_item_path(params[:id])

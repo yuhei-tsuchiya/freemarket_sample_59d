@@ -54,8 +54,8 @@
                 %a{href: "https://www.mercari.com/jp/brand/5150/", class: "kiyaku--blue"}
                   %div
                     = @items.brand.name
-          %tr
-            - if @items.size
+          - if @items.size
+            %tr
               %th 商品のサイズ
               %td.td-padding
                 = @items.size.name
