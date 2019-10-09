@@ -7,41 +7,40 @@
       %p
         アカウントをお持ちでない方はこちら
       .registration
-      =link_to "", class: "registration__btn registration__btn--new" do
+      =link_to user_info_input_signup_index_path, class: "registration__btn registration__btn--new" do
         %span<>
           新規会員登録
     .login-contents__container
       .registration
-      =link_to "", class: "registration__btn registration__btn--facebook" do
+      = link_to user_facebook_omniauth_authorize_path, class: "registration__btn registration__btn--facebook" do
         = fa_icon 'facebook-square', class: "registration__btn--icon"
         %span<>
           Facebookでログイン
-      =link_to "", class: "registration__btn registration__btn--google" do
+      =link_to user_google_oauth2_omniauth_authorize_path, class: "registration__btn registration__btn--google" do
         = fa_icon 'google', class: "registration__btn--icon"
         %span<>
           Googleでログイン
 
-      .user-input__container__sell-contents.loginwidthfix 
-        .user-input__container__sell-contents__form-group
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-              type: "text", placeholder: " メールアドレス"}
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .user-input__container__sell-contents.loginwidthfix 
+          .user-input__container__sell-contents__form-group
+            .user-input__container__sell-contents__form-group__inputname
+              = f.email_field :email, autofocus: true, placeholder: " メールアドレス"
 
-      .user-input__container__sell-contents.loginwidthfix 
-        .user-input__container__sell-contents__form-group
-          .user-input__container__sell-contents__form-group__inputname
-            %input.user-input__container__sell-contents__form-group__inputname--input{name: "name",
-              type: "text", placeholder: " パスワード"}
+        .user-input__container__sell-contents.loginwidthfix 
+          .user-input__container__sell-contents__form-group
+            .user-input__container__sell-contents__form-group__inputname
+              = f.password_field :password, autocomplete: "off", placeholder: " パスワード"
 
-      .centeringfix
-        .recaptcha.loginwidthfix2
-          = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
+        .centeringfix
+          .recaptcha.loginwidthfix2
+            = image_tag 'recaptchaimage.png', class: 'registration-header-logo'
 
-        .user-input__container__sell-btn.steppagefix.loginwidthfix
-          %div
-          %button.user-input__container__sell-btn--btn-red ログイン
+          .user-input__container__sell-btn.steppagefix.loginwidthfix
+            %div
+            = f.submit "ログイン", class: "user-input__container__sell-btn--btn-red"
 
         .user-input__about-user-info
           = link_to 'パスワードをお忘れの方', '#', class: 'kiyaku--blue'
-        
+
   = render 'devise/shared/devise-footer'
