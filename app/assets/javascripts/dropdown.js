@@ -4,16 +4,17 @@ $(function() {
   var count = 0
 
   // カテゴリー用関数-カテゴリー選択表示
-  function ajaxSelectbox(cat, flag, cat_id){
+  // 第一引数:カテゴリーID、第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、第三引数:どの階層のカテゴリーかを指定
+  function ajaxSelectbox(cat, flag, which_cat){
     $.ajax({
       type: 'GET',
       url: '/api/select_child',
-      data: { cat: cat, flag: flag, cat_id: cat_id },
+      data: { cat: cat, flag: flag, which_cat: which_cat },
       dataType: 'html',
     })
     .done(function(html) {
       if (flag == 0){  // 0:option属性一覧を追加
-        var select_cat = `#select-cat${cat_id}`
+        var select_cat = `#select-cat${which_cat}`
         $(select_cat).append(html)
       } else if (flag == 1){  // 1:divにselect・optionを追加
         $('#select-category-box').append(html)

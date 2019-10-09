@@ -361,6 +361,12 @@
   &--blue{
     color: #0099e8;
   }
+  &--bule-underline{
+    color: #0099e8;
+  }
+  &--bule-underline:hover{
+    text-decoration:underline;
+  }
 }
 
 .btn-left{

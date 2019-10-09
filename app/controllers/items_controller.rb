@@ -37,16 +37,12 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     @image = Image.new
-    # @item.images.build
-    # cat = @item.category
-    # @category_now = [cat.parent.parent, cat.parent, cat]
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
   end
 
   def update
-    binding.pry
     @item = Item.find(params[:id])
     update_params = item_params
     image_del_list = delete_images if delete_images
@@ -57,7 +53,6 @@ class ItemsController < ApplicationController
     if image_update_list
       image_update_list.each do |img|
         Image.create(img.merge(item_id: @item.id))
-        # Image.create(img.merge(user_id: current_user.id))
       end
     end
     if image_del_list
@@ -65,10 +60,9 @@ class ItemsController < ApplicationController
         Image.find(image_id).destroy
       end
     end
-    if @item.update(update_params)    
+    if @item.update(update_params)
       redirect_to item_path(params[:id])
     else
-      # redirect_to edit_item_path(params[:id])
       @category = Category.find(1)
       @burden = Burden.roots
       @prefectures = Prefecture.all

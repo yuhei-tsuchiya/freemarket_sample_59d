@@ -10,7 +10,7 @@
   line-height: 1;
 
   &__box{
-    margin: 40px 370px 370px;
+    margin: 40px auto 370px;
     padding: 24px 40px 40px;
     background: #fff;
     width: 700px;
@@ -144,6 +144,30 @@
       transition: all ease-out .3s;
       font-size: 24px;
       line-height: 60px;
+      &--edit{
+        margin: 50px 0 16px 0;
+        background: #ea352d;
+        color: #fff;
+        display: block;
+        width: 100%;
+        line-height: 48px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        touch-action: manipulation;
+      }
+      &--edit-grey{
+        margin: 30px 0 50px 0;
+        background: grey;
+        color: #fff;
+        display: block;
+        width: 100%;
+        line-height: 48px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        touch-action: manipulation;
+      }
     }
 
     &__description{
@@ -213,4 +237,8 @@
       }
     }
   }
+}
+
+.good-icons{
+  font-weight: 900;
 }
