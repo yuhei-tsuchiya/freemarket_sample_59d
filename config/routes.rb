@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # root to: 'toppage#index'
   root to: 'users#destroy'
   devise_for :users,
   controllers: {

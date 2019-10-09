@@ -29,6 +29,8 @@ devise :database_authenticatable, :registerable,
 
 
   # SNS認証関係
+  @pass = Devise.friendly_token[0, 7]
+
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
     if user.present?
@@ -41,7 +43,9 @@ devise :database_authenticatable, :registerable,
       # binding.pry
       user = User.new(
         nickname: auth.info.name,
-        email: auth.info.email
+        email: auth.info.email,
+        password: @pass,
+        password_confirmation: @pass,
       )
       sns = SnsCredential.new(
         uid: auth.uid,
@@ -54,15 +58,14 @@ devise :database_authenticatable, :registerable,
   def self.with_sns_data(auth, snscredential)
     user = User.where(id: snscredential.user_id).first
     unless user.present?
-      password = Devise.friendly_token.first(7)
-      # password = Devise.friendly_token[0, 20]
       user = User.new(
         nickname: auth.info.name,
         email: auth.info.email,
-        password: password,
-        password_confirmation: password
+        password: @pass,
+        password_confirmation: @pass,
       )
     end
+    # binding.pry
     return {user: user}
   end
 
