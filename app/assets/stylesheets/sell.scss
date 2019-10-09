@@ -36,9 +36,9 @@
           }
           &--upload-item{
             box-sizing: border-box;
-            width: 113px;
+            width: 111px;
             margin-bottom: 10px;
-            margin-right: 2px;
+            margin-right: 1px;
             display: inline-block;
             border: 1px solid #eee;
             vertical-align: top;
@@ -52,7 +52,7 @@
           }
           &--upload-image{
             height: 140px;
-            width: 111px;
+            width: 109px;
           }
           &__upload-btnbox{
             font-size: 14px;
@@ -361,6 +361,12 @@
   &--blue{
     color: #0099e8;
   }
+  &--bule-underline{
+    color: #0099e8;
+  }
+  &--bule-underline:hover{
+    text-decoration:underline;
+  }
 }
 
 .btn-left{
@@ -388,4 +394,23 @@
   margin: 0;
   list-style: none;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+}
+
+.price-relative{
+  position: relative;
+}
+
+.price-position{
+  position: absolute;
+  top: 10px;
+}
+
+.price-yen{
+  float: left;
+  width: 10px;
+  margin-top: 15px;
+}
+
+.description-margin{
+  margin-top: 40px;
 }

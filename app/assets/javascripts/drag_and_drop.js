@@ -19,7 +19,7 @@ $(function() {
   }
 
   // プレビューを表示する関数
-  function readURL(input, list) {
+  function readURL(input, list, edit_num) {
     if (input.files && input.files[0]) {
       $.each(input.files, function(index, file) {
         count += 1;
@@ -41,9 +41,11 @@ $(function() {
             <a class="contents-item__container__uploadbox__zone-item__have-item--upload-btn btn-left" href="#" data-pict="${file.name}" id="pict-delete">削除</a>
             </div>
             </li>`;
-
+          
           if (count < 5) {
-            deleteWidth(input.files.length)
+            var num = input.files.length
+            num += edit_num
+            deleteWidth(num)
           } else {
             $(".contents-item__container__uploadbox__zone-item__dropbox").hide()
           }
@@ -55,14 +57,20 @@ $(function() {
   }
 
   // inputタグに変化があれば発火
-  $("#item-drop-zone").change(function(e){
-    
-    readURL(this, list);
+  $(document).on("change", "#item-drop-zone", function () {
+    count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
+    var edit_num = 0
+    if ($('.pict-delete-edit').length){
+      edit_num = $('.pict-delete-edit').length
+    }
+    console.log(this)
+    console.log(this.files)
+    readURL(this, list, edit_num);
     appendFile(list);
 
   });
 
-  // 削除ボタンがクリックされたら発火
+  // 出品-削除ボタンがクリックされたら発火
   $(document).on("click", "#pict-delete", function (e) {
     e.preventDefault();
     var target = $(e.target);
@@ -90,5 +98,34 @@ $(function() {
       deleteWidth(count)
     }
   })
+
+  // 編集-削除ボタンがクリックされたら発火
+  $(document).on("click", "#pict-delete-edit", function (e) {
+    e.preventDefault();
+    var target = $(e.target);
+    var pict_id = target.data('delete');
+    count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
+    target.parent().parent().remove();
+    
+    if (count == 5){
+      // form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
+      //           ドラッグアンドドロップ
+      //           <br>
+      //           またはクリックしてファイルをアップロード
+      //           <input multiple="multiple" type="file" name="item[images_attributes][][image]" class="contents-item__container__uploadbox__zone-item__dropbox--fileform" id="item-drop-zone">
+      //         </label>`
+      // $('.contents-item__container__uploadbox__zone-item__have-item').append(form)
+      $('.contents-item__container__uploadbox__zone-item__dropbox').show();
+
+    } 
+      deleteWidth(count - 1)
+    
+    count -= 1
+
+    hidden_form = `<input type="hidden", name="[delete_ids][]", value="${pict_id}">`    
+    $('.contents-item__container__uploadbox__zone-item').append(hidden_form)
+
+  })
+
 });
 

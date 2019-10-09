@@ -4,16 +4,17 @@ $(function() {
   var count = 0
 
   // カテゴリー用関数-カテゴリー選択表示
-  function ajaxSelectbox(cat, flag, cat_id){
+  // 第一引数:カテゴリーID、第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、第三引数:どの階層のカテゴリーかを指定
+  function ajaxSelectbox(cat, flag, which_cat){
     $.ajax({
       type: 'GET',
       url: '/api/select_child',
-      data: { cat: cat, flag: flag, cat_id: cat_id },
+      data: { cat: cat, flag: flag, which_cat: which_cat },
       dataType: 'html',
     })
     .done(function(html) {
       if (flag == 0){  // 0:option属性一覧を追加
-        var select_cat = `#select-cat${cat_id}`
+        var select_cat = `#select-cat${which_cat}`
         $(select_cat).append(html)
       } else if (flag == 1){  // 1:divにselect・optionを追加
         $('#select-category-box').append(html)
@@ -53,7 +54,9 @@ $(function() {
       dataType: 'html',
     })
     .done(function(html) {
-      $('#burden-select-box').after(html)
+      if (html != 0){
+        $('#burden-select-box').after(html)
+      }
     })
     .fail(function() {
       alert('ajax通信に失敗しました')
@@ -76,7 +79,6 @@ $(function() {
         });
       } else {
         $('.brand-ul').append(`<li class="brand-list">該当するブランドはありません</li>`)
-        // NoResult('該当する商品はありません')
       }
 
     })
@@ -98,10 +100,13 @@ $(function() {
  
   // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
-    if (count == 0){
+    if ($('#select-cat2 option').length == 0){
       var cat = $('#select-cat1 option:selected').val();
       
-      count += 1
+      count = 1
+      if (cat == '---') {
+        cat = 0
+      }
       ajaxSelectbox(cat, 1, 2)
       return
     }
@@ -121,7 +126,7 @@ $(function() {
     if (cat == '---' || cat == '') {  // カテゴリー1が空の時
       $('#select-cat2').prev().remove()  // カテゴリー2を消す
       $('#select-cat2').remove()
-      count -= 1
+      count = 0
     } else {  // カテゴリー1が空ではない時
       $('#select-cat2 option').remove()  // カテゴリー2の中身を削除
       ajaxSelectbox(cat, 0, 2)
@@ -161,7 +166,9 @@ $(function() {
       $('#burden-ways').remove()
     }
     var burden = $('#select-burden option:selected').val();
-    ajaxBurdenbox(burden)
+    if ((burden != "") && (burden != '---')){
+      ajaxBurdenbox(burden)
+    }
   })
 
   // 値段計算

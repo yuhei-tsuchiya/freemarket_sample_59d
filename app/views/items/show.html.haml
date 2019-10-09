@@ -4,105 +4,116 @@
 .item-deteal
   .item-deteal__box
     %h1.item-deteal__box__title
-      = @items.name
+      = @item.name
     .item-deteal__box__item
       .item-deteal__box__item__left
         .left__top
-          = image_tag @items.images[0].image, alt: '', class: 'slide__box__image3'
-
+          = image_tag @images[0].image.url, alt: '', class: 'slide__box__image3'
         .left__down
-
           .left__down__iir
-            .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
-            .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
-            .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
-            .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
-            .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
-
-
+            - @images.each_with_index do |image, index|
+              .left__down__iir__gffk
+                = image_tag image.image.url, alt: '', class: 'left__down__iir__gffk__image'
 
       %table.item-detail-table
         %tbody
           %tr
             %th 出品者
-            %td
-              = link_to "https://www.mercari.com/jp/u/676750793/" do
-                = @items.user_id
-              .yyy
+            %td.td-padding
+              = link_to "#", class: "kiyaku--bule-underline" do
+                = @item.user.nickname
+              .yyy.icon-top
                 .item-user-ratings
-                  %i.icon-good
+                  = fa_icon 'smile-o', {class: "good-icons--pink"}
                   %span 40
-                .item-user-ratings
-                  %i.icon-normal
+                .item-user-ratings.icon-margin
+                  = fa_icon 'meh-o', {class: "good-icons--orange"}
                   %span 0
-                .item-user-ratings
-                  %i.icon-bad
+                .item-user-ratings.icon-margin
+                  = fa_icon 'frown-o', {class: "good-icons--blue"}
                   %span 0
           %tr
             %th カテゴリー
-            %td
-              = link_to "https://www.mercari.com/jp/category/2/" do
-                %div
-                  = @items.category.parent.parent.name #親
+            %td.td-padding
+              - if @item.category.parent.parent
+                = link_to "https://www.mercari.com/jp/category/2/", class: "kiyaku--bule-underline" do
+                  %div
+                    = @item.category.parent.parent.name #親
               = link_to "https://www.mercari.com/jp/category/30/" do
-                .item-detail-table-sub-category
+                .item-detail-table-sub-category{class: "kiyaku--bule-underline"}
                   %i.icon-arrow-right
-                  = @items.category.parent.name        #子
+                  = "＞" + @item.category.parent.name        #子
               = link_to "https://www.mercari.com/jp/category/304/" do
-                .item-detail-table-sub-sub-category
+                .item-detail-table-sub-sub-category{class: "kiyaku--bule-underline"}
                   %i.icon-arrow-right
-                  = @items.category.name               #孫
-          %tr
-            %th ブランド
-            %td
-              %a{href: "https://www.mercari.com/jp/brand/5150/"}
-                %div
-                  シャネル
-          %tr
-            %th 商品のサイズ
-            %td
-              = @items.size.name
+                  = "＞" + @item.category.name               #孫
+          - if @item.brand
+            %tr
+              %th ブランド
+              %td.td-padding
+                %a{href: "https://www.mercari.com/jp/brand/5150/", class: "kiyaku--bule-underline"}
+                  %div
+                    = @item.brand.name
+          - if @item.size
+            %tr
+              %th 商品のサイズ
+              %td.td-padding
+                = @item.size.name
           %tr
             %th 商品の状態
-            %td
-              = @items.display_product_state
+            %td.td-padding
+              = @item.display_product_state
           %tr
             %th 配送料の負担
-            %td
-              = @items.burden.parent.name
+            %td.td-padding
+              = @item.burden.parent.name
           %tr
             %th 配送の方法
-            %td
-              = @items.burden.name
+            %td.td-padding
+              = @item.burden.name
           %tr
             %th 配送元地域
-            %td
-              %a{href: "https://www.mercari.com/jp/area/26/"}
-                = @items.prefecture.name
+            %td.td-padding
+              %a{href: "https://www.mercari.com/jp/area/26/", class: "kiyaku--bule-underline"}
+                = @item.prefecture.name
           %tr
             %th 発送日の目安
-            %td
-              = @items.display_shipping_days
+            %td.td-padding
+              = @item.display_shipping_days
 
-
-    .item-deteal__box__price
-      %span.oooo
-        ¥
-        = @items.price.to_s(:delimited)
-      %span.rrrr
-        （税込）
-      %span.wwww
-        = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
-    = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
-      購入画面に進む
-    .item-deteal__box__description
-      %p.item-deteal__box__description__idjs
-        = @items.description
+    -# current_userメソッドが使用可能になったら下記に差し替えること
+    -# - if @item.user != current_user
+    - if @item.user.id != 2
+      .item-deteal__box__price
+        %span.oooo
+          ¥
+          = @item.price.to_s(:delimited)
+        %span.rrrr
+          （税込）
+        %span.wwww
+          = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+      = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
+        購入画面に進む
+      .item-deteal__box__description
+        %p.item-deteal__box__description__idjs
+          = @item.description
+    - else
+      .item-deteal__box__price
+        %span.oooo
+          ¥
+          = @item.price.to_s(:delimited)
+        %span.rrrr
+          （税込）
+        %span.wwww
+          = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+      .item-deteal__box__description
+        %p.item-deteal__box__description__idjs
+          = @item.description
+      = link_to edit_item_path(@item.id), class:'kkooko--edit' do
+        商品の編集
+      = link_to "#", class:'kkooko--edit-grey' do
+        この商品を削除する
+      -# %a.contents-item__container__sell-btn--btn-red.grey{style: "width: 100%", href="#"} この商品を削除する
 
     .item-button-container.clearfix
       .item-button-left

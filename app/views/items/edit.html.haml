@@ -1,0 +1,222 @@
+.sign-in_header
+  .sign-in_header__logo
+    = link_to '' do 
+      = image_tag 'logo.svg', class: 'registration-header-logo'
+
+.contents-item
+  = render 'layouts/error_messages', model: @item
+  = form_with model: @item, local: true do |f|
+    .contents-item__message
+      商品の情報を入力
+    .contents-item__container
+
+      .contents-item__container__uploadbox
+        .contentsitem__container__uploadbox__text.label
+          出品画像
+          %span.hissu 必須
+        .contents-item__container__uploadbox__info.info
+          最大5枚までアップロードできます
+        .contents-item__container__uploadbox__zone-item
+          .contents-item__container__uploadbox__zone-item__have-item.clearfix
+            %ul{id: "item-append-target"}
+              - files = 0
+              - @item.images.each do |image|
+                - files += 1
+                %li.contents-item__container__uploadbox__zone-item__have-item--upload-item
+                  %figure.contents-item__container__uploadbox__zone-item__have-item--upload-figure
+                    = image_tag image.image.url, alt: '', class: 'contents-item__container__uploadbox__zone-item__have-item--upload-image pict-delete-edit'
+                  .contents-item__container__uploadbox__zone-item__have-item__upload-btnbox
+                    %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn{href: "#"} 　
+                    %a.contents-item__container__uploadbox__zone-item__have-item--upload-btn.btn-left{data: {delete: "#{image.id}"}, href: '#', id: 'pict-delete-edit'} 削除
+            = f.fields_for :image do |f_image|
+              - if files <= 4
+                = f_image.label :image, for: nil , class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", style: "width: #{615 - files * 120}px;" do
+                  %br
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+                  = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
+              - else
+                = f_image.label :image, for: nil , class: "contents-item__container__uploadbox__zone-item__dropbox clearfix", style: "width: #{615 - files * 120}px; display: none;" do
+                  %br
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+                  = f_image.file_field :image, multiple: true, type: 'file', name: "item[images_attributes][][image]", class: "contents-item__container__uploadbox__zone-item__dropbox--fileform", id: "item-drop-zone"
+
+
+    .contents-item__container__sell-contents
+      .contents-item__container__sell-contents__form-group
+        = f.label :name, class: "label--small", value: "商品名"
+        %span.hissu 必須
+        .contents-item__container__sell-contents__form-group__inputname
+          = f.text_field :name, class: "contents-item__container__sell-contents__form-group__inputname--input", placeholder: "商品名（必須40文字まで）"
+      .contents-item__container__sell-contents__form-group.description-margin
+        = f.label :description, class: "label--small", value: "商品の説明"
+        %span.hissu 必須
+        .contents-item__container__sell-contents__form-group__inputname
+          = f.text_area :description, class: "contents-item__container__sell-contents__form-group__inputname--input-description", rows: "5", placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 商品の詳細
+      .contents-item__container__sell-contents__form-box{id: "category-select-box"}
+        %div#select-category-box
+          = f.label :category, class: "label--small", value: "カテゴリー"
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "category", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat1"}
+                %option{value: nil} ---
+                - @category.children.each do |cat|
+                  - if cat == @item.category.parent.parent
+                    %option{value: cat.id, selected: true}
+                      = cat.name
+                  - else
+                    %option{value: cat.id}
+                      = cat.name
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "category", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat2"}
+                %option{value: nil} ---
+                - @item.category.parent.parent.children.each do |cat2|
+                  - if cat2 == @item.category.parent
+                    %option{value: cat2.id, selected: true}
+                      = cat2.name
+                  - else
+                    %option{value: cat2.id}
+                      = cat2.name
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "item[category_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-cat3"}
+                %option{value: nil} ---
+                - @item.category.parent.children.each do |cat3|
+                  - if cat3 == @item.category
+                    %option{value: cat3.id, selected: true}
+                      = cat3.name
+                  - else
+                    %option{value: cat3.id}
+                      = cat3.name
+      - if @item.size
+        .contents-item__container__sell-contents__form-box.description-margin{id: "size-select-box"}
+          %div
+            %label{name: "size_id", class: "label--small"} サイズ
+            %span.hissu 必須
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap
+                %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+                %select{name: "item[size_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+                  %option{value: nil} ---
+                  - @item.size.parent.children.each do |size|
+                    - if size == @item.size
+                      %option{value: size.id, selected: true}
+                        = size.name
+                    - else
+                      %option{value: size.id}
+                        = size.name
+      - if @item.brand
+        .contents-item__container__sell-contents__form-box.description-margin{id: "brand-select-box"}
+          %div
+            %label{name: "size_id", class: "label--small"} ブランド
+            %span.nini 任意
+            %div
+              .contents-item__container__sell-contents__form-box__select-wrap{id: "brand-append-target"}
+                %input{type: "text", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "brand-text", value: "#{@item.brand.name}"}
+                .div
+                  .ul{class: "brand-ul", style: "display: none;"}
+
+      .contents-item__container__sell-contents__form-box.description-margin
+        %div
+          = f.label :product_state, {class: "label--small", value: "商品の状態"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :product_state, @item.product_state_list.map { |state| [state, @item.product_state_list.index(state)] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 配送について
+      %a.contents-item__container__sell-contents--help{href: "#", } ?
+      .contents-item__container__sell-contents__form-box{id: "burden-select-box"}
+        %div
+          %label{name: "burden", class: "label--small"} 配送料の負担
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "burden", class: "contents-item__container__sell-contents__form-box__select-wrap--select", id: "select-burden"}
+                %option{value: nil} ---
+                - @burden.roots.each do |burden|
+                  - if burden == @item.burden.parent
+                    %option{value: burden.id, selected: true}
+                      = burden.name
+                  - else
+                    %option{value: burden.id}
+                      = burden.name
+      .contents-item__container__sell-contents__form-box.description-margin{id: "burden-ways"}
+        %div
+          %label{name: "burden_id", class: "label--small"} 配送の方法
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              %select{name: "item[burden_id]", class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+                %option{value: nil} ---
+                - @item.burden.parent.children.each do |burden|
+                  - if burden == @item.burden
+                    %option{value: burden.id, selected: true}
+                      = burden.name
+                  - else
+                    %option{value: burden.id}
+                      = burden.name
+
+
+      .contents-item__container__sell-contents__form-box.description-margin
+        %div
+          = f.label :prefecture_id, {class: "label--small", value: "発送元の地域"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :prefecture_id, @prefectures.map { |pref| [pref.name, pref.id] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+      .contents-item__container__sell-contents__form-box.description-margin
+        %div
+          = f.label :shipping_days, {class: "label--small", value: "発送までの日数"}
+          %span.hissu 必須
+          %div
+            .contents-item__container__sell-contents__form-box__select-wrap
+              %i.contents-item__container__sell-contents__form-box__select-wrap--icon
+              = f.select :shipping_days, @item.shipping_days_list.map { |days| [days, @item.shipping_days_list.index(days)] }, {include_blank: "---"}, {class: "contents-item__container__sell-contents__form-box__select-wrap--select"}
+
+    .contents-item__container__sell-contents.clearfix
+      %h3.contents-item__container__sell-contents--greyout 販売価格(300〜9,999,999)
+      %a.contents-item__container__sell-contents--help{href: "#", } ?
+      .contents-item__container__sell-contents__form-box
+        %div.clearfix.price-relative
+          = f.label :price, {class: "label--small.price-position", value: "価格"}
+          %span.hissu.price 必須
+          .contents-item__container__sell-contents__form-box__pricebox
+            %div{class: "price-yen"} ¥
+            %div  
+              = f.text_field :price, {class: "contents-item__container__sell-contents__form-box__pricebox--input", placeholder: "例）300"}
+        .contents-item__container__sell-contents__form-box__form-fee.clearfix
+          .contents-item__container__sell-contents__form-box__form-fee__fee-left.info
+            販売手数料 (10%)
+          .contents-item__container__sell-contents__form-box__form-fee__fee-right.info{id: "price-fee"}
+            - fee = (@item.price * 0.1).round
+            = fee
+        .contents-item__container__sell-contents__form-box__form-fee.clearfix
+          .contents-item__container__sell-contents__form-box__form-fee__fee-left.label
+            販売利益
+          .contents-item__container__sell-contents__form-box__form-fee__fee-right.lable{id: "price-benefit"}
+            = @item.price - fee
+
+    .contents-item__container__sell-btn
+      %div
+      = f.submit '変更する', class: "contents-item__container__sell-btn--btn-red"
+      %a.contents-item__container__sell-btn--btn-red.grey{href: "javascript:history.back()"}キャンセル
+
+= render 'devise/shared/devise-footer'
