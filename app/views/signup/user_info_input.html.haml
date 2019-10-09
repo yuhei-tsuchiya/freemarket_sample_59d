@@ -23,11 +23,6 @@
           完了
           .progress-status
 
-  - if @user.email == ""
-    メールアドレス登録ページ
-  - else
-    facebook/googleでの登録処理ページ
-
   -# 会員情報入力フォーム
   = form_with model: @user, local: true, url: phone_number_authentication_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
     .user-input
