@@ -57,12 +57,14 @@ $(function() {
   }
 
   // inputタグに変化があれば発火
-  $(document).on("change", "#item-drop-zone", function (e) {
+  $(document).on("change", "#item-drop-zone", function () {
     count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
     var edit_num = 0
     if ($('.pict-delete-edit').length){
       edit_num = $('.pict-delete-edit').length
     }
+    console.log(this)
+    console.log(this.files)
     readURL(this, list, edit_num);
     appendFile(list);
 
@@ -106,16 +108,18 @@ $(function() {
     target.parent().parent().remove();
     
     if (count == 5){
-      form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
-                ドラッグアンドドロップ
-                <br>
-                またはクリックしてファイルをアップロード
-                <input multiple="multiple" type="file" name="item[images_attributes][][image]" class="contents-item__container__uploadbox__zone-item__dropbox--fileform" id="item-drop-zone">
-              </label>`
-      $('.contents-item__container__uploadbox__zone-item__have-item').append(form)
-    } else {
+      // form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
+      //           ドラッグアンドドロップ
+      //           <br>
+      //           またはクリックしてファイルをアップロード
+      //           <input multiple="multiple" type="file" name="item[images_attributes][][image]" class="contents-item__container__uploadbox__zone-item__dropbox--fileform" id="item-drop-zone">
+      //         </label>`
+      // $('.contents-item__container__uploadbox__zone-item__have-item').append(form)
+      $('.contents-item__container__uploadbox__zone-item__dropbox').show();
+
+    } 
       deleteWidth(count - 1)
-    }
+    
     count -= 1
 
     hidden_form = `<input type="hidden", name="[delete_ids][]", value="${pict_id}">`    

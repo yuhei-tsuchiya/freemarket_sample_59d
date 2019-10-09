@@ -395,3 +395,22 @@
   list-style: none;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
 }
+
+.price-relative{
+  position: relative;
+}
+
+.price-position{
+  position: absolute;
+  top: 10px;
+}
+
+.price-yen{
+  float: left;
+  width: 10px;
+  margin-top: 15px;
+}
+
+.description-margin{
+  margin-top: 40px;
+}

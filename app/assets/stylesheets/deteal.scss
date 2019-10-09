@@ -241,4 +241,21 @@
 
 .good-icons{
   font-weight: 900;
+  &--pink{
+    color: #ef5185;
+  }
+  &--orange{
+    color: #fba933;
+  }
+  &--blue{
+    color: #6ab5d8;
+  }
+}
+
+.icon-top{
+  margin-top: 9px;
+}
+
+.icon-margin{
+  margin-left: 20px;
 }

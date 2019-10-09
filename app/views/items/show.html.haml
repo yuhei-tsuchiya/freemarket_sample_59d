@@ -4,7 +4,7 @@
 .item-deteal
   .item-deteal__box
     %h1.item-deteal__box__title
-      = @items.name
+      = @item.name
     .item-deteal__box__item
       .item-deteal__box__item__left
         .left__top
@@ -20,96 +20,96 @@
           %tr
             %th 出品者
             %td.td-padding
-              = link_to "https://www.mercari.com/jp/u/676750793/", class: "kiyaku--bule-underline" do
-                = @items.user.nickname
-              .yyy{style: "margin-top: 9px;"}
+              = link_to "#", class: "kiyaku--bule-underline" do
+                = @item.user.nickname
+              .yyy.icon-top
                 .item-user-ratings
-                  = fa_icon 'smile-o', {class: "good-icons", style: "color: #ef5185;"}
+                  = fa_icon 'smile-o', {class: "good-icons--pink"}
                   %span 40
-                .item-user-ratings{style: "margin-left: 10px;"}
-                  = fa_icon 'meh-o', {class: "good-icons", style: "color: #fba933;"}
+                .item-user-ratings.icon-margin
+                  = fa_icon 'meh-o', {class: "good-icons--orange"}
                   %span 0
-                .item-user-ratings{style: "margin-left: 10px;"}
-                  = fa_icon 'frown-o', {class: "good-icons", style: "color: #6ab5d8;"}
+                .item-user-ratings.icon-margin
+                  = fa_icon 'frown-o', {class: "good-icons--blue"}
                   %span 0
           %tr
             %th カテゴリー
             %td.td-padding
-              - if @items.category.parent.parent
+              - if @item.category.parent.parent
                 = link_to "https://www.mercari.com/jp/category/2/", class: "kiyaku--bule-underline" do
                   %div
-                    = @items.category.parent.parent.name #親
+                    = @item.category.parent.parent.name #親
               = link_to "https://www.mercari.com/jp/category/30/" do
                 .item-detail-table-sub-category{class: "kiyaku--bule-underline"}
                   %i.icon-arrow-right
-                  = "＞" + @items.category.parent.name        #子
+                  = "＞" + @item.category.parent.name        #子
               = link_to "https://www.mercari.com/jp/category/304/" do
                 .item-detail-table-sub-sub-category{class: "kiyaku--bule-underline"}
                   %i.icon-arrow-right
-                  = "＞" + @items.category.name               #孫
-          - if @items.brand
+                  = "＞" + @item.category.name               #孫
+          - if @item.brand
             %tr
               %th ブランド
               %td.td-padding
                 %a{href: "https://www.mercari.com/jp/brand/5150/", class: "kiyaku--bule-underline"}
                   %div
-                    = @items.brand.name
-          - if @items.size
+                    = @item.brand.name
+          - if @item.size
             %tr
               %th 商品のサイズ
               %td.td-padding
-                = @items.size.name
+                = @item.size.name
           %tr
             %th 商品の状態
             %td.td-padding
-              = @items.display_product_state
+              = @item.display_product_state
           %tr
             %th 配送料の負担
             %td.td-padding
-              = @items.burden.parent.name
+              = @item.burden.parent.name
           %tr
             %th 配送の方法
             %td.td-padding
-              = @items.burden.name
+              = @item.burden.name
           %tr
             %th 配送元地域
             %td.td-padding
               %a{href: "https://www.mercari.com/jp/area/26/", class: "kiyaku--bule-underline"}
-                = @items.prefecture.name
+                = @item.prefecture.name
           %tr
             %th 発送日の目安
             %td.td-padding
-              = @items.display_shipping_days
+              = @item.display_shipping_days
 
     -# current_userメソッドが使用可能になったら下記に差し替えること
-    -# - if @items.user != current_user
-    - if @items.user.id != 2
+    -# - if @item.user != current_user
+    - if @item.user.id != 2
       .item-deteal__box__price
         %span.oooo
           ¥
-          = @items.price.to_s(:delimited)
+          = @item.price.to_s(:delimited)
         %span.rrrr
           （税込）
         %span.wwww
-          = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+          = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
       = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
         購入画面に進む
       .item-deteal__box__description
         %p.item-deteal__box__description__idjs
-          = @items.description
+          = @item.description
     - else
       .item-deteal__box__price
         %span.oooo
           ¥
-          = @items.price.to_s(:delimited)
+          = @item.price.to_s(:delimited)
         %span.rrrr
           （税込）
         %span.wwww
-          = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+          = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
       .item-deteal__box__description
         %p.item-deteal__box__description__idjs
-          = @items.description
-      = link_to edit_item_path(@items.id), class:'kkooko--edit' do
+          = @item.description
+      = link_to edit_item_path(@item.id), class:'kkooko--edit' do
         商品の編集
       = link_to "#", class:'kkooko--edit-grey' do
         この商品を削除する

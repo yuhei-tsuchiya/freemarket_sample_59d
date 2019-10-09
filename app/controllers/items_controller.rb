@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
 
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_ancestry, only: [:sell, :edit]
+
   def index
     @items = Item.all.limit(10)
   end
@@ -7,9 +10,6 @@ class ItemsController < ApplicationController
   def sell
     @item = Item.new
     @item.images.build
-    @category = Category.find(1)
-    @burden = Burden.roots
-    @prefectures = Prefecture.all
   end
 
   def create
@@ -22,28 +22,20 @@ class ItemsController < ApplicationController
     else
       @item.images = []
       @item.images.build
-      @category = Category.find(1)
-      @burden = Burden.roots
-      @prefectures = Prefecture.all
+      set_ancestry
       render :sell
     end
   end
 
   def show
-    @items = Item.find(params[:id])
-    @images = @items.images
+    @images = @item.images
   end
 
   def edit
-    @item = Item.find(params[:id])
     @image = Image.new
-    @category = Category.find(1)
-    @burden = Burden.roots
-    @prefectures = Prefecture.all
   end
 
   def update
-    @item = Item.find(params[:id])
     update_params = item_params
     image_del_list = delete_images if delete_images
     image_update_list = update_params[:images_attributes] if update_params[:images_attributes]
@@ -63,9 +55,7 @@ class ItemsController < ApplicationController
     if @item.update(update_params)
       redirect_to item_path(params[:id])
     else
-      @category = Category.find(1)
-      @burden = Burden.roots
-      @prefectures = Prefecture.all
+      set_ancestry
       render :edit
     end
   end
@@ -91,6 +81,16 @@ class ItemsController < ApplicationController
     else
       return nil
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def set_ancestry
+    @category = Category.find(1)
+    @burden = Burden.roots
+    @prefectures = Prefecture.all
   end
 
 end
