@@ -1,5 +1,11 @@
 = render 'toppage/header'
 
+.bread-crumbs
+  .bread-crumbs__ii
+    - breadcrumb :mypage
+    = breadcrumbs  separator: " &rsaquo; "
+
+
 .mypage-main
   = render 'users/mypage-side-menu'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_044757) do
+ActiveRecord::Schema.define(version: 2019_10_07_033634) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "prefecture_id", null: false
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -34,11 +40,12 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "size_id"
     t.string "ancestry"
+    t.boolean "have_brand", default: false, null: false
     t.index ["size_id"], name: "index_categories_on_size_id"
   end
 
@@ -52,8 +59,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
-    t.integer "user_id", null: false
-    t.integer "item_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,13 +79,15 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
     t.bigint "category_id"
     t.bigint "size_id"
     t.bigint "burden_id"
+    t.bigint "brand_id"
+    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["burden_id"], name: "index_items_on_burden_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ancestry"
@@ -98,6 +106,17 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "buyer_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_transacts_on_buyer_id"
+    t.index ["item_id"], name: "index_transacts_on_item_id"
+    t.index ["seller_id"], name: "index_transacts_on_seller_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -123,8 +142,12 @@ ActiveRecord::Schema.define(version: 2019_10_06_044757) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "categories", "sizes"
+  add_foreign_key "items", "brands"
   add_foreign_key "items", "burdens"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizes"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "transacts", "items"
+  add_foreign_key "transacts", "users", column: "buyer_id"
+  add_foreign_key "transacts", "users", column: "seller_id"
 end

@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # デバッグ用
+  gem 'pry-rails'
   # 自動デプロイ用Capistrano関連のGemをインストール
   gem 'capistrano', '= 3.11.1'
   gem 'capistrano-rbenv'
@@ -54,6 +56,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+
 end
 
 
@@ -82,11 +85,6 @@ group :production do
   gem 'unicorn', '5.4.1'
 end
 
-# 本番環境用gemファイル
-group :production do
-  gem 'unicorn', '5.4.1'
-end
-
 # ユーザー管理機能及びビュー作成
 gem 'devise'
 gem 'haml-rails'
@@ -95,7 +93,6 @@ gem 'haml-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
-gem 'jquery-rails'
 
 # Font Awesome導入
 gem 'font-awesome-rails'
@@ -110,6 +107,9 @@ gem 'jquery-rails'
 #多階層構造
 gem 'ancestry'
 
+# メッセージの日本語化
+gem 'rails-i18n'
+
 #ダミーデータ
 gem 'faker'
 
@@ -118,3 +118,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+
+#パンくず
+gem "gretel"
