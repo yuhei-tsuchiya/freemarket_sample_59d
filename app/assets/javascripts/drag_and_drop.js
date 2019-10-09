@@ -102,13 +102,10 @@ $(function() {
     e.preventDefault();
     var target = $(e.target);
     var pict_id = target.data('delete');
-    console.log(pict_id)
-    console.log($('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length)
     count = $('.contents-item__container__uploadbox__zone-item__have-item--upload-item').length
     target.parent().parent().remove();
     
     if (count == 5){
-    
       form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
                 ドラッグアンドドロップ
                 <br>
@@ -125,7 +122,6 @@ $(function() {
     $('.contents-item__container__uploadbox__zone-item').append(hidden_form)
 
   })
-
 
 });
 
