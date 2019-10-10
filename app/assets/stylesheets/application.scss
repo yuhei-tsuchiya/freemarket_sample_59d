@@ -7,14 +7,15 @@
 
 // トップページ
 @import "index";
-@import 'deteal';
-@import 'exhibition';
+@import "deteal";
+@import "exhibition";
+@import "flash";
+
 // 商品出品ページ
-@import "./sell";
+@import "sell";
 
 //商品購入ページ
 @import "buy";
-
 
 @import "mypage";
 

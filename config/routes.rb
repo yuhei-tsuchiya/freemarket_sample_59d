@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'card/new'
+  get 'card/show'
+  get 'credit_cards/new'
+  get 'credit_cards/show'
+
+
   root to: 'items#index'
   devise_for :users,
   controllers: {
@@ -14,6 +20,7 @@ Rails.application.routes.draw do
     get "/log_out" => "users#destroy"
   end
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :signup, only:[:new, :create] do
     collection do
@@ -27,18 +34,14 @@ Rails.application.routes.draw do
 
   resources :profiles, only:[:show]
 
-  get 'testimages' => 'testimages#index'    # S3テスト用ファイルアップロード画面
-  post 'testimages' => 'testimages#create'    # S3テスト用ファイルアップロードのPOST
-
-  
-
   # 商品用ルーティング
   resources :items do
     collection do
-      get :sell   # 商品出品ページ
-      get :deteal # 商品詳細ページ
-      get :buy    # 商品購入ページ
+      get :sell                        # 商品出品ページ
+      get :detail                      # 商品詳細ページ
+      get 'buy/:id' => 'items#buy'     # 商品購入ページ
       get :person_info
+      get :pay
     end
   end
 
@@ -49,6 +52,15 @@ Rails.application.routes.draw do
     get "select_burden", to: "categorys#select_burden"
     get "search_brand", to: "categorys#search_brand"
   end
+
+  # クレカ関連
+  resources :card, only: [:new, :show, :destroy] do
+    collection do
+      post 'pay',    to: 'card#pay'
+      post 'buy/:id'  => 'card#buy'
+    end
+  end
+
 
 end
 

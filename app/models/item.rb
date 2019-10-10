@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  has_many :images
+
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
   belongs_to :user
   belongs_to :category
@@ -8,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :burden
 
   has_one :transact
+  accepts_nested_attributes_for :transact
   # has_many :comments  # コメント機能が実装できた際に有効化すること
 
   # null falseのバリデーション
@@ -33,13 +35,14 @@ class Item < ApplicationRecord
   validates :size_id, numericality: { less_than_or_equal_to: 66 }, allow_blank: true
   validates :brand_id, numericality: { less_than_or_equal_to: 10102 }, allow_blank: true
   validates :burden_id, numericality: { less_than_or_equal_to: 14 }
-  
+
   # アソシエーションのバリデーション
   validates :images, associated: true, presence: true
   validates :transact, associated: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+
 
   @@torihiki_info_list = ["出品中", "取引中", "売却済"]
   @@product_state_list = ["新品", "未使用", "傷なし", "やや傷あり", "やや傷汚れ", "傷汚れ", "状態悪し"]
