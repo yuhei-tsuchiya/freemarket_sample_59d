@@ -4,7 +4,7 @@ class Api::CategorysController < ApplicationController
 
   def select_child
     @category = Category.find(params[:cat]).children
-    @cat_id = params[:cat_id]
+    @which_cat = params[:which_cat]
     @flag = params[:flag].to_i
   end
 
@@ -19,7 +19,11 @@ class Api::CategorysController < ApplicationController
   end
 
   def select_burden
-    @burden = Burden.find(params[:burden]).children
+    if params[:burden]
+      @burden = Burden.find(params[:burden]).children
+    else
+      return 0
+    end
   end
 
   def search_brand

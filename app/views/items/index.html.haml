@@ -44,9 +44,11 @@
                       %p
                         ¥
                         = i.price
-                      = image_tag i.images[0].image, alt: 'next', class:'jojo'
+                      = image_tag i.images[0].image.url, alt: 'next', class:'jojo'
                     .item-small-box__bottom
                       %span.item-name111
                         = i.name
 
   = render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'

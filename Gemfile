@@ -113,6 +113,12 @@ gem 'rails-i18n'
 #ダミーデータ
 gem 'faker'
 
+# SNS認証関係
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
+
 #パンくず
 gem "gretel"
 

@@ -2,7 +2,7 @@
   %div
     .contents-item__container__sell-contents__form-box__select-wrap
       %i.contents-item__container__sell-contents__form-box__select-wrap--icon
-      %select.contents-item__container__sell-contents__form-box__select-wrap--select{id: "select-cat#{@cat_id}", name: "item[category_id]"}
+      %select.contents-item__container__sell-contents__form-box__select-wrap--select{id: "select-cat#{@which_cat}", name: "item[category_id]"}
         %option{value: nil} ---
         - @category.each do |cat|
           %option{value: cat.id}
@@ -14,9 +14,3 @@
     %option{value: cat.id}
       = cat.name
 
-
--# %select.contents-item__container__sell-contents__form-box__select-wrap--select{id: "select-cat#{@cat_id}"}
--#   %option{value: nil} ---
--#   - @category.each do |cat|
--#     %option{value: cat.id}
--#       = cat.name

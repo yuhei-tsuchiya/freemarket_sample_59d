@@ -22,8 +22,9 @@
 - has_many :buyer_transacts, class_name: 'Transacts', foreign_key: 'buyer_id'
 - has_many :seller_transacts, class_name: 'Transacts', foreign_key: 'seller_id'
 ## addressesテーブル
-|zip_code|string|null: false|
+|Column|Type|Options|
 |------|----|-------|
+|zip_code|string|null: false|
 |prefecture_id|string|null: false, foreign_key: true|  ※ 住所の都道府県
 |jusho_shikuchoson|string|null: false|
 |jusho_banchi|string|null: false|
@@ -125,4 +126,14 @@
 - belongs_to :item
 - belongs_to :buyer, class_name 'User', foreign_key: 'buyer_id'
 - belongs_to :seller, class_name: 'User', foreign_key:  'seller_id'
+
+
+## SNS_Credentialテーブル ※SNS認証関係
+|Column|Type|Options|
+|------|----|-------|
+|provider|string|null: false|
+|uid|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
 
