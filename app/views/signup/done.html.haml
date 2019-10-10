@@ -31,11 +31,10 @@
         登録が完了しました。
 
       .user-input__container__sell-btn.steppagefix.steppagefixstep3padding
-        %button.user-input__container__sell-btn--btn-red メルカリをはじめる
+        -# %button.user-input__container__sell-btn--btn-red メルカリをはじめる
+        = link_to "メルカリをはじめる", root_path, class: 'user-input__container__sell-btn--btn-red'
 
-  .done-footer
-    トップページの下段と同様の物を使うので、それを作っているメンバーからマージ後renderで引っ張ってくるので、現段階ではここは保留中
-
+  = render 'toppage/toppage-footer'
 
   = render 'devise/shared/devise-footer'
 

@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 
   end
 
+  def new
+ 
+  end
+    
   def person_info
 
     @prefectures = Prefecture.all

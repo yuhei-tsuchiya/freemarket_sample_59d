@@ -28,3 +28,6 @@
 
 # Ignore the uploaded files
 /public/uploads/*
+
+# SNS認証関係
+.env
