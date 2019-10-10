@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_ancestry, only: [:sell, :edit]
 
   def index
@@ -64,6 +64,11 @@ class ItemsController < ApplicationController
 
   def deteal
 
+  end
+
+  def destroy
+    @item.destroy if @item.user == current_user
+    redirect_to root_path, notice: '商品を削除しました'
   end
 
   private

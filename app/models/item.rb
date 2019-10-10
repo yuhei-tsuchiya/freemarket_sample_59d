@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many :images
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
   belongs_to :user
   belongs_to :category
@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :burden
 
-  has_one :transact
+  has_one :transact, dependent: :destroy
   # has_many :comments  # コメント機能が実装できた際に有効化すること
 
   # null falseのバリデーション
