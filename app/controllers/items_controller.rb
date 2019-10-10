@@ -35,7 +35,9 @@ class ItemsController < ApplicationController
 
 
   def buy
-
+    @items = Item.find(params[:id])
+    @user = User.find(current_user.id)
+    @card = Card.new
   end
 
   def deteal
@@ -50,4 +52,12 @@ class ItemsController < ApplicationController
   end
 
 
+  def pay
+    Payjp.api_key = 'sk_test_6da54b4ed1e7123d5e996bbb'
+    charge = Payjp::Charge.create(
+    :amount => @product.price,
+    :card => params['payjp-token'],
+    :currency => 'jpy',
+)
+end
 end

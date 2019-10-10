@@ -1,12 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise  :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :validatable
 
   has_one :address
   has_many :items
-
+  has_one :card
   accepts_nested_attributes_for :address
 
   # item、transactとのアソシエーション
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates :lastname_kana,           presence: true, on: :validates_user_info_input
   validates :firstname_kana,          presence: true, on: :validates_user_info_input
   validates :birthday,                presence: true, on: :validates_user_info_input
-  
+
   # phone_number_authentication入力項目
   validates :cellphone_number,        presence: true, on: :validates_phone_number_authentication
 

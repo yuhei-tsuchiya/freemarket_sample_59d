@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'card/new'
+  get 'card/show'
+  get 'credit_cards/new'
+  get 'credit_cards/show'
   # root to: 'toppage#index'
   root to: 'users#person_info'
   devise_for :users
@@ -20,10 +24,11 @@ Rails.application.routes.draw do
   # 商品用ルーティング
   resources :items do
     collection do
-      get :sell   # 商品出品ページ
-      get :deteal # 商品詳細ページ
-      get :buy    # 商品購入ページ
+      get :sell                        # 商品出品ページ
+      get :deteal                      # 商品詳細ページ
+      get 'buy/:id' => 'items#buy'     # 商品購入ページ
       get :person_info
+      get :pay
     end
   end
 
@@ -34,6 +39,17 @@ Rails.application.routes.draw do
     get "select_burden", to: "categorys#select_burden"
     get "search_brand", to: "categorys#search_brand"
   end
+
+  # クレカ関連
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show',   to: 'card#show'
+      post 'pay',    to: 'card#pay'
+      post 'delete', to: 'card#delete'
+      post 'buy/:id'  => 'card#buy'
+    end
+  end
+
 
 end
 

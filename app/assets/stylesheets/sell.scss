@@ -7,7 +7,7 @@
   &__message{
     padding: 32px;
     font-size:22px;
-    font-weight: 600; 
+    font-weight: 600;
     text-align: center;
   }
   &__container{
@@ -71,7 +71,7 @@
             line-height: 44px;
             text-align: center;
             color: #0099e8;
-          } 
+          }
         }
         &__dropbox{
           position: relative;
@@ -88,8 +88,8 @@
           text-align: center;
           cursor: pointer;
           float: left;
-          &--fileform{ 
-            // display: none;
+          &--fileform{
+
             position: absolute;
             top: 0;
             opacity: 0;
@@ -168,7 +168,7 @@
         float: right;
         width: 400px;
         margin: 0;
-        
+
         &__select-wrap{
           margin: 8px 0 0;
           position: relative;
@@ -256,7 +256,7 @@
           }
         }
       }
-      
+
     }
     &__sell-btn{
       padding: 30px 40px 40px;

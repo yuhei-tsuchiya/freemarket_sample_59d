@@ -19,7 +19,8 @@
 ### Association
 - has_many :items
 - has_one :address
-
+- has_many :buyer_transacts, class_name: 'Transacts', foreign_key: 'buyer_id'
+- has_many :seller_transacts, class_name: 'Transacts', foreign_key: 'seller_id'
 ## addressesテーブル
 |zip_code|string|null: false|
 |------|----|-------|
@@ -31,7 +32,7 @@
 ### Association
 - belongs_to :user
 - belongs_to_active_hash :prefecture  ※Gem active_hashを使用して都道府県を取得
-
+- has_one    :transaction
 ## create_credit_cardsテーブル(Gem PAYJPの仕様に準拠)
 |Column|Type|Options|
 |------|----|-------|
@@ -113,3 +114,15 @@
 ### Association
 - has_many :items
 - has_ancestry
+
+## ## transactsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|foreign_key: true|
+|seller_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :item
+- belongs_to :buyer, class_name 'User', foreign_key: 'buyer_id'
+- belongs_to :seller, class_name: 'User', foreign_key:  'seller_id'
+
