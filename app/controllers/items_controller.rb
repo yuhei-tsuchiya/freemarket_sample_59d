@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.new(item_params)
     @item.build_transact(seller_id: current_user.id)
     if @item.save
