@@ -4,25 +4,25 @@
 .item-deteal
   .item-deteal__box
     %h1.item-deteal__box__title
-      = @items.name
+      = @item.name
     .item-deteal__box__item
       .item-deteal__box__item__left
         .left__top
-          = image_tag @items.images[0].image.url, alt: '', class: 'slide__box__image3'
+          = image_tag @item.images[0].image.url, alt: '', class: 'slide__box__image3'
 
         .left__down
 
           .left__down__iir
             .left__down__iir__gffk
-              = image_tag @items.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @item.images[0].image, alt: '', class: 'left__down__iir__gffk__image'
             .left__down__iir__gffk
-              = image_tag @items.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @item.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
             .left__down__iir__gffk
-              = image_tag @items.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @item.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
             .left__down__iir__gffk
-              = image_tag @items.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @item.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
             .left__down__iir__gffk
-              = image_tag @items.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
+              = image_tag @item.images[0].image.url, alt: '', class: 'left__down__iir__gffk__image'
 
 
 
@@ -32,7 +32,7 @@
             %th 出品者
             %td
               = link_to "https://www.mercari.com/jp/u/676750793/" do
-                = @items.user_id
+                = @item.user_id
               .yyy
                 .item-user-ratings
                   %i.icon-good
@@ -48,15 +48,15 @@
             %td
               = link_to "https://www.mercari.com/jp/category/2/" do
                 %div
-                  = @items.category.parent.parent.name #親
+                  = @item.category.parent.parent.name #親
               = link_to "https://www.mercari.com/jp/category/30/" do
                 .item-detail-table-sub-category
                   %i.icon-arrow-right
-                  = @items.category.parent.name        #子
+                  = @item.category.parent.name        #子
               = link_to "https://www.mercari.com/jp/category/304/" do
                 .item-detail-table-sub-sub-category
                   %i.icon-arrow-right
-                  = @items.category.name               #孫
+                  = @item.category.name               #孫
           %tr
             %th ブランド
             %td
@@ -66,43 +66,43 @@
           %tr
             %th 商品のサイズ
             %td
-              = @items.size.name
+              = @item.size.name
           %tr
             %th 商品の状態
             %td
-              = @items.display_product_state
+              = @item.display_product_state
           %tr
             %th 配送料の負担
             %td
-              = @items.burden.parent.name
+              = @item.burden.parent.name
           %tr
             %th 配送の方法
             %td
-              = @items.burden.name
+              = @item.burden.name
           %tr
             %th 配送元地域
             %td
               %a{href: "https://www.mercari.com/jp/area/26/"}
-                = @items.prefecture.name
+                = @item.prefecture.name
           %tr
             %th 発送日の目安
             %td
-              = @items.display_shipping_days
+              = @item.display_shipping_days
 
 
     .item-deteal__box__price
       %span.oooo
         ¥
-        = @items.price.to_s(:delimited)
+        = @item.price.to_s(:delimited)
       %span.rrrr
         （税込）
       %span.wwww
-        = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+        = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
     = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
       購入画面に進む
     .item-deteal__box__description
       %p.item-deteal__box__description__idjs
-        = @items.description
+        = @item.description
 
     .item-button-container.clearfix
       .item-button-left

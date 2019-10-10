@@ -3,8 +3,8 @@ class CardController < ApplicationController
   require "payjp"
 
   def new
-    card = Card.where(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    card = current_user.card
+    redirect_to action: "show" unless card.nil?
   end
 
   def pay #payjpとCardのデータベース作成を実施します。
@@ -28,7 +28,7 @@ class CardController < ApplicationController
   end
 
   def delete #PayjpとCardデータベースを削除します
-    card = Card.where(user_id: current_user.id).first
+    card = current_user.card.first
     if card.blank?
       redirect_to action: "new"
     else
@@ -40,7 +40,7 @@ class CardController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = Card.where(user_id: current_user.id).first
+    card = current_user.card.first
     if card.blank?
       redirect_to action: "new"
     else
@@ -51,7 +51,7 @@ class CardController < ApplicationController
   end
 
   def buy #クレジット購入
-    card = Card.where(user_id: current_user.id)
+    card = current_user.card
 
     if card.blank?
       redirect_to action: "new"

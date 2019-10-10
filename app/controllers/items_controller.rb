@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.all.limit(10)
   end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def buy
     @items = Item.find(params[:id])
-    @user = User.find(current_user.id)
+
     @card = Card.new
   end
 
@@ -60,4 +60,11 @@ class ItemsController < ApplicationController
     :currency => 'jpy',
 )
 end
+
+
+def set_item
+  @item = Item.find(params[:id])
 end
+
+end
+

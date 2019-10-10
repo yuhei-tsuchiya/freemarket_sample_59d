@@ -11,15 +11,15 @@
         .buy-content-inner
           .buy-content-inner__on
             %h3.buy-item-image
-              = image_tag @items.images[0].image.url
+              = image_tag @item.images[0].image.url
             %p.buy-item-name.bold
-              = @items.name
+              = @item.name
           = form_with  url: '/card/buy/:id', method: :get, class: 'buy-form' do |f|
             %P.buy-price-ja.bold
               ¥
-              = @items.price.to_s(:delimited)
+              = @item.price.to_s(:delimited)
               %span.item-shipping-fee.f14.bold
-                = @items.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
+                = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
               %ul.buy-accordion.not-have
                 %li.accordion-parent
                   .accordion-toggle
@@ -32,7 +32,7 @@
                     %span{data:{buy:{pay: "14200"}}}
                       ¥
                       = @items.price.to_s(:delimited)
-              = link_to "購入する", "/card/buy/#{@items.id}", class:'btn-default btn-red bold', method: :post
+              = link_to "購入する", "/card/buy/#{@item.id}", class:'btn-default btn-red bold', method: :post
 
       %section.buy-content.buy-user-info
         .buy-content-inner
