@@ -67,8 +67,17 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy if @item.user == current_user
-    redirect_to root_path, notice: '商品を削除しました'
+    if @item.user == current_user
+      if @item.destroy
+        redirect_to root_path, notice: '商品を削除しました'
+      else
+        @images = @item.images
+        flash.now[:alert] = "商品削除に失敗しました"
+        render :show
+      end
+    else
+      redirect_to item_path(params[:id])
+    end
   end
 
   private
