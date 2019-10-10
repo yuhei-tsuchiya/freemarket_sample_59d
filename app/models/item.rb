@@ -10,7 +10,8 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :burden
 
-  has_one :transact, dependent: :destroy
+  has_one :transact
+  accepts_nested_attributes_for :transact
   # has_many :comments  # コメント機能が実装できた際に有効化すること
 
   # null falseのバリデーション
@@ -36,7 +37,7 @@ class Item < ApplicationRecord
   validates :size_id, numericality: { less_than_or_equal_to: 66 }, allow_blank: true
   validates :brand_id, numericality: { less_than_or_equal_to: 10102 }, allow_blank: true
   validates :burden_id, numericality: { less_than_or_equal_to: 14 }
-  
+
   # アソシエーションのバリデーション
   validates :images, associated: true, presence: true
   validates :transact, associated: true

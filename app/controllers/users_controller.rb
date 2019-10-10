@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
     
   def person_info
-    @user = User.find(current_user)
+
     @prefectures = Prefecture.all
   end
 
