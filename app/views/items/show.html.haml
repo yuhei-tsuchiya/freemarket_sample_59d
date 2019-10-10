@@ -81,9 +81,7 @@
             %td.td-padding
               = @item.display_shipping_days
 
-    -# current_userメソッドが使用可能になったら下記に差し替えること
-    -# - if @item.user != current_user
-    - if @item.user.id != 2
+    - if @item.user != current_user
       .item-deteal__box__price
         %span.oooo
           ¥
@@ -113,7 +111,6 @@
         商品の編集
       = link_to "#", class:'kkooko--edit-grey' do
         この商品を削除する
-      -# %a.contents-item__container__sell-btn--btn-red.grey{style: "width: 100%", href="#"} この商品を削除する
 
     .item-button-container.clearfix
       .item-button-left
