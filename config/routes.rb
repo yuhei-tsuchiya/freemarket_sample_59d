@@ -25,8 +25,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profiles, only:[:show]
+
   get 'testimages' => 'testimages#index'    # S3テスト用ファイルアップロード画面
   post 'testimages' => 'testimages#create'    # S3テスト用ファイルアップロードのPOST
+
+  
 
   # 商品用ルーティング
   resources :items do
