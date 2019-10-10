@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_ancestry, only: [:sell, :edit]
 
   def index
@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
     @image = Image.new
   end
 
+
   def update
     update_params = item_params
     image_del_list = delete_images if delete_images
@@ -59,7 +60,9 @@ class ItemsController < ApplicationController
   end
 
   def buy
+    @items = Item.find(params[:id])
 
+    @card = Card.new
   end
 
   def deteal
@@ -89,4 +92,19 @@ class ItemsController < ApplicationController
     @prefectures = Prefecture.all
   end
 
+  def pay
+    Payjp.api_key = 'sk_test_6da54b4ed1e7123d5e996bbb'
+    charge = Payjp::Charge.create(
+    :amount => @product.price,
+    :card => params['payjp-token'],
+    :currency => 'jpy',
+)
 end
+
+
+def set_item
+  @item = Item.find(params[:id])
+end
+
+end
+

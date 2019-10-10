@@ -52,7 +52,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-doc'
-  
+
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
@@ -121,3 +121,6 @@ gem 'dotenv-rails'
 
 #パンくず
 gem "gretel"
+
+
+gem 'payjp'
