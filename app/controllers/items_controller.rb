@@ -69,6 +69,20 @@ class ItemsController < ApplicationController
 
   end
 
+  def destroy
+    if @item.user == current_user
+      if @item.destroy
+        redirect_to root_path, notice: '商品を削除しました'
+      else
+        @images = @item.images
+        flash.now[:alert] = "商品削除に失敗しました"
+        render :show
+      end
+    else
+      redirect_to item_path(params[:id])
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :size_id, :brand_id, :product_state, :burden_id, :prefecture_id, :shipping_days, :price, images_attributes: [:image] ).merge(good: 0, user_id: current_user.id, torihiki_info: 0)
