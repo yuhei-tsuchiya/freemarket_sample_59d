@@ -28,7 +28,7 @@ class CardController < ApplicationController
   end
 
   def destroy #PayjpとCardデータベースを削除します
-    card = current_user.card.first
+    card = current_user.card
     if card.blank?
       redirect_to action: "new"
     else
@@ -40,13 +40,14 @@ class CardController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = current_user.card.first
+    card = current_user.card
     if card.blank?
       redirect_to action: "new"
     else
       Payjp.api_key = Rails.application.credentials[:api]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
+      @card_id = card.id
     end
   end
 
