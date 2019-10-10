@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
     @image = Image.new
   end
 
+
   def update
     update_params = item_params
     image_del_list = delete_images if delete_images
