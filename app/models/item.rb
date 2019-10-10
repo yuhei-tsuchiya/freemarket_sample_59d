@@ -1,7 +1,5 @@
 class Item < ApplicationRecord
 
-  # before_destroy :should_not_destroy_if_error
-
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
   belongs_to :user
@@ -44,13 +42,6 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-
-  # destroyアクションでのエラーハンドリング
-  # def should_not_destroy_if?
-  #   if 
-  #   throw :abort
-  # end
-
 
 
   @@torihiki_info_list = ["出品中", "取引中", "売却済"]
