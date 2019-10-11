@@ -92,8 +92,12 @@
           （税込）
         %span.wwww
           = @item.burden.parent.name.sub(/（出品者負担）/,"").sub(/（購入者負担）/,"")
-      = link_to "https://www.mercari.com/jp/category/304/", class:'kkooko'do
-        購入画面に進む
+      - if @item.transact.buyer_id
+        = link_to "#", class:'kkooko', style: "background-color: grey;"do
+          売り切れました
+      - else
+        = link_to "/items/buy/#{@item.id}", class:'kkooko'do
+          購入画面に進む
       .item-deteal__box__description
         %p.item-deteal__box__description__idjs
           = @item.description
@@ -109,9 +113,13 @@
       .item-deteal__box__description
         %p.item-deteal__box__description__idjs
           = @item.description
-      = link_to edit_item_path(@item.id), class:'kkooko--edit' do
-        商品の編集
-      = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: "確認\n削除すると二度と復活できません\n本当に削除しますか？" }, class: 'kkooko--edit-grey'
+      - if @item.transact.buyer_id
+        = link_to edit_item_path(@item.id), class:'kkooko--edit-grey'do
+          商品が購入されました。発送してください。
+      - else
+        = link_to edit_item_path(@item.id), class:'kkooko--edit' do
+          商品の編集
+        = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: "確認\n削除すると二度と復活できません\n本当に削除しますか？" }, class: 'kkooko--edit-grey'
 
 
 
