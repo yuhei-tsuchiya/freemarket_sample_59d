@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "/sign_in" => "devise/sessions#new"
     get "/sign_up" => "devise/registrations#new"
     get "/log_out" => "users#destroy"
+
   end
 
 
