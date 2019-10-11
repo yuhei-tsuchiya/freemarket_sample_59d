@@ -61,7 +61,6 @@ class ItemsController < ApplicationController
 
   def buy
     @user = @item.user
-
     @card = Card.new
   end
 
