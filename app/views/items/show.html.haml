@@ -11,7 +11,7 @@
       .item-deteal__box__item__left
         .left__top
 
-          = image_tag @items.images[0].image.url, alt: '', class: 'slide__box__image3'
+          = image_tag @item.images[0].image.url, alt: '', class: 'slide__box__image3'
         .left__down
           .left__down__iir
             - @images.each_with_index do |image, index|
