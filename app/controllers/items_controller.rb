@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :buy]
   before_action :set_ancestry, only: [:sell, :edit]
 
   def index
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @items = Item.find(params[:id])
+    @user = @item.user
 
     @card = Card.new
   end
