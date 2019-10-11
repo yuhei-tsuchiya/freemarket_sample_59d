@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:sell, :create, :edit, :update, :destroy, :buy]
   before_action :set_item, only: [:show, :edit, :update, :destroy, :buy]
   before_action :set_ancestry, only: [:sell, :edit]
 
@@ -30,9 +31,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @image = Image.new
+    if @item.user == current_user
+      @image = Image.new
+    else
+      redirect_to item_path(params[:id])
+    end
   end
-
 
   def update
     update_params = item_params
@@ -60,12 +64,12 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @user = @item.user
-    @card = Card.new
-  end
-
-  def deteal
-
+    if @item.user == current_user
+      redirect_to item_path(params[:id])
+    else
+      @user = @item.user
+      @card = Card.new
+    end
   end
 
   def destroy
@@ -108,16 +112,11 @@ class ItemsController < ApplicationController
   def pay
     Payjp.api_key = 'sk_test_6da54b4ed1e7123d5e996bbb'
     charge = Payjp::Charge.create(
-    :amount => @product.price,
-    :card => params['payjp-token'],
-    :currency => 'jpy',
-)
-end
-
-
-def set_item
-  @item = Item.find(params[:id])
-end
+      :amount => @product.price,
+      :card => params['payjp-token'],
+      :currency => 'jpy',
+    )
+  end
 
 end
 
