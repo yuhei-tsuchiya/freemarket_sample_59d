@@ -60,3 +60,5 @@ crumb :log_out do
   parent :root
 end
 
+# 商品カテゴリー
+

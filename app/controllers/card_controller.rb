@@ -2,25 +2,34 @@ class CardController < ApplicationController
 
   require "payjp"
 
+  before_action :authenticate_user!
+
   def new
-    card = current_user.card
-    redirect_to action: "show" unless card.nil?
+    if current_user.card
+      redirect_to action: "show" unless current_user.card.nil?
+    end
   end
 
   def pay #payjpとCardのデータベース作成を実施します。
     Payjp.api_key = Rails.application.credentials[:api]
-    if params['payjp-token'].blank?
+    if params['payjp_token'].blank?
       redirect_to action: "new"
     else
+      user_id = current_user.id
       customer = Payjp::Customer.create(
-      # description: '登録テスト', #なくてもOK
-      # email: current_user.email, #なくてもOK
-      card: params['payjp-token'],
-      metadata: {user_id: current_user.id}
-      ) #念の為metadataにuser_idを入れましたがなくてもOK
-      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+        # description: '登録テスト', #なくてもOK
+        # email: current_user.email, #なくてもOK
+        card: params['payjp_token'],
+        metadata: {user_id: user_id}
+        ) #念の為metadataにuser_idを入れましたがなくてもOK
+      @card = Card.new(user_id: user_id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "show"
+        # redirect_to action: "show"
+        # if params[:from] == "signup"
+        #   redirect_to done_signup_index_path
+        # elsif params[:from] == "profiles"
+        redirect_to profile_path(current_user.id), notice: 'クレジットカードを登録しました'
+        # end
       else
         redirect_to action: "pay"
       end

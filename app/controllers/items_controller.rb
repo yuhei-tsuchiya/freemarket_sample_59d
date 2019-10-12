@@ -8,6 +8,23 @@ class ItemsController < ApplicationController
     @items = Item.all.limit(10)
   end
 
+  def category
+    @items = Item.all.limit(10)  # 表示確認用、後で削除
+    cat_parent = Category.find(params[:id])
+    @cat_name = cat_parent.name
+    @category_items = []
+    # binding.pry
+    if cat_parent.children
+      cat_parent.children.each do |child|
+        child.children.each do |cat|
+          @category_items += (Item.where(id: cat.id).limit(5))
+        end
+      end
+    else
+      @category_items = Item.where(id: cat_parent.id).limit(15)
+    end
+  end
+
   def sell
     @item = Item.new
     @item.images.build
@@ -107,15 +124,6 @@ class ItemsController < ApplicationController
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
-  end
-
-  def pay
-    Payjp.api_key = 'sk_test_6da54b4ed1e7123d5e996bbb'
-    charge = Payjp::Charge.create(
-      :amount => @product.price,
-      :card => params['payjp-token'],
-      :currency => 'jpy',
-    )
   end
 
 end
