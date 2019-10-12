@@ -61,4 +61,18 @@ crumb :log_out do
 end
 
 # 商品カテゴリー
+@categories = Category.all
+@categories.each do |cat|
+  if cat.depth == 1
+    crumb :"item#{cat.id}" do
+      link cat.name, "/items/category/#{cat.id}"
+      parent :root
+    end
+  else
+    crumb :"item#{cat.id}" do
+      link cat.name, "/items/category/#{cat.id}"
+      parent :"item#{cat.parent.id}"
+    end
+  end
+end
 

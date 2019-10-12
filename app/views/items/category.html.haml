@@ -4,44 +4,22 @@
   = render 'layouts/flash'
 
   .body
-    -# .slide
-    -#   .slide__box
-    -#     = image_tag "top-banner-camp-4f3fd88c685e8932d7dde2ad3a8336ba.jpg", alt: '', class: 'slide__box__image1'
-    -#   %button.prevbtn
-    -#     = image_tag "prev.png", alt: 'prev'
-    -#   %button.nextbtn
-    -#     = image_tag "next.png", alt: 'next'
-
-
-    -# .popular-category
-    -#   %h2.popular-category__top
-    -#     人気のカテゴリー
-    -#   .popular-category__bottom
-    -#     %ul.popular-category__bottom__box
-    -#       %li.popular-category__bottom__box__ladys
-    -#         レディース
-    -#       %li.popular-category__bottom__box__mens
-    -#         メンズ
-    -#       %li.popular-category__bottom__box__electronics
-    -#         家電・スマホ・カメラ
-    -#       %li.popular-category__bottom__box__toy
-    -#         おもちゃ・ホビー・グッズ
 
     .bread-crumbs
       .bread-crumbs__ii
-        - breadcrumb :mypage
-        = breadcrumbs  separator: " &rsaquo; "
+        - breadcrumb :"item#{@selected_cat.id}"
+        = breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
 
     .product
       .ladys-new-items
         .ladys-new-items__top
           %h3.ladys-new-items__top__title
-            = "#{@cat_name} の商品一覧"
+            = "#{@selected_cat.name} の商品一覧"
           = link_to root_path, class: 'ladys-new-items__top__more' do
             もっと見る ＞
         .ladys-new-items__bottom
           .ladys-new-items__bottom__grid
-            - @category_items.each do |i|
+            - @items.each do |i|
               .index-item
                 = link_to item_path(i), class: 'index-item__link' do
                   .index-item__link__small-box
