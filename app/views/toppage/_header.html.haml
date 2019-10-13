@@ -6,7 +6,7 @@
         = link_to root_path, class: 'rin' do
           = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class: 'mercari-image'
       .header-box__top__search
-        %form.header-form{action: "https://www.mercari.com/jp/search/"}
+        %form.header-form{action: "#"}
           %input.input-default{name: "keyword", placeholder: "何かお探しですか？", type: "search", style: 'border-right: none'}
           %button.search-button
             %i.icon-search
@@ -44,5 +44,4 @@
               %path{d: "M6.682 12.657L1.67 7.642 0 9.313 6.682 16 21 1.672 19.33 0z", fill: "currentColor"}
             やることリスト
         .header-box__bottom__right__mypage
-          = link_to root_path, class: 'mypage-link' do
-            マイページ
+          = link_to "マイページ", profile_path(current_user.id), class: 'mypage-link'

@@ -32,15 +32,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only:[:show]
+  resources :profiles, only:[:edit, :show] do
+    collection do
+      get ':id/edit2' => 'profiles#edit2'
+    end
+  end
 
   # 商品用ルーティング
   resources :items do
     collection do
       get :sell                        # 商品出品ページ
-      get :detail                      # 商品詳細ページ
       get 'buy/:id' => 'items#buy'     # 商品購入ページ
-      get :person_info
       get :pay
     end
   end
