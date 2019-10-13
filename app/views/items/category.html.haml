@@ -6,9 +6,23 @@
   .body
 
     .bread-crumbs
-      .bread-crumbs__ii
+      .bread-crumbs__ii.cat-crum
         - breadcrumb :"item#{@selected_cat.id}"
         = breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
+
+    .category-link
+      .category-link__linkbox
+        .category-link__linkbox__top
+          %ul.category-link__linkbox__top--cat-ul.clearfix
+            - if @selected_cat.depth == 3
+              - @selected_cat.siblings.each do |cat|
+                %li.category-link__linkbox__top--cat-ul--cat-li
+                  = link_to cat.name, "/items/category/#{cat.id}", class: "category-link__linkbox__top--cat-ul--cat-li--cat-a"
+            - else
+              - @selected_cat.children.each do |cat|
+                %li.category-link__linkbox__top--cat-ul--cat-li
+                  = link_to cat.name, "/items/category/#{cat.id}", class: "category-link__linkbox__top--cat-ul--cat-li--cat-a"
+
 
     .product
       .ladys-new-items
