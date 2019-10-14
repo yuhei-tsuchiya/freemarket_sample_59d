@@ -5,26 +5,56 @@
     - breadcrumb :mypage
     = breadcrumbs  separator: " &rsaquo; "
 
+
 .mypage-main
   = render 'users/mypage-side-menu'
 
-  -# プロフィール画面
   .mypage-main__right-contents
-    .profile-contents
-      .profile-contents__box.profile-title
-        プロフィール
-      .profile-contents__box.profile-bg
-        .setting-profile
-          .setting-profile__box
-            %figure
-              = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
-          .setting-profile__box
-            %input.profile-box-size
-      .profile-contents__box
-        %textarea{name: "introduction", class: "introduction-box", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-      .profile-contents__box
-        %button.profile-button
-          変更する
+    %section.mypage-user-icon
+      = link_to "#" do
+        %figure
+          = image_tag '//static.mercdn.net/thumb/members/700786172.jpg?1495318893'
+
+        %h2.bold
+          ダンボー
+        .mypage-number
+          %div.kk
+            評価
+            %span.bold
+              14
+          %div.kk
+            出品数
+            %span.bold
+              0
+    %section.mypage-tab-container-notification-todo
+      %ul.mypage-tabs
+        %li
+          %h3
+            お知らせ
+        %li.active
+          %h3
+            やることリスト
+      .tab-content
+        %ul.mypage-item-list
+          = image_tag "https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?2870273"
+          .mypage-item-not-found
+            現在、やることリストはありません
+
+      %section.mypage-tab-container
+        %h2.mypage-tab-head
+          購入した商品
+        %ul.mypage-tabs
+          %li.active
+            %h3
+              お知らせ
+          %li
+            %h3
+              やることリスト
+      .tab-content
+        %ul.mypage-item-list
+          = image_tag "https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?2870273"
+          .mypage-item-not-found
+            取引中の商品がありません
 
 = render 'toppage/toppage-footer'
 

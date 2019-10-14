@@ -3,12 +3,18 @@
 .logout-main
   = render 'users/mypage-side-menu'
 
+  -# 修正前
+  -# .logout-main__right
+  -#   = form_with class: 'l-single-inner', action: "https://www.mercari.com/jp/logout/", method: "POST", novalidate: "novalidate" do
+  -#     .l-single-content
+  -#       -# %button.btn-default.btn-red{type: "submit"} ログアウト
+  -#       -# %input{name: "__csrf_value", type: "hidden", value: "b66f76f0af6533a7ef8ffd1e819cd400923f651ad5edd7/640b653da1b612bbbe5f9e0cf00d1fc4ec682f3ad5a5480b2f7b7e98409d8a3023f092f7096722b7c00"}
+  -#       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-default btn-red'
+  
+  -# 修正後
   .logout-main__right
-    = form_with class: 'l-single-inner', action: "https://www.mercari.com/jp/logout/", method: "POST", novalidate: "novalidate" do
-      .l-single-content
-        -# %button.btn-default.btn-red{type: "submit"} ログアウト
-        -# %input{name: "__csrf_value", type: "hidden", value: "b66f76f0af6533a7ef8ffd1e819cd400923f651ad5edd7/640b653da1b612bbbe5f9e0cf00d1fc4ec682f3ad5a5480b2f7b7e98409d8a3023f092f7096722b7c00"}
-        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-default btn-red'
+    .l-single-content.l-single-inner
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-destroy'
 
     -# 確認用のためにコメントアウト
     -# - if user_signed_in?

@@ -1,0 +1,31 @@
+= render 'toppage/header'
+
+.bread-crumbs
+  .bread-crumbs__ii
+    - breadcrumb :mypage
+    = breadcrumbs  separator: " &rsaquo; "
+
+.mypage-main
+  = render 'users/mypage-side-menu'
+
+  -# プロフィール画面
+  .mypage-main__right-contents
+    .profile-contents
+      .profile-contents__box.profile-title
+        プロフィール
+      .profile-contents__box.profile-bg
+        .setting-profile
+          .setting-profile__box
+            %figure
+              = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
+          .setting-profile__box
+            %input.profile-box-size
+      .profile-contents__box
+        %textarea{name: "introduction", class: "introduction-box", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+      .profile-contents__box
+        %button.profile-button
+          変更する
+
+= render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'
