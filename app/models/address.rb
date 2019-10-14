@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true,  dependent: :destroy
 
   # address_input入力項目
   validates :zip_code,                presence: true, on: :validates_address_input
