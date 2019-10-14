@@ -6,33 +6,31 @@
   .l-content
     %h2.l-chapter-head
       クレジットカード情報入力
-    = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm", class:"l-single-inner registration-form") do
+    = form_tag(pay_card_index_path(from: 'profiles'), method: :post, id: 'charge-form',  name: "inputForm", class:"l-single-inner registration-form") do
       .form-group
         %label カード番号
         %span.form-require 必須
         = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
         %ul.signup-card-list
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3466462615", :width => "49", :height => "20"
+            = image_tag 'PEPSized_Visa.png', class: 'credit-card-icon'
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3466462615", :width => "34", :height => "20"
+            = image_tag 'PEPSized_Mastercard.png', class: 'credit-card-icon'
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3466462615", :width => "30", :height => "20"
+            = image_tag 'PEPSized_JCB.png', class: 'credit-card-icon'
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3466462615", :width => "32", :height => "20"
+            = image_tag 'PEPSized_AmericanExpress02.png', class: 'credit-card-icon'
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3466462615", :width => "21", :height => "20"
+            = image_tag 'PEPSized_DinersClub02.png', class: 'credit-card-icon'
           %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3466462615", :width => "32", :height => "20"
-          %li
-            = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3466462615", :width => "32", :height => "20"
+            = image_tag 'PEPSized_Discover.png', class: 'credit-card-icon'
 
 
       .signup-form-expire
         %label 有効期限
         %span.form-require 必須
         .inpout-box-six
-          %select.exp_month{name: "exp_month", type: "text"}
+          %select.exp_month{name: "exp_month", type: "text", id: "exp_month"}
             %option{value: ""} --
             %option{value: "1"}01
             %option{value: "2"}02
@@ -47,7 +45,7 @@
             %option{value: "11"}11
             %option{value: "12"}12
           %span 月
-          %select.exp_year{name: "exp_year", type: "text"}
+          %select.exp_year{name: "exp_year", type: "text", id: "exp_year"}
             %option{value: ""} --
             %option{value: "2019"}19
             %option{value: "2020"}20
@@ -67,8 +65,8 @@
         %span.form-require 必須
         = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
       #card_token
-      = submit_tag "追加する", class: "token_submit"
+      = submit_tag "追加する", id: "token_submit", class: "nextbotton"
 
 = render 'toppage/toppage-footer'
 
-= render 'toppage/exhibition-button'
+= render 'toppage/exhibition-button' 

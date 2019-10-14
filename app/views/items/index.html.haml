@@ -7,7 +7,6 @@
     .slide
       .slide__box
         = image_tag "top-banner-camp-4f3fd88c685e8932d7dde2ad3a8336ba.jpg", alt: '', class: 'slide__box__image1'
-
       %button.prevbtn
         = image_tag "prev.png", alt: 'prev'
       %button.nextbtn
@@ -20,13 +19,17 @@
       .popular-category__bottom
         %ul.popular-category__bottom__box
           %li.popular-category__bottom__box__ladys
-            レディース
+            = link_to "レディース", "items/category/2"
+            -# レディース
           %li.popular-category__bottom__box__mens
-            メンズ
+            = link_to "メンズ", "items/category/3"
+            -# メンズ
           %li.popular-category__bottom__box__electronics
-            家電・スマホ・カメラ
+            = link_to "家電・スマホ・カメラ", "items/category/9"
+            -# 家電・スマホ・カメラ
           %li.popular-category__bottom__box__toy
-            おもちゃ・ホビー・グッズ
+            = link_to "おもちゃ・ホビー・グッズ", "items/category/7"
+            -# おもちゃ・ホビー・グッズ
 
     .product
       .ladys-new-items

@@ -161,11 +161,10 @@ body {
     &__box{
       position:absolute;
       display:flex;
-      background-image: url(top-banner-camp-4f3fd88c685e8932d7dde2ad3a8336ba.jpg);
+      background: image-url('top-banner-camp-4f3fd88c685e8932d7dde2ad3a8336ba.jpg');
       &__image1{
         width: 100vw;
-
-
+        height: 390px;
       }
 
       &__image2{
@@ -360,14 +359,40 @@ body {
       }
     }
   }
+  .category-link{
+    padding: 42px 0px 0px 0px;
+    &__linkbox{
+      max-width: 1020px;
+      width: 100%;
+      margin: 0px auto;
+      &__top{
+        align-items: flex-end;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        &--cat-ul{
+          display: block;
+          &--cat-li{
+            float: left;
+            margin: 8px 20px 0 0;
+            list-style: none;
+            &--cat-a{
+              color: #0099e8;
+              touch-action: manipulation;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
 .arginine{
   height: 260px;
   color: rgb(255, 255, 255);
-  background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg);
-
+  background: image-url('mercari_fotter_background.jpg');
 
   &__vitamin{
     background-position: center center;

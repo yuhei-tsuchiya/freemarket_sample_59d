@@ -108,15 +108,7 @@ $(function() {
     target.parent().parent().remove();
     
     if (count == 5){
-      // form = `<label class="contents-item__container__uploadbox__zone-item__dropbox clearfix" style="width: 130px;"><br>
-      //           ドラッグアンドドロップ
-      //           <br>
-      //           またはクリックしてファイルをアップロード
-      //           <input multiple="multiple" type="file" name="item[images_attributes][][image]" class="contents-item__container__uploadbox__zone-item__dropbox--fileform" id="item-drop-zone">
-      //         </label>`
-      // $('.contents-item__container__uploadbox__zone-item__have-item').append(form)
       $('.contents-item__container__uploadbox__zone-item__dropbox').show();
-
     } 
       deleteWidth(count - 1)
     
