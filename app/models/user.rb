@@ -15,7 +15,7 @@ devise :database_authenticatable, :registerable,
 
 # SNS認証関係
   has_many :sns_credentials, dependent: :destroy
-  
+
 # item、transactとのアソシエーション
   has_many :buyer_transacts, class_name: 'Transact', foreign_key: 'buyer_id'
   has_many :seller_transacts, class_name: 'Transact', foreign_key: 'seller_id'
@@ -34,13 +34,13 @@ devise :database_authenticatable, :registerable,
 
   # phone_number_authentication入力項目
   validates :cellphone_number,        presence: true, on: :validates_phone_number_authentication
-  
+
   # item、transactとのバリデーション
   validates :items, associated: true
   validates :buyer_transacts, associated: true
   validates :seller_transacts, associated: true
 
-  
+
   # SNS認証関係
   @pass = Devise.friendly_token[0, 7]
   def self.without_sns_data(auth)

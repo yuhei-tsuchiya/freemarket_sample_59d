@@ -37,8 +37,8 @@ class Item < ApplicationRecord
   validates :burden_id, numericality: { less_than_or_equal_to: 14 }
 
   # アソシエーションのバリデーション
-  validates :images, associated: true, presence: true
-  validates :transact, associated: true
+  # validates :images, associated: true, presence: true
+  # validates :transact, associated: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
