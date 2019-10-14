@@ -3,7 +3,7 @@
   %nav.mypage-main__side-menu__box
     %ul.side-menu-mypage
       %li.mypage-nav-list-item.active
-        = link_to "マイページ", profile_path(current_user.id), class: 'mypage-link'
+        = link_to "マイページ", profile_path(current_user.id)
       %li.mypage-nav-list-item
         お知らせ
       %li.mypage-nav-list-item
@@ -42,7 +42,7 @@
       設定
     %ul
       %li.mypage-nav-list-item
-        プロフィール
+        = link_to "プロフィール", edit_profile_path(current_user.id)
       %li.mypage-nav-list-item
         発送元・お届け先住所変更
       %li.mypage-nav-list-item
