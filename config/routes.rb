@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'card/new'
+  get 'card/new' => 'card#new'
   get 'card/show'
   get 'credit_cards/new'
   get 'credit_cards/show'

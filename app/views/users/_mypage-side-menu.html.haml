@@ -46,7 +46,7 @@
       %li.mypage-nav-list-item
         発送元・お届け先住所変更
       %li.mypage-nav-list-item
-        支払い方法
+        = link_to "支払い方法", new_card_path(current_user.id)
       %li.mypage-nav-list-item
         メール/パスワード
       %li.mypage-nav-list-item

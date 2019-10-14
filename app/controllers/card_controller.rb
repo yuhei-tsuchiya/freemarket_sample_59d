@@ -40,6 +40,7 @@ class CardController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
       card.delete
+      redirect_to profile_path(current_user.id)
     end
   end
 
