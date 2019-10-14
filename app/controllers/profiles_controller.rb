@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   before_action :move_to_root_path,  only:  [:show, :edit, :edit2]
 
   def show
-
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
 
   def edit2
     @prefectures = Prefecture.all
+    @user = User.find(params[:id])
   end
 
   private

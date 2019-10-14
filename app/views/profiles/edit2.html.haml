@@ -20,17 +20,19 @@
         %label
           お名前
         %p
-          土屋悠平
+          = @user.lastname_kanji
+          = @user.firstname_kanji
       .form-group
         %label
           お名前カナ
         %p
-          ツチヤ ユウヘイ
+          = @user.lastname_kana
+          = @user.firstname_kana
       .form-group
         %label
           生年月日
         %p
-          1999/04/06
+          = @user.birthday
       .form-group
         %label
           郵便番号
