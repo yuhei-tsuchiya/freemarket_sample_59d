@@ -642,10 +642,48 @@ body {
   padding: 8px;
 }
 
-
 .header-btn {
   padding: 0 14px;
   display: block;
   height: 44px;
   line-height: 32px;
+  &__new {
+    color: white !important;
+    font-size: 14px;
+    background-color: rgb(234, 53, 45);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(234, 53, 45);
+    border-radius: 4px;
+    padding: 0 8px;
+    margin:0 4px;
+    height: 32px;
+  }
+  &__login {
+    color: rgb(0, 149, 238) !important;
+    background-color: rgb(255, 255, 255);
+    font-size: 14px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(0, 149, 238);
+    border-radius: 4px;
+    padding: 0 8px;
+    margin:0 4px;
+    height: 32px;
+  }
 }
+
+
+// .header-btn-new {
+//   color: white;
+//   font-size: 14px;
+//   background-color: rgb(234, 53, 45);
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: rgb(234, 53, 45);
+//   border-radius: 4px;
+//   padding: 0 8px;
+//   margin: 0;
+//   height: 32px;
+//   line-height: 32px;
+// }
