@@ -33,10 +33,9 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :profiles, only:[:edit, :show] do
-    collection do
-      get ':id/edit2' => 'profiles#edit2'
+    member do
+      get :edit2
     end
   end
 

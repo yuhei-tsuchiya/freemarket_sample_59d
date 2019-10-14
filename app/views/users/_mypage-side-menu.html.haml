@@ -50,7 +50,7 @@
       %li.mypage-nav-list-item
         メール/パスワード
       %li.mypage-nav-list-item
-        本人情報
+        = link_to "本人情報", edit2_profile_path(current_user.id)
       %li.mypage-nav-list-item
         電話番号の確認
       %li.mypage-nav-list-item
