@@ -1,4 +1,7 @@
 class SignupController < ApplicationController
+
+  require "payjp"
+
   before_action :validates_user_info_input, only: :phone_number_authentication # user_info_inputのバリデーション
   before_action :validates_phone_number_authentication, only: :address_input # phone_number_authenticationのバリデーション
   before_action :validates_address_input, only: :payment # address_inputのバリデーション
@@ -40,6 +43,7 @@ class SignupController < ApplicationController
   end
 
   def create
+    payjp_token = payjp_params.present? ? payjp_params[:payjp_token] : nil
     @user = User.new(
       nickname:                       session[:nickname], # sessionに保存された値をインスタンスに渡す
       email:                          session[:email],
@@ -57,7 +61,11 @@ class SignupController < ApplicationController
     if @user.save
       # ログインするための情報を保管
       session[:id] = @user.id
-      redirect_to done_signup_index_path
+      if payjp_token
+        create_card(payjp_token, @user.id)
+      else
+        redirect_to done_signup_index_path
+      end
     else
       render user_info_input_signup_index_path
     end
@@ -159,6 +167,29 @@ class SignupController < ApplicationController
   
       # 年月日別々できたものを結合して新しいDate型変数を作って返す
       Date.new(date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i)
+    end
+
+    def payjp_params
+      if params.has_key?(:payjp_token)
+        params.permit(:payjp_token)
+      else
+        return nil
+      end
+    end
+
+    # payjpとCardのデータベース作成を実施。card_controller.rbのpayアクションに相当
+    def create_card(payjp_token, user_id) 
+      Payjp.api_key = Rails.application.credentials[:api]
+      customer = Payjp::Customer.create(
+        card: payjp_token,
+        metadata: {user_id: user_id}
+        )
+      @card = Card.new(user_id: user_id, customer_id: customer.id, card_id: customer.default_card)
+      if @card.save
+        redirect_to done_signup_index_path
+      else
+        redirect_to action: "payment"
+      end
     end
 
 end

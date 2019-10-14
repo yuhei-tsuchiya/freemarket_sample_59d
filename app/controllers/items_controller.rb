@@ -1,11 +1,50 @@
 class ItemsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:sell, :create, :edit, :update, :destroy, :buy]
   before_action :set_item, only: [:show, :edit, :update, :destroy, :buy]
   before_action :set_ancestry, only: [:sell, :edit]
 
   def index
     @items = Item.all.limit(10)
   end
+
+  def category
+    # binding.pry
+    @selected_cat = Category.find(params[:id])
+    items = Item.all
+    # @cat = selected_cat
+    @items = []
+    # 第1カテゴリー(レディース、メンズ、etc)
+    if @selected_cat.depth == 1
+      cat_list = @selected_cat.indirect_ids
+    # 第2カテゴリー
+    elsif @selected_cat.depth == 2
+      cat_list = @selected_cat.child_ids
+    # 第3カテゴリー
+    elsif @selected_cat.depth == 3
+      cat_list = [@selected_cat.id]
+    end
+    items.each do |item|
+      if cat_list.include?(item.category_id)
+        @items << item
+      end
+    end
+  end
+
+    # @items = Item.all.limit(10)  # 表示確認用、後で削除
+    # cat_parent = Category.find(params[:id])
+    # @cat_name = cat_parent.name
+    # @category_items = []
+    # # binding.pry
+    # if cat_parent.children
+    #   cat_parent.children.each do |child|
+    #     child.children.each do |cat|
+    #       @category_items += (Item.where(id: cat.id).limit(5))
+    #     end
+    #   end
+    # else
+    #   @category_items = Item.where(id: cat_parent.id).limit(15)
+    # end
 
   def sell
     @item = Item.new
@@ -30,9 +69,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @image = Image.new
+    if @item.user == current_user
+      @image = Image.new
+    else
+      redirect_to item_path(params[:id])
+    end
   end
-
 
   def update
     update_params = item_params
@@ -60,12 +102,12 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @user = @item.user
-    @card = Card.new
-  end
-
-  def deteal
-
+    if @item.user == current_user
+      redirect_to item_path(params[:id])
+    else
+      @user = @item.user
+      @card = Card.new
+    end
   end
 
   def destroy
@@ -104,20 +146,6 @@ class ItemsController < ApplicationController
     @burden = Burden.roots
     @prefectures = Prefecture.all
   end
-
-  def pay
-    Payjp.api_key = 'sk_test_6da54b4ed1e7123d5e996bbb'
-    charge = Payjp::Charge.create(
-    :amount => @product.price,
-    :card => params['payjp-token'],
-    :currency => 'jpy',
-)
-end
-
-
-def set_item
-  @item = Item.find(params[:id])
-end
 
 end
 

@@ -1,0 +1,51 @@
+.mercari
+  = render 'toppage/header'
+
+  = render 'layouts/flash'
+
+  .body
+
+    .bread-crumbs
+      .bread-crumbs__ii.cat-crum
+        - breadcrumb :"item#{@selected_cat.id}"
+        = breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
+
+    .category-link
+      .category-link__linkbox
+        .category-link__linkbox__top
+          %ul.category-link__linkbox__top--cat-ul.clearfix
+            - if @selected_cat.depth == 3
+              - @selected_cat.siblings.each do |cat|
+                %li.category-link__linkbox__top--cat-ul--cat-li
+                  = link_to cat.name, "/items/category/#{cat.id}", class: "category-link__linkbox__top--cat-ul--cat-li--cat-a"
+            - else
+              - @selected_cat.children.each do |cat|
+                %li.category-link__linkbox__top--cat-ul--cat-li
+                  = link_to cat.name, "/items/category/#{cat.id}", class: "category-link__linkbox__top--cat-ul--cat-li--cat-a"
+
+
+    .product
+      .ladys-new-items
+        .ladys-new-items__top
+          %h3.ladys-new-items__top__title
+            = "#{@selected_cat.name} の商品一覧"
+          = link_to root_path, class: 'ladys-new-items__top__more' do
+            もっと見る ＞
+        .ladys-new-items__bottom
+          .ladys-new-items__bottom__grid
+            - @items.each do |i|
+              .index-item
+                = link_to item_path(i), class: 'index-item__link' do
+                  .index-item__link__small-box
+                    .index-item__link__small-box__top
+                      %p
+                        ¥
+                        = i.price
+                      = image_tag i.images[0].image.url, alt: 'next', class:'jojo'
+                    .item-small-box__bottom
+                      %span.item-name111
+                        = i.name
+
+  = render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'

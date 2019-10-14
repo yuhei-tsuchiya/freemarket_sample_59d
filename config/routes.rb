@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "/sign_in" => "devise/sessions#new"
     get "/sign_up" => "devise/registrations#new"
     get "/log_out" => "users#destroy"
+
   end
 
 
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :profiles, only:[:edit, :show] do
     collection do
       get ':id/edit2' => 'profiles#edit2'
@@ -39,11 +41,12 @@ Rails.application.routes.draw do
   end
 
   # 商品用ルーティング
-  resources :items do
+  resources :items, only:[:create, :show, :edit, :update, :destroy] do
     collection do
       get :sell                        # 商品出品ページ
       get 'buy/:id' => 'items#buy'     # 商品購入ページ
       get :pay
+      get 'category/:id' => 'items#category'     # カテゴリーページ
     end
   end
 
