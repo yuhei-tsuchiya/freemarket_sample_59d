@@ -456,13 +456,13 @@ input[type="text"] {
 }
 
 input[type="email"] {
-  width: 343px;
+  width: 324px;
   height: 40px;
   margin-top: 4px;
 }
 
 input[type="password"] {
-  width: 343px;
+  width: 324px;
   height: 40px;
   margin-top: 4px;
 }
@@ -485,4 +485,9 @@ input[type="password"] {
   transition: all ease-out .3s;
   cursor: pointer;
   text-align: center;
+}
+
+// パスワード入力フォームの横幅修正
+.password-box-fix {
+  width: 304px;
 }

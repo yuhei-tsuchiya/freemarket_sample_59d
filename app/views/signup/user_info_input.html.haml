@@ -46,26 +46,7 @@
             .user-input__container__sell-contents__form-group__inputname
               = f.email_field :email, placeholder: '　PC・携帯どちらでも可'
 
-        -# -# マスター
-        -# .user-input__container__sell-contents
-        -#   .user-input__container__sell-contents__form-group
-        -#     %label.label--small
-        -#       パスワード
-        -#       %span.hissu 必須
-        -#     .user-input__container__sell-contents__form-group__inputname
-        -#       = f.text_field :password, placeholder: '　7文字以上'
-        -#       -# = f.password_field :password, placeholder: '　7文字以上'
-
-        -# .user-input__container__sell-contents
-        -#   .user-input__container__sell-contents__form-group
-        -#     %label.label--small
-        -#       パスワード (確認)
-        -#       %span.hissu 必須
-        -#     .user-input__container__sell-contents__form-group__inputname
-        -#       = f.text_field :password_confirmation, placeholder: '　7文字以上'
-        -#       -# = f.password_field :password_confirmation, placeholder: '　7文字以上'
-
-        -# 分岐用
+        -# メールアドレスとSNS認証（Google, Facebook）での表示切り替え
         - if @user.email == ""
           .user-input__container__sell-contents
             .user-input__container__sell-contents__form-group
