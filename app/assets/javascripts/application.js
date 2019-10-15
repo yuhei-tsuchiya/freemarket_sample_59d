@@ -16,3 +16,8 @@
 //= require turbolinks
 //= require jquery
 //= require_tree .
+
+// classを当てたflashメッセージを指定秒数後にフェードアウトさせる
+$(function(){
+  setTimeout("$('.time-limit').fadeOut('slow')", 3000) 
+})
