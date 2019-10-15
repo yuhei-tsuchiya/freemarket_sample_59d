@@ -11533,34 +11533,34 @@
 # end
 
 
-# 20.times do |n|
-#   name = Faker::Superhero.name
-#   email = Faker::Internet.email
-#   password = "password"
-#   Item.create!(name: name,
-#               price:1223,
-#               good:0,
-#               torihiki_info: 1,
-#               product_state: 0,
-#               description: '届いて羽織ってみたところ、可愛い服が似合わなかった為出品することにしました。',
-#               shipping_days: 1,
-#               user_id: 1,
-#               prefecture_id:3,
-#               category_id: 198,
-#               size_id:16,
-#               burden_id: 6,
-#               brand_id: 4023,
-#               )
-# end
+20.times do |n|
+  name = Faker::Superhero.name
+  email = Faker::Internet.email
+  password = "password"
+  Item.create!(name: name,
+              price:1223,
+              good:0,
+              torihiki_info: 1,
+              product_state: 0,
+              description: '届いて羽織ってみたところ、可愛い服が似合わなかった為出品することにしました。',
+              shipping_days: 1,
+              user_id: 1,
+              prefecture_id:3,
+              category_id: 198,
+              size_id:16,
+              burden_id: 6,
+              brand_id: 4023,
+              )
+end
 
-# file_name = Dir.glob("/Users/tsuchiyayuuhei/image/*")
-# 40.times do |n|
-#   Image.create!(
-#             image: File.open(file_name.sample),
-#             item_id: n+1,
-#               )
+file_name = Dir.glob("/Users/tsuchiyayuuhei/image/*")
+40.times do |n|
+  Image.create!(
+            image: File.open(file_name.sample),
+            item_id: n+1,
+              )
 
-# end
+end
 
 
 
