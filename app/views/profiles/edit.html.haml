@@ -1,11 +1,13 @@
 = render 'toppage/header'
 
-.bread-crumbs
-  .bread-crumbs__ii
-    - breadcrumb :mypage
-    = breadcrumbs  separator: " &rsaquo; "
-
-= render 'layouts/flash'
+.flash-box
+  .flash-box__lower
+    .bread-crumbs
+      .bread-crumbs__ii
+        - breadcrumb :mypage
+        = breadcrumbs  separator: " &rsaquo; "
+  .flash-box__upper
+    = render 'layouts/flash'
 
 .mypage-main
   = render 'users/mypage-side-menu'

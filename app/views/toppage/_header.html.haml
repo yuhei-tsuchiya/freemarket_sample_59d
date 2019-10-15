@@ -51,3 +51,8 @@
         .header-box__bottom__right
           = link_to "新規登録会員", sign_up_path, class: 'header-btn header-btn__new'
           = link_to "ログイン", sign_in_path, class: 'header-btn header-btn__login'
+
+.flash-box
+  .flash-box__lower
+  .flash-box__upper
+    = render 'layouts/flash'

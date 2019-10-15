@@ -64,6 +64,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.build_transact(seller_id: current_user.id)
+    binding.pry
     if @item.save
       redirect_to root_path
     else
