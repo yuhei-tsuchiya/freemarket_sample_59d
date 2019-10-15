@@ -11533,41 +11533,46 @@
 # end
 
 
-# 20.times do |n|
+# 10.times do |n|
 #   name = Faker::Superhero.name
 #   email = Faker::Internet.email
 #   password = "password"
 #   Item.create!(name: name,
-#               price:1223,
+#               price:70000,
 #               good:0,
 #               torihiki_info: 1,
 #               product_state: 0,
-#               description: '届いて羽織ってみたところ、可愛い服が似合わなかった為出品することにしました。',
+#               description: '◆ワイヤレス接続で、ケーブルを首の後ろに
+#               回して使用するタイプですので、邪魔にならず
+#               ランニング等のスポーツをする際も音楽を
+#               聴きながら快適にご使用頂けます♪',
 #               shipping_days: 1,
 #               user_id: 1,
 #               prefecture_id:3,
-#               category_id: 198,
+#               category_id: 848,
 #               size_id:16,
 #               burden_id: 6,
-#               brand_id: 4023,
+#               brand_id: 578,
 #               )
 # end
 
-# file_name = Dir.glob("/Users/tsuchiyayuuhei/image/*")
-# 40.times do |n|
-#   Image.create!(
-#             image: File.open(file_name.sample),
+file_name = Dir.glob("/Users/tsuchiyayuuhei/image/*")
+num = 41
+40.times do |n|
+  Image.create!(
+            image: File.open(file_name.sample),
+            item_id: num,
+              )
+  num += 1
+
+end
+
+
+
+# 10.times do |n|
+#   Transact.create!(
+#             seller_id: 1,
 #             item_id: n+1,
 #               )
 
 # end
-
-
-
-40.times do |n|
-  Transact.create!(
-            seller_id: 1,
-            item_id: n+1,
-              )
-
-end
