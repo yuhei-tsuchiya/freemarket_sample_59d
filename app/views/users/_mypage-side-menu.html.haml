@@ -11,7 +11,7 @@
       %li.mypage-nav-list-item
         いいね！一覧
       %li.mypage-nav-list-item
-        出品する
+        = link_to '出品する', sell_items_path
       %li.mypage-nav-list-item
         出品した商品 - 出品中
       %li.mypage-nav-list-item
@@ -46,11 +46,11 @@
       %li.mypage-nav-list-item
         発送元・お届け先住所変更
       %li.mypage-nav-list-item
-        支払い方法
+        = link_to "支払い方法", new_card_path
       %li.mypage-nav-list-item
         メール/パスワード
       %li.mypage-nav-list-item
-        本人情報
+        = link_to "本人情報", edit2_profile_path(current_user.id)
       %li.mypage-nav-list-item
         電話番号の確認
       %li.mypage-nav-list-item

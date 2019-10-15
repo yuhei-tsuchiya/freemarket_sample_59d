@@ -14,23 +14,25 @@
           %br
             登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
         %p.text-right
-          = link_to "/jp/help_center/article/495/" do
+          = link_to "#" do
             本人確認書類のアップロードについて
       .form-group
         %label
           お名前
         %p
-          土屋悠平
+          = @user.lastname_kanji
+          = @user.firstname_kanji
       .form-group
         %label
           お名前カナ
         %p
-          ツチヤ ユウヘイ
+          = @user.lastname_kana
+          = @user.firstname_kana
       .form-group
         %label
           生年月日
         %p
-          1999/04/06
+          = @user.birthday
       .form-group
         %label
           郵便番号
@@ -66,12 +68,15 @@
           任意
         = f.text_field :jusho_tatemono,placeholder: "例) 柳ビル103", type: "text", class: 'input-default'
 
-        %button.btn-default.btn-red{type: "submit"}
+        %p.btn-default.btn-red
           登録する
+        -# リンクを設定する時用にコメントアウト
+        -# %button.btn-default.btn-red{type: "submit"}
+        -#   登録する
 
       .form-group.text-right
         %p
-          = link_to "/jp/help_center/article/423/", target: "_blank" do
+          = link_to "#", target: "_blank" do
             本人情報の登録について
             %i.icon-arrow-right
 
