@@ -22,13 +22,10 @@ $(function() {
       dataType: 'html',
     })
     .done(function(html) {
-      console.log("done")
       if (flag == 0){  // 0:option属性一覧を追加
         var select_cat = `#select-cat${which_cat}`
         $(select_cat).append(html)
       } else if (flag == 1 || flag == 2){  // 1:divにselect・optionを追加
-        console.log(html)
-        console.log(flag)
         $('#select-category-box').append(html)
       } else {
         return
@@ -113,7 +110,6 @@ $(function() {
   // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
     if ($('#select-cat2 option').length == 0){
-      console.log("hoge")
       var cat = $('#select-cat1 option:selected').val();
       
       count = 1
@@ -153,7 +149,6 @@ $(function() {
 
   // カテゴリー2&サイズ用トリガー
   $(document).on("change", "#select-cat2", function(){
-    console.log("cat2 hakka")
     var cat = $('#select-cat2 option:selected').val();
     if ($('#size-select-box').length){ // サイズがあれば削除
       $('#size-select-box').remove()
@@ -167,14 +162,12 @@ $(function() {
         ajaxSelectbox(cat, 0, 3)
       } else {
         if (path == "/items/search"){
-          console.log("selectbox")
           ajaxSelectbox(cat, 2, 3)
         } else {
           ajaxSelectbox(cat, 1, 3)
         }
       }
       // サイズとブランドを表示するか判別
-      console.log("size")
       ajaxSizeBrand(cat)
 
     } else {
@@ -211,12 +204,10 @@ $(function() {
 
   // ブランドのインクリメンタルサーチ
   $(document).on("keyup", "#brand-text", function(){
-    console.log("hoge")
     if ($("#brand-text").val() == ''){
       $('.brand-ul').empty();
     } else {
       var target = $(this).val();
-      console.log(target)
       ajaxSearch(target);
     }
   })
@@ -228,7 +219,6 @@ $(function() {
     var target = $(e.target);
     $("#brand-text").val(target.text());
     
-    console.log(`path = ${path}`)
     if (path == "/items/sell" || path == "/items"){
       html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
     } else if (path == "/items/search"){
@@ -245,8 +235,6 @@ $(function() {
   $(document).on("change", "#checkbox-all", function(e){
     var checked_or_not = this.checked
     var which_check = this.name;
-    console.log(which_check);
-    console.log(checked_or_not)
     
     $(`input[id=${which_check}]`).each(function(index, element){
         $(element).prop('checked', checked_or_not);

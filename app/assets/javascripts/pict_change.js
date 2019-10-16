@@ -48,19 +48,16 @@ $(function() {
     document.getElementById("mypic").src=`/assets/${top_pics_src[top_num]}`;
   })
 
-  
+  // 10秒ごとにトップページ画像切り替え関数をコール
   setInterval(slideshow_timer, 10000);
-  
-  
 
   
   // 商品詳細ページの画像切り替え
   $('.left__down__iir__gffk__image').hover(function() {
-    console.log(this)
     
     var item_id = this.id
     var img_src = this.src
-    console.log(img_src)
+
     //マウスを乗せたら画像が切り替わる
     $('.slide__box__image3').attr('src', img_src);;
  
