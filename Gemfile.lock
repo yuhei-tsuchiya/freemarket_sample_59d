@@ -394,7 +394,6 @@ DEPENDENCIES
   active_hash
   ancestry
   bootsnap (>= 1.1.0)
-  bootstrap-sass
   byebug
   capistrano (= 3.11.1)
   capistrano-bundler
