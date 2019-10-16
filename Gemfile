@@ -122,5 +122,8 @@ gem 'dotenv-rails'
 #パンくず
 gem "gretel"
 
-
+# クレジットカード機能
 gem 'payjp'
+
+# 商品検索用
+gem 'ransack'

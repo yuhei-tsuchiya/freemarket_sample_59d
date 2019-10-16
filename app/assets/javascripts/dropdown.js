@@ -2,9 +2,19 @@ $(function() {
 
   // カテゴリー用変数定義
   var count = 0
+  var path = ""
+
+  $(window).on('load',function(){ 
+    // パスの取得
+    path = location.pathname
+    console.log(path)
+  })
+
 
   // カテゴリー用関数-カテゴリー選択表示
-  // 第一引数:カテゴリーID、第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、第三引数:どの階層のカテゴリーかを指定
+  // 第一引数:カテゴリーID
+  // 第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、2で検索ページでselectフォームごと追加
+  // 第三引数:どの階層のカテゴリーかを指定
   function ajaxSelectbox(cat, flag, which_cat){
     $.ajax({
       type: 'GET',
@@ -13,10 +23,13 @@ $(function() {
       dataType: 'html',
     })
     .done(function(html) {
+      console.log("done")
       if (flag == 0){  // 0:option属性一覧を追加
         var select_cat = `#select-cat${which_cat}`
         $(select_cat).append(html)
-      } else if (flag == 1){  // 1:divにselect・optionを追加
+      } else if (flag == 1 || flag == 2){  // 1:divにselect・optionを追加
+        console.log(html)
+        console.log(flag)
         $('#select-category-box').append(html)
       } else {
         return
@@ -101,14 +114,20 @@ $(function() {
   // カテゴリー1用トリガー
   $(document).on("change", "#select-cat1", function(){
     if ($('#select-cat2 option').length == 0){
+      console.log("hoge")
       var cat = $('#select-cat1 option:selected').val();
       
       count = 1
       if (cat == '---') {
         cat = 0
       }
-      ajaxSelectbox(cat, 1, 2)
-      return
+      if (path == "/items/search"){
+        ajaxSelectbox(cat, 2, 2)
+        return
+      } else {
+        ajaxSelectbox(cat, 1, 2)
+        return
+      }
     }
     if ($('#select-cat3')) { // カテゴリー3を消す
       $('#select-cat3').prev().remove()
@@ -135,6 +154,7 @@ $(function() {
 
   // カテゴリー2&サイズ用トリガー
   $(document).on("change", "#select-cat2", function(){
+    console.log("cat2 hakka")
     var cat = $('#select-cat2 option:selected').val();
     if ($('#size-select-box').length){ // サイズがあれば削除
       $('#size-select-box').remove()
@@ -147,9 +167,15 @@ $(function() {
         $('#select-cat3 option').remove()  // カテゴリー3の中身を削除
         ajaxSelectbox(cat, 0, 3)
       } else {
-        ajaxSelectbox(cat, 1, 3)
+        if (path == "/items/search"){
+          console.log("selectbox")
+          ajaxSelectbox(cat, 2, 3)
+        } else {
+          ajaxSelectbox(cat, 1, 3)
+        }
       }
       // サイズとブランドを表示するか判別
+      console.log("size")
       ajaxSizeBrand(cat)
 
     } else {
@@ -180,16 +206,18 @@ $(function() {
       $('#price-fee').text(`¥${price_fee}`)
       $('#price-benefit').text(`¥${price - price_fee}`)
     } else {
-      alert("数値を入力してください")
+      alert("値段は半角数字で入力してください")
     }
   })
 
   // ブランドのインクリメンタルサーチ
   $(document).on("keyup", "#brand-text", function(){
+    console.log("hoge")
     if ($("#brand-text").val() == ''){
       $('.brand-ul').empty();
     } else {
       var target = $(this).val();
+      console.log(target)
       ajaxSearch(target);
     }
   })
@@ -200,8 +228,29 @@ $(function() {
     }
     var target = $(e.target);
     $("#brand-text").val(target.text());
-    html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
+    
+    console.log(`path = ${path}`)
+    if (path == "/items/sell" || path == "/items"){
+      html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
+    } else if (path == "/items/search"){
+      html = `<input type="hidden" id="brand-decided", name="q[brand_id_eq]" value="${target.data('brand')}"></input>`
+    }
+    
+    
     $("#brand-text").append(html)
     $('.brand-ul').empty();
+    
   })
+
+  // 検索ページ-チェックボックスすべて
+  $(document).on("change", "#checkbox-all", function(e){
+    var checked_or_not = this.checked
+    var which_check = this.name;
+    console.log(which_check);
+    console.log(checked_or_not)
+    
+    $(`input[id=${which_check}]`).each(function(index, element){
+        $(element).prop('checked', checked_or_not);
+    })
+  });
 })

@@ -4,7 +4,7 @@ class Api::CategorysController < ApplicationController
 
   def select_child
     @category = Category.find(params[:cat]).children
-    @which_cat = params[:which_cat]
+    @which_cat = params[:which_cat].to_i
     @flag = params[:flag].to_i
   end
 

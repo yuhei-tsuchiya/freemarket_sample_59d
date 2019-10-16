@@ -8,44 +8,6 @@ class ItemsController < ApplicationController
     @items = Item.all.limit(10)
   end
 
-  def category
-    # binding.pry
-    @selected_cat = Category.find(params[:id])
-    items = Item.all
-    # @cat = selected_cat
-    @items = []
-    # 第1カテゴリー(レディース、メンズ、etc)
-    if @selected_cat.depth == 1
-      cat_list = @selected_cat.indirect_ids
-    # 第2カテゴリー
-    elsif @selected_cat.depth == 2
-      cat_list = @selected_cat.child_ids
-    # 第3カテゴリー
-    elsif @selected_cat.depth == 3
-      cat_list = [@selected_cat.id]
-    end
-    items.each do |item|
-      if cat_list.include?(item.category_id)
-        @items << item
-      end
-    end
-  end
-
-    # @items = Item.all.limit(10)  # 表示確認用、後で削除
-    # cat_parent = Category.find(params[:id])
-    # @cat_name = cat_parent.name
-    # @category_items = []
-    # # binding.pry
-    # if cat_parent.children
-    #   cat_parent.children.each do |child|
-    #     child.children.each do |cat|
-    #       @category_items += (Item.where(id: cat.id).limit(5))
-    #     end
-    #   end
-    # else
-    #   @category_items = Item.where(id: cat_parent.id).limit(15)
-    # end
-
   def sell
     @item = Item.new
     @item.images.build
@@ -122,6 +84,36 @@ class ItemsController < ApplicationController
     else
       redirect_to item_path(params[:id])
     end
+  end
+
+  def category
+    @selected_cat = Category.find(params[:id])
+    items = Item.all
+    @items = []
+    # 第1カテゴリー(レディース、メンズ、etc)
+    if @selected_cat.depth == 1
+      cat_list = @selected_cat.indirect_ids
+    # 第2カテゴリー
+    elsif @selected_cat.depth == 2
+      cat_list = @selected_cat.child_ids
+    # 第3カテゴリー
+    elsif @selected_cat.depth == 3
+      cat_list = [@selected_cat.id]
+    end
+    items.each do |item|
+      if cat_list.include?(item.category_id)
+        @items << item
+      end
+    end
+  end
+
+  def search
+    binding.pry
+    @q = Item.ransack(params[:q])
+    @category = Category.find(1)
+    @size = Size.find(1)   # 服サイズ
+    @lists = Item.new
+    @items = @q.result(distinct: true).includes(:burden)
   end
 
   private
