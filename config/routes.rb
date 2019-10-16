@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'card/new'
+  get 'card/new' => 'card#new'
   get 'card/show'
   get 'credit_cards/new'
   get 'credit_cards/show'
-
 
   root to: 'items#index'
   devise_for :users,
@@ -18,9 +17,7 @@ Rails.application.routes.draw do
     get "/sign_in" => "devise/sessions#new"
     get "/sign_up" => "devise/registrations#new"
     get "/log_out" => "users#destroy"
-
   end
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :signup, only:[:new, :create] do
@@ -33,11 +30,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only:[:show, :edit] do
-    collection do
+  resources :profiles, only:[:edit, :show, :update] do
+    member do
       get :edit2
     end
   end
+
+  # resources :users
 
   # 商品用ルーティング
   resources :items, only:[:create, :show, :edit, :update, :destroy] do
@@ -65,7 +64,6 @@ Rails.application.routes.draw do
       post 'buy/:id'  => 'card#buy'
     end
   end
-
 
 end
 

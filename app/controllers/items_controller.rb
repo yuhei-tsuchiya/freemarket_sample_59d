@@ -6,6 +6,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.limit(10)
+
+    @radys_items = Item.where(category_id: 160..338).order("created_at DESC").limit(10)
+    @mens_items = Item.where(category_id: 339..468).order("created_at DESC").limit(10)
+    @electronics_items = Item.where(category_id: 955..1029).order("created_at DESC").limit(10)
+    @hoby_items = Item.where(category_id: 766..866).order("created_at DESC").limit(10)
   end
 
   def sell

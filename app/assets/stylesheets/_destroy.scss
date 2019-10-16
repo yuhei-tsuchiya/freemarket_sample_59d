@@ -1,7 +1,6 @@
 
 
 .logout-main{
-
   padding: 70px 0;
   margin: 0 auto;
 
@@ -38,4 +37,20 @@
       }
     }
   }
+}
+
+.btn-destroy {
+  margin: 0 auto;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  display: block;
+  width: 320px;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
 }

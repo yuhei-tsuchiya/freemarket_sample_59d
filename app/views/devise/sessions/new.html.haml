@@ -25,12 +25,12 @@
         .user-input__container__sell-contents.loginwidthfix 
           .user-input__container__sell-contents__form-group
             .user-input__container__sell-contents__form-group__inputname
-              = f.email_field :email, autofocus: true, placeholder: " メールアドレス"
+              = f.email_field :email, autofocus: true, placeholder: " メールアドレス", class: "form-width-fix"
 
         .user-input__container__sell-contents.loginwidthfix 
           .user-input__container__sell-contents__form-group
             .user-input__container__sell-contents__form-group__inputname
-              = f.password_field :password, autocomplete: "off", placeholder: " パスワード"
+              = f.password_field :password, autocomplete: "off", placeholder: " パスワード", class: "form-width-fix"
 
         .centeringfix
           .recaptcha.loginwidthfix2

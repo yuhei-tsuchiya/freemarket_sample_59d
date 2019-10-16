@@ -1,0 +1,20 @@
+.ladys-new-items
+  .ladys-new-items__top
+    %h3.ladys-new-items__top__title
+      メンズ
+    = link_to root_path, class: 'ladys-new-items__top__more' do
+      もっと見る ＞
+  .ladys-new-items__bottom
+    .ladys-new-items__bottom__grid
+      - @mens_items.each do |i|
+        .index-item
+          = link_to item_path(i), class: 'index-item__link' do
+            .index-item__link__small-box
+              .index-item__link__small-box__top
+                %p
+                  ¥
+                  = i.price
+                = image_tag i.images[0].image.url, alt: 'next', class:'jojo'
+              .item-small-box__bottom
+                %span.item-name111
+                  = i.name
