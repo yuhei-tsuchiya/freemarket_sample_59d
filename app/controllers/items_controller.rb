@@ -13,13 +13,7 @@ class ItemsController < ApplicationController
     @hoby_items = Item.where(category_id: 766..866).order("created_at DESC").limit(10)
   end
 
-
-
-
-
   def category
-    # binding.pry
-    # @selected_cat = Category.find(params[:id])
     @selected_cat = Category.find(3)
     items = Item.all
     # @cat = selected_cat
@@ -41,21 +35,6 @@ class ItemsController < ApplicationController
     end
   end
 
-    # @items = Item.all.limit(10)  # 表示確認用、後で削除
-    # cat_parent = Category.find(params[:id])
-    # @cat_name = cat_parent.name
-    # @category_items = []
-    # # binding.pry
-    # if cat_parent.children
-    #   cat_parent.children.each do |child|
-    #     child.children.each do |cat|
-    #       @category_items += (Item.where(id: cat.id).limit(5))
-    #     end
-    #   end
-    # else
-    #   @category_items = Item.where(id: cat_parent.id).limit(15)
-    # end
-
   def sell
     @item = Item.new
     @item.images.build
@@ -64,7 +43,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.build_transact(seller_id: current_user.id)
-    binding.pry
     if @item.save
       redirect_to root_path
     else
