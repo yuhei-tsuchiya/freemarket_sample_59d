@@ -128,9 +128,11 @@
     .item-button-container.clearfix
       .item-button-left
         %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m38799137224", "data-toggle" => "like", :name => "like!", :type => "button"}
-          %i.icon-like-border
-          %span いいね!
-          %span.fade-in-down{"data-num" => "like"} 4
+          #js-grid-juicy-projects
+            = render @item
+          -# %i.icon-like-border
+          -# %span いいね!
+          -# %span.fade-in-down{"data-num" => "like"} 4
 
         .item-button-report
           %span 不適切な商品の報告

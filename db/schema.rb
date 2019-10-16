@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_050423) do
+ActiveRecord::Schema.define(version: 2019_10_16_122322) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "prefecture_id", null: false
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2019_10_10_050423) do
     t.index ["size_id"], name: "index_items_on_size_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -108,6 +117,12 @@ ActiveRecord::Schema.define(version: 2019_10_10_050423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
+  create_table "testimages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -148,6 +163,8 @@ ActiveRecord::Schema.define(version: 2019_10_10_050423) do
   add_foreign_key "items", "burdens"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "sizes"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
   add_foreign_key "sns_credentials", "users"
   add_foreign_key "transacts", "items"
   add_foreign_key "transacts", "users", column: "buyer_id"

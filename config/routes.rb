@@ -40,12 +40,14 @@ Rails.application.routes.draw do
 
   # 商品用ルーティング
   resources :items, only:[:create, :show, :edit, :update, :destroy] do
+    resources :likes, only: [:create, :destroy]
     collection do
       get :sell                        # 商品出品ページ
       get 'buy/:id' => 'items#buy'     # 商品購入ページ
       get :pay
       get 'category/:id' => 'items#category'     # カテゴリーページ
     end
+    
   end
 
   # Ajax通信用
