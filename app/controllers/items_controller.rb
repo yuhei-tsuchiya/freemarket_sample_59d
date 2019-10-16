@@ -13,28 +13,6 @@ class ItemsController < ApplicationController
     @hoby_items = Item.where(category_id: 766..866).order("created_at DESC").limit(10)
   end
 
-  def category
-    @selected_cat = Category.find(3)
-    items = Item.all
-    # @cat = selected_cat
-    @items = []
-    # 第1カテゴリー(レディース、メンズ、etc)
-    if @selected_cat.depth == 1
-      cat_list = @selected_cat.indirect_ids
-    # 第2カテゴリー
-    elsif @selected_cat.depth == 2
-      cat_list = @selected_cat.child_ids
-    # 第3カテゴリー
-    elsif @selected_cat.depth == 3
-      cat_list = [@selected_cat.id]
-    end
-    items.each do |item|
-      if cat_list.include?(item.category_id)
-        @items << item
-      end
-    end
-  end
-
   def sell
     @item = Item.new
     @item.images.build
@@ -113,7 +91,35 @@ class ItemsController < ApplicationController
     end
   end
 
+  def category
+    @selected_cat = Category.find(params[:id])
+    items = Item.all
+    @items = []
+    # 第1カテゴリー(レディース、メンズ、etc)
+    if @selected_cat.depth == 1
+      cat_list = @selected_cat.indirect_ids
+    # 第2カテゴリー
+    elsif @selected_cat.depth == 2
+      cat_list = @selected_cat.child_ids
+    # 第3カテゴリー
+    elsif @selected_cat.depth == 3
+      cat_list = [@selected_cat.id]
+    end
+    items.each do |item|
+      if cat_list.include?(item.category_id)
+        @items << item
+      end
+    end
+  end
 
+  def search
+    search_params = top_search_params == nil ? params[:q] : top_search_params
+    @q = Item.ransack(search_params)
+    @category = Category.find(1)
+    @size = Size.find(1)   # 服サイズ
+    @lists = Item.new
+    @items = @q.result(distinct: true).includes(:burden)
+  end
 
   private
   def item_params
@@ -136,6 +142,14 @@ class ItemsController < ApplicationController
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
+  end
+
+  def top_search_params
+    if params.has_key?(:name_cont)
+      params.slice(:name_cont)
+    else
+      return nil
+    end
   end
 
 end
