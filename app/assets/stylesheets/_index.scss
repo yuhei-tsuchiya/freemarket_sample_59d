@@ -176,15 +176,16 @@ body {
       }
     }
     .prevbtn{
-      position:absolute;
-      top:225;
-      left:20px;
+      position: absolute;
+      top: 170px;
+      left: 20px;
+      // border-width: 0; 
     }
 
     .nextbtn{
       position:absolute;
-      top:225;
-      right:20px;
+      top: 170px;
+      right: 20px;
     }
   }
 

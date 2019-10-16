@@ -7,7 +7,6 @@ $(function() {
   $(window).on('load',function(){ 
     // パスの取得
     path = location.pathname
-    console.log(path)
   })
 
 

@@ -14,7 +14,7 @@
           .left__down__iir
             - @images.each_with_index do |image, index|
               .left__down__iir__gffk
-                = image_tag image.image.url, alt: '', class: 'left__down__iir__gffk__image'
+                = image_tag image.image.url, alt: '', class: 'left__down__iir__gffk__image', id: @item.id
       %table.item-detail-table
         %tbody
           %tr
