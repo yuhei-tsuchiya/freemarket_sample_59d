@@ -63,8 +63,6 @@ $(function() {
     if ($('.pict-delete-edit').length){
       edit_num = $('.pict-delete-edit').length
     }
-    console.log(this)
-    console.log(this.files)
     readURL(this, list, edit_num);
     appendFile(list);
 

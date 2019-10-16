@@ -1,0 +1,84 @@
+.mercari
+  = render 'toppage/header'
+
+  .body
+    .product
+      .search-product
+        = search_form_for @q, url: search_items_path do |f|
+          %h3{style: "font-size: 16px;"} 詳細検索
+          .search-product__form-group
+            = f.label :name_cont, "キーワードを追加する"
+            %br
+            = f.search_field :name_cont, {class: "search-product__form-group--input-text"}
+          .search-product__form-group{id: "select-category-box"}
+            = f.label :category_id, "カテゴリーを選択する"
+            %select{class: "search-product__form-group--select-cat" , id: "select-cat1", name: "category_id"}
+              %option{value: nil} すべて
+              - @category.children.each do |cat|
+                %option{value: cat.id}
+                  = cat.name
+
+          .search-product__form-group
+            %label{name: "brand"} ブランド名から探す
+            %br
+            %input{class: "search-product__form-group--input-text", name: "brand", type: "text", id: "brand-text", style: "width: 225px; height: 28px;"}
+              .div
+                .ul{class: "brand-ul", style: "display: none;"}
+          .search-product__form-group
+            = f.label :size_id, "服サイズを指定する"
+            %br
+            = f.select :size_id_eq, @size.children.map { |size| [size.name, size.id] }, {include_blank: "---"}, {class: "search-product__form-group--select-cat"}
+          .search-product__form-group
+            = f.label :price, "価格"
+            %br
+            = f.number_field :price_gteq, class: "search-product__form-group--price-box", placeholder: "¥ Min"
+            〜
+            = f.number_field :price_lteq, class: "search-product__form-group--price-box", placeholder: "¥ Max"
+          .search-product__form-group
+            = f.label :product_state_eq_any, "商品の状態"
+            %br
+            %div.check-box-div
+              %input{type: "checkbox", name: "product_state", class: "search-checkbox", id: "checkbox-all"}
+                %p{nam: "product_state_eq_any", class: "check-box-label"} すべて
+            - @lists.product_state_list.each_with_index do |state, i|
+              %div.check-box-div
+                = f.check_box :product_state_eq_any, {multiple: true, include_hidden: false, class: "search-checkbox", id: "product_state"}, i
+                %p{nam: "product_state_eq_any", class: "check-box-label"} #{state}
+          .search-product__form-group
+            = f.label :torihiki_info_eq_any, "販売状況"
+            %br
+            %div.check-box-div
+              %input{type: "checkbox", name: "torihiki_info", class: "search-checkbox", id: "checkbox-all"}
+              %p{nam: "torihiki_info_eq_any", class: "check-box-label"} すべて
+            - @lists.torihiki_info_list.each_with_index do |info, j|
+              %div.check-box-div
+                = f.check_box :torihiki_info_eq_any, {multiple: true, include_hidden: false, class: "search-checkbox", id: "torihiki_info"}, j
+                %p{nam: "torihiki_info_eq_any", class: "check-box-label"} #{info}
+                  
+          = link_to "クリア", search_items_path , class: "search-clear-button"
+          = f.submit "検索", {class: "search-submit-button"} 
+
+      .ladys-new-items.search-right
+        .ladys-new-items__top
+          %h3.ladys-new-items__top__title
+            = "検索結果 の商品一覧"
+        .ladys-new-items__bottom
+          .ladys-new-items__bottom__grid.search-card
+            - @items.each do |i|
+              .index-item.search-index-item
+                = link_to item_path(i), class: 'index-item__link' do
+                  .index-item__link__small-box.search-small-box
+                    .index-item__link__small-box__top.search-card-height
+                      %p.search-price
+                        ¥
+                        = i.price
+                      = image_tag i.images[0].image.url, alt: 'next', class:'jojo-search'
+                    .item-small-box__bottom
+                      %span.item-name111
+                        = i.name
+                          
+                          
+
+  = render 'toppage/toppage-footer'
+
+= render 'toppage/exhibition-button'
