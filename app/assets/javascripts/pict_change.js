@@ -22,7 +22,7 @@ $(function() {
       else {
         top_num ++;
       }
-      document.getElementById("mypic").src=`/assets/images/${top_pics_src[top_num]}`;
+      document.getElementById("mypic").src=`/assets/${top_pics_src[top_num]}`;
     }
   }
 
