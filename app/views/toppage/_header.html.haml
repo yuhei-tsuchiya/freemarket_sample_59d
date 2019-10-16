@@ -4,15 +4,12 @@
     .header-box__top
       .header-box__top__image
         = link_to root_path, class: 'rin' do
-          = image_tag "https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class: 'mercari-image'
+          = image_tag "logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class: 'mercari-image'
       .header-box__top__search
-        %form.header-form{action: "https://www.mercari.com/jp/search/"}
-          %input.input-default{name: "keyword", placeholder: "何かお探しですか？", type: "search", style: 'border-right: none'}
-          %button.search-button
-            %i.icon-search
-              %svg.sc-jDwBTQ.sc-kgAjT.gKFuLS{ height: "14", viewbox: "0 0 16 16", width: "14"}
-                %path{d: "M11.435 10.063h-.723l-.256-.247a5.92 5.92 0 0 0 1.437-3.87 5.946 5.946 0 1 0-5.947 5.947 5.92 5.92 0 0 0 3.87-1.437l.247.256v.723L14.637 16 16 14.637l-4.565-4.574zm-5.489 0A4.111 4.111 0 0 1 1.83 5.946 4.111 4.111 0 0 1 5.946 1.83a4.111 4.111 0 0 1 4.117 4.116 4.111 4.111 0 0 1-4.117 4.117z", fill: "currentColor"}
-
+        %form.header-form{action: "/items/search"}
+          %input.input-default{name: "name_cont", placeholder: "何かお探しですか？", type: "search", style: 'border-right: none'}
+          = button_tag type: 'submit', class: "header-box__top__search search-button" do
+            %i.fa.fa-search.fa-lg{style: "margin: 0 auto;"}
 
     .header-box__bottom
       .header-box__bottom__left

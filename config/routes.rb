@@ -46,7 +46,7 @@ Rails.application.routes.draw do
       get 'buy/:id' => 'items#buy'     # 商品購入ページ
       get :pay
       get 'category/:id' => 'items#category'     # カテゴリーページ
-      get :search                      # 商品検索ページ
+      match 'search' => 'items#search', via: [:get, :post]  # 商品検索ページ
     end
   end
 

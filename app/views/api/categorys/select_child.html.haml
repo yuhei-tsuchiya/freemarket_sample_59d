@@ -24,11 +24,14 @@
             = cat.name
 
   - elsif @which_cat == 3
+    %div.check-box-div
+      %input{type: "checkbox", name: "select-cat#{@which_cat}", class: "search-checkbox", id: "checkbox-all"}
+        %p{nam: "product_state_eq_any", class: "check-box-label"} すべて
     %div
       - @category.each do |cat|
         %div.check-box-div
           %input{type: "checkbox", name: "q[category_id_eq_any][]", value: cat.id, class: "search-checkbox", id: "select-cat#{@which_cat}"}
           %label{nam: "product_state_eq_any", class: "check-box-label"} #{cat.name}
-            
+
 
 

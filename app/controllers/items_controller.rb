@@ -108,8 +108,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    binding.pry
-    @q = Item.ransack(params[:q])
+    search_params = top_search_params == nil ? params[:q] : top_search_params
+    @q = Item.ransack(search_params)
     @category = Category.find(1)
     @size = Size.find(1)   # 服サイズ
     @lists = Item.new
@@ -137,6 +137,14 @@ class ItemsController < ApplicationController
     @category = Category.find(1)
     @burden = Burden.roots
     @prefectures = Prefecture.all
+  end
+
+  def top_search_params
+    if params.has_key?(:name_cont)
+      params.slice(:name_cont)
+    else
+      return nil
+    end
   end
 
 end
