@@ -124,5 +124,3 @@ gem "gretel"
 
 
 gem 'payjp'
-
-gem 'bootstrap-sass'
