@@ -2,9 +2,18 @@ $(function() {
 
   // カテゴリー用変数定義
   var count = 0
+  var path = ""
+
+  $(window).on('load',function(){ 
+    // パスの取得
+    path = location.pathname
+  })
+
 
   // カテゴリー用関数-カテゴリー選択表示
-  // 第一引数:カテゴリーID、第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、第三引数:どの階層のカテゴリーかを指定
+  // 第一引数:カテゴリーID
+  // 第二引数:0でHTMLのoptionのみ追加、1でselectフォームごと追加、2で検索ページでselectフォームごと追加
+  // 第三引数:どの階層のカテゴリーかを指定
   function ajaxSelectbox(cat, flag, which_cat){
     $.ajax({
       type: 'GET',
@@ -16,7 +25,7 @@ $(function() {
       if (flag == 0){  // 0:option属性一覧を追加
         var select_cat = `#select-cat${which_cat}`
         $(select_cat).append(html)
-      } else if (flag == 1){  // 1:divにselect・optionを追加
+      } else if (flag == 1 || flag == 2){  // 1:divにselect・optionを追加
         $('#select-category-box').append(html)
       } else {
         return
@@ -107,8 +116,13 @@ $(function() {
       if (cat == '---') {
         cat = 0
       }
-      ajaxSelectbox(cat, 1, 2)
-      return
+      if (path == "/items/search"){
+        ajaxSelectbox(cat, 2, 2)
+        return
+      } else {
+        ajaxSelectbox(cat, 1, 2)
+        return
+      }
     }
     if ($('#select-cat3')) { // カテゴリー3を消す
       $('#select-cat3').prev().remove()
@@ -147,7 +161,11 @@ $(function() {
         $('#select-cat3 option').remove()  // カテゴリー3の中身を削除
         ajaxSelectbox(cat, 0, 3)
       } else {
-        ajaxSelectbox(cat, 1, 3)
+        if (path == "/items/search"){
+          ajaxSelectbox(cat, 2, 3)
+        } else {
+          ajaxSelectbox(cat, 1, 3)
+        }
       }
       // サイズとブランドを表示するか判別
       ajaxSizeBrand(cat)
@@ -180,7 +198,7 @@ $(function() {
       $('#price-fee').text(`¥${price_fee}`)
       $('#price-benefit').text(`¥${price - price_fee}`)
     } else {
-      alert("数値を入力してください")
+      alert("値段は半角数字で入力してください")
     }
   })
 
@@ -200,8 +218,26 @@ $(function() {
     }
     var target = $(e.target);
     $("#brand-text").val(target.text());
-    html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
+    
+    if (path == "/items/sell" || path == "/items"){
+      html = `<input type="hidden" id="brand-decided", name="item[brand_id]" value="${target.data('brand')}"></input>`
+    } else if (path == "/items/search"){
+      html = `<input type="hidden" id="brand-decided", name="q[brand_id_eq]" value="${target.data('brand')}"></input>`
+    }
+    
+    
     $("#brand-text").append(html)
     $('.brand-ul').empty();
+    
   })
+
+  // 検索ページ-チェックボックスすべて
+  $(document).on("change", "#checkbox-all", function(e){
+    var checked_or_not = this.checked
+    var which_check = this.name;
+    
+    $(`input[id=${which_check}]`).each(function(index, element){
+        $(element).prop('checked', checked_or_not);
+    })
+  });
 })

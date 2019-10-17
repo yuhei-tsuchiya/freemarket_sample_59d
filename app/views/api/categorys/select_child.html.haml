@@ -1,4 +1,10 @@
-- if @flag == 1
+- if @flag == 0
+  %option{value: nil} ---
+  - @category.each do |cat|
+    %option{value: cat.id}
+      = cat.name
+
+- elsif @flag == 1
   %div
     .contents-item__container__sell-contents__form-box__select-wrap
       %i.contents-item__container__sell-contents__form-box__select-wrap--icon
@@ -8,9 +14,24 @@
           %option{value: cat.id}
             = cat.name
 
-- else
-  %option{value: nil} ---
-  - @category.each do |cat|
-    %option{value: cat.id}
-      = cat.name
+- elsif @flag == 2
+  - if @which_cat == 2
+    %div
+      %select{class: "search-product__form-group--select-cat", id: "select-cat#{@which_cat}", name: "category_id"}
+        %option{value: nil} ---
+        - @category.each do |cat|
+          %option{value: cat.id}
+            = cat.name
+
+  - elsif @which_cat == 3
+    %div.check-box-div
+      %input{type: "checkbox", name: "select-cat#{@which_cat}", class: "search-checkbox", id: "checkbox-all"}
+        %p{nam: "product_state_eq_any", class: "check-box-label"} すべて
+    %div
+      - @category.each do |cat|
+        %div.check-box-div
+          %input{type: "checkbox", name: "q[category_id_eq_any][]", value: cat.id, class: "search-checkbox", id: "select-cat#{@which_cat}"}
+          %label{nam: "product_state_eq_any", class: "check-box-label"} #{cat.name}
+
+
 
