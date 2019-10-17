@@ -125,7 +125,7 @@
         = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: "確認\n削除すると二度と復活できません\n本当に削除しますか？" }, class: 'kkooko--edit-grey'
 
     .item-button-container.clearfix
-      - if @item.user != current_user
+      - if current_user && @item.user != current_user
         .item-button-left
           %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m38799137224", "data-toggle" => "like", :name => "like!", :type => "button"}
             #js-grid-juicy-projects
