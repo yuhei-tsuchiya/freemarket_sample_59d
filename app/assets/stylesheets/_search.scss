@@ -6,7 +6,7 @@
   display: inline-block;      /* インラインブロック要素にする */
   background: #fff;
   padding:  10px;             /* 余白指定 */
-  margin-left: 116px;
+  margin-left: 108px;
   margin-right: 35px;
   
   &__form-group{
@@ -62,25 +62,17 @@
 }
 
 .search-right{
-  // float: right;
   vertical-align: top;
   box-sizing: border-box;
-  // max-width: calc(100% - 100px) !important;
-  max-width: 800px !important;
-  width: 80% !important;
-  // margin: 0px auto;
+  max-width: 700px !important;
+  width: 60% !important;
+  margin-left: 15px !important;
   display: inline-block;      /* インラインブロック要素にする */
-  // background-color: blue;    /* 背景色指定 */
-  // border: solid 1px;          /* 枠線指定 */
   padding:  10px;             /* 余白指定 */
-  // max-width: 800px;
-  // margin: 0 400px 0 10px;
 }
 
 .search-card{
-  // grid-template-columns: repeat(4, 1fr) !important;
   grid-template-columns: repeat(4, 150px) !important;
-  // gap: 15px 15px !important;
 }
 
 .jojo-search{
@@ -129,10 +121,7 @@
 
 .check-box-label{
   display: inline-block;
-  // float: left;
   position: relative;
-  // z-index: 2;
-  // padding: 0 0 0 5px;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
