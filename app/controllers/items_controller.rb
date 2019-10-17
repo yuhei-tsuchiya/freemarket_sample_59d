@@ -93,8 +93,6 @@ class ItemsController < ApplicationController
 
   def category
     @selected_cat = Category.find(params[:id])
-    items = Item.all
-    @items = []
     # 第1カテゴリー(レディース、メンズ、etc)
     if @selected_cat.depth == 1
       cat_list = @selected_cat.indirect_ids
@@ -105,11 +103,7 @@ class ItemsController < ApplicationController
     elsif @selected_cat.depth == 3
       cat_list = [@selected_cat.id]
     end
-    items.each do |item|
-      if cat_list.include?(item.category_id)
-        @items << item
-      end
-    end
+    @items = Item.where(category_id: cat_list).limit(10)
   end
 
   def search
