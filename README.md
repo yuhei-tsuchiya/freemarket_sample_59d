@@ -137,3 +137,13 @@
 ### Association
 - belongs_to :user
 
+## likeテーブル ※いいね機能
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :item
+
+
