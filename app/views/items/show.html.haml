@@ -125,21 +125,21 @@
         = link_to "この商品を削除する", "/items/#{@item.id}", method: :delete, data: { confirm: "確認\n削除すると二度と復活できません\n本当に削除しますか？" }, class: 'kkooko--edit-grey'
 
     .item-button-container.clearfix
-      .item-button-left
-        %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m38799137224", "data-toggle" => "like", :name => "like!", :type => "button"}
-          %i.icon-like-border
-          %span いいね!
-          %span.fade-in-down{"data-num" => "like"} 4
-
-        .item-button-report
-          %span 不適切な商品の報告
-        %input{:name => "like_add_url", :type => "hidden", :value => "#"}/
-        %input{:name => "like_del_url", :type => "hidden", :value => "#"}/
-        %input{:name => "__csrf_value", :type => "hidden", :value => "#"}/
-      .item-button-right
-        = link_to '#', target: '_blank' do
-          %i.icon-lock
-          %span あんしん・あんぜんへの取り組み
+      - if @item.user != current_user
+        .item-button-left
+          %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m38799137224", "data-toggle" => "like", :name => "like!", :type => "button"}
+            #js-grid-juicy-projects
+              = render @item
+          .item-button-report
+            %span 不適切な商品の報告
+          %input{:name => "like_add_url", :type => "hidden", :value => "#"}/
+          %input{:name => "like_del_url", :type => "hidden", :value => "#"}/
+          %input{:name => "__csrf_value", :type => "hidden", :value => "#"}/
+        .item-button-right
+          = link_to '#', target: '_blank' do
+            %i.icon-lock
+            %span あんしん・あんぜんへの取り組み
+      - else
 
 = render 'toppage/toppage-footer'
 

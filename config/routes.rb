@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   # 商品用ルーティング
   resources :items, only:[:create, :show, :edit, :update, :destroy] do
+    resources :likes, only: [:create, :destroy]
     collection do
       get :sell                        # 商品出品ページ
       get 'buy/:id' => 'items#buy'     # 商品購入ページ
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       get 'category/:id' => 'items#category'     # カテゴリーページ
       match 'search' => 'items#search', via: [:get, :post]  # 商品検索ページ
     end
+    
   end
 
   # Ajax通信用

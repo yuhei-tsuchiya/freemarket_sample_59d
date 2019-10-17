@@ -13,6 +13,9 @@ devise :database_authenticatable, :registerable,
   has_one :card
   accepts_nested_attributes_for :address
 
+  # いいね機能
+  has_many :likes, dependent: :destroy
+
 # SNS認証関係
   has_many :sns_credentials, dependent: :destroy
 

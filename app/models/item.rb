@@ -8,6 +8,12 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :burden
 
+  # いいね機能
+  has_many :likes, dependent: :destroy
+  def like_user(id)
+    likes.find_by(user_id: id)
+  end
+
   has_one :transact, dependent: :destroy
   accepts_nested_attributes_for :transact
   # has_many :comments  # コメント機能が実装できた際に有効化すること
