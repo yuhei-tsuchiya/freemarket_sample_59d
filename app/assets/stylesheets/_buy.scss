@@ -54,7 +54,6 @@
     .buy-item{
       text-align: center;
 
-
       .buy-content-inner{
         max-width: 320px;
         margin: 0 auto;
@@ -134,10 +133,10 @@
 
           .btn-default{
             margin: 8px 0 0;
-            border: 1px solid #888;
-            background: #888;
+            border: 1px solid #ea352d;
+            background: #ea352d;
             color: #fff;
-            cursor: not-allowed;
+            cursor: pointer;
             display: block;
             width: 100%;
             line-height: 48px;
