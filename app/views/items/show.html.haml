@@ -117,7 +117,7 @@
         %p.item-deteal__box__description__idjs
           = @item.description
       - if @item.transact.buyer_id
-        = link_to edit_item_path(@item.id), class:'kkooko--edit-grey'do
+        = link_to "#", class:'kkooko--edit-grey' do
           商品が購入されました。発送してください。
       - else
         = link_to edit_item_path(@item.id), class:'kkooko--edit' do
