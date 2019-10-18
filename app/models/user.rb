@@ -71,7 +71,7 @@ devise :database_authenticatable, :registerable,
 
   def self.with_sns_data(auth, snscredential)
     # user = User.where(id: snscredential.user_id).first
-    user = User.find_by(snscredential.user_id)
+    user = User.find(snscredential.user_id)
     unless user.present?
       user = User.new(
         nickname: auth.info.name,
