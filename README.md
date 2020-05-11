@@ -13,15 +13,13 @@ https://www.t59-freemarket.tk/
   * 購入用カード情報  
     * 番号:4242424242424242  
     * 期限:12/20 (月/年)  
-● ユーザー名:  
-​Jiro
-● セキュリティコード:123  
-■ 出品者用  
-● メールアドレス名:  
-​hoge@example.com  
-● パスワード: ​password  
-● Githubリポジトリ  
-○ https://github.com/y-keysynth/freemarket_sample_59d  
+    * ユーザー名: Jiro
+    * セキュリティコード: 123  
+  * 出品者用  
+    * メールアドレス名:  hoge@example.com  
+    * パスワード: password  
+* Githubリポジトリ  
+  * https://github.com/y-keysynth/freemarket_sample_59d  
 <br/>
 
 ## DB設計
