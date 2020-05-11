@@ -8,10 +8,8 @@ ID: admin
 Pass: teamyu  
 * テスト用アカウント等  
   * 購入者用  
-● メールアドレス:  
-hoge2@example.com  
-● パスワード:  
-password  
+    メールアドレス: hoge2@example.com  
+    パスワード: password  
 ■ 購入用カード情報  
 ● 番号:4242424242424242  
 ● 期限:12/20 (月/年)  
