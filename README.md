@@ -1,8 +1,8 @@
 # README
 
 ## 接続先情報
-+ URL 
-++ https://www.t59-freemarket.tk/
++ URL  
+https://www.t59-freemarket.tk/  
 ○ ID/Pass
 ■ ID: admin
 ■ Pass: teamyu
