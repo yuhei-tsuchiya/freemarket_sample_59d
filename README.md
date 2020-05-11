@@ -4,14 +4,14 @@
 + URL  
 https://www.t59-freemarket.tk/  
 + ID/Pass  
-■ ID: admin  
-■ Pass: teamyu  
+ID: admin  
+Pass: teamyu  
 + テスト用アカウント等  
-■ 購入者用  
+++ 購入者用  
 ● メールアドレス:  
-  ​hoge2@example.com  
+hoge2@example.com  
 ● パスワード:  
-​password  
+password  
 ■ 購入用カード情報  
 ● 番号:4242424242424242  
 ● 期限:12/20 (月/年)  
