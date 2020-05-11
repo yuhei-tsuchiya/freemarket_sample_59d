@@ -1,13 +1,13 @@
 # README
 
 ## 接続先情報
-+ URL  
+* URL  
 https://www.t59-freemarket.tk/  
-+ ID/Pass  
+* ID/Pass  
 ID: admin  
 Pass: teamyu  
-+ テスト用アカウント等  
-++ 購入者用  
+* テスト用アカウント等  
+  * 購入者用  
 ● メールアドレス:  
 hoge2@example.com  
 ● パスワード:  
