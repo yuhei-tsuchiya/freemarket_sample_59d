@@ -3,24 +3,28 @@
 ## 接続先情報
 + URL  
 https://www.t59-freemarket.tk/  
-○ ID/Pass
-■ ID: admin
-■ Pass: teamyu
-○ テスト用アカウント等
-■ 購入者用
-● メールアドレス:
-  ​hoge2@example.com
-● パスワード: ​password
-■ 購入用カード情報
-● 番号:4242424242424242
-● 期限:12/20 (月/年)
-● ユーザー名:​Jiro
-● セキュリティコード:123
-■ 出品者用
-● メールアドレス名: ​hoge@example.com
-● パスワード: ​password
-● Githubリポジトリ
-○ https://github.com/y-keysynth/freemarket_sample_59d
++ ID/Pass  
+■ ID: admin  
+■ Pass: teamyu  
++ テスト用アカウント等  
+■ 購入者用  
+● メールアドレス:  
+  ​hoge2@example.com  
+● パスワード:  
+​password  
+■ 購入用カード情報  
+● 番号:4242424242424242  
+● 期限:12/20 (月/年)  
+● ユーザー名:  
+​Jiro
+● セキュリティコード:123  
+■ 出品者用  
+● メールアドレス名:  
+​hoge@example.com  
+● パスワード: ​password  
+● Githubリポジトリ  
+○ https://github.com/y-keysynth/freemarket_sample_59d  
+<br/>
 
 ## DB設計
 ## usersテーブル
